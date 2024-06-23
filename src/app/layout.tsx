@@ -30,11 +30,6 @@ const Layout = ({ children }: LayoutProps) => {
         <main className="flex-grow container mx-auto p-4 min-h-screen">
           {children}
         </main>
-        <footer className="bg-white shadow">
-          <div className="container mx-auto p-4 text-center text-gray-600">
-            <p>&copy; 2024 cwt&apos;s Playground. All rights reserved.</p>
-          </div>
-        </footer>
       </body>
     </html>
   );
