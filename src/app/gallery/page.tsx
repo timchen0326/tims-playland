@@ -1,6 +1,5 @@
 // app/gallery/page.tsx
 import Image from 'next/image';
-import { getImages } from '../../util/get-image';
 
 interface ImageType {
   src: string;
@@ -8,9 +7,10 @@ interface ImageType {
 }
 
 const Gallery = async () => {
-  const images: ImageType[] = getImages("sally");
+  const res = await fetch(`/api/images?value=sally`);
+  const images: ImageType[] = await res.json();
 
-  if (!images) {
+  if (!images || images.length === 0) {
     return <div>No images found</div>;
   }
 
