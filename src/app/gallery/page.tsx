@@ -1,34 +1,27 @@
-// app/gallery/page.tsx
-import Image from 'next/image';
-import { getImages } from '../../util/get-image';
+"use client";
+import { useRouter } from 'next/navigation';
 
-interface ImageType {
-  src: string;
-  alt: string;
-}
+const About = () => {
+  const router = useRouter();
 
-const Gallery = async () => {
-  const images: ImageType[] = getImages("sally");
-
-  if (!images || images.length === 0) {
-    return <div>No images found</div>;
-  }
+  const handleClick = (src: string) => {
+    router.push('/gallery/sally');
+  };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-6">
-      {images.map((image: ImageType, index: number) => (
-        <div key={index} className="relative w-full h-64">
-          <Image
-            src={image.src}
-            alt={image.alt}
-            layout="fill"
-            objectFit="cover"
-            className="rounded-lg shadow-lg"
-          />
-        </div>
-      ))}
+    <div className="flex flex-col items-start p-6 min-h-screen">
+      <div className="hover:scale-105 transition-transform duration-300 pointer-hover">
+        <img 
+          src="/IMG_4605.JPG" 
+          className="mt-3 w-40 h-50 rounded-full shadow-lg" // Adjusted width and height
+          alt="Sally" 
+          onClick={() => {
+            router.push('/gallery/sally');
+          }}
+        />
+      </div>
     </div>
   );
-};
+}
 
-export default Gallery;
+export default About;
