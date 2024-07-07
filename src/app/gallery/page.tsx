@@ -10,7 +10,7 @@ interface ImageType {
 const Gallery = async () => {
   const images: ImageType[] = getImages("sally");
 
-  if (!images) {
+  if (!images || images.length === 0) {
     return <div>No images found</div>;
   }
 
