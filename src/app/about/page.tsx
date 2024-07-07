@@ -33,7 +33,7 @@ const HomePage = () => {
           transition: 'all 0.3s ease',
         }}
       >
-        View Sally's Gallery
+        View Sally&apos;s Gallery
       </Button>
     </Container>
   );
