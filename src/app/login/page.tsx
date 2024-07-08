@@ -2,6 +2,11 @@
 import React, { useState } from 'react';
 
 const LoginPage = () => {
+  // Check if window is defined to ensure we're in the browser environment
+  if (typeof window !== "undefined") {
+    localStorage.setItem('userId', "");
+  }
+
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -10,10 +15,11 @@ const LoginPage = () => {
     e.preventDefault();
 
     // Perform authentication logic here
-    // For this example, we'll assume successful login if userId is 'admin' and password is 'password'
     if ((userId === 'timchen0326' && password === '920326Timchen') || (userId === 'sallytsai0620' && password === '920620') || (userId === 'User01' && password === 'Test1234')) {
       // Store userId in local storage
-      localStorage.setItem('userId', userId);
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem('userId', userId);
+      }
 
       // Redirect to the desired page after successful login
       window.location.href = '/';
