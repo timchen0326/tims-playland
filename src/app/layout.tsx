@@ -28,7 +28,7 @@ const Layout = ({ children }: LayoutProps) => {
     }
   }, [router, u]);
 
-
+  console.log(u === "timchen0326")
   return (
     <html lang="en" className="h-full bg-gray-50">
       <head>
@@ -47,6 +47,7 @@ const Layout = ({ children }: LayoutProps) => {
               <a href="/" className="text-gray-700 hover:text-gray-900">Home</a>
               <a href="/about" className="text-gray-700 hover:text-gray-900">About</a>
               <a href="/gallery" className="text-gray-700 hover:text-gray-900">Gallery</a>
+              <a href="/login" className="text-gray-700 hover:text-gray-900">Login</a>
             </nav>
           </div>
         </header>

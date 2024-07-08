@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 
 const LoginPage = () => {
+  localStorage.setItem('userId', "");
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
