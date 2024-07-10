@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button, Container, Typography, Paper, List, ListItem, ListItemText, Box, Grid, Chip } from '@mui/material';
@@ -29,14 +29,18 @@ const resumeData = {
     "Javascript",
     "Visual Studio Code",
     "Git",
-
   ],
   education: [
     {
       school: "University of Toronto",
       location: "Toronto, ON",
       date: "September 2021- Present",
-      degree: "Mathematics & Its Applications Specialist (Probability/Statistics)"
+      degrees: [
+        "Mathematics & Its Applications Specialist (Probability/Statistics)",
+        "Mathematics Minor",
+        "Statistics Minor",
+        "Computer Science Minor"
+      ]
     },
     {
       school: "St. John's School",
@@ -79,6 +83,12 @@ const resumeData = {
       company: "Bear Socks, Richmond Night Market",
       location: "Richmond, BC",
       date: "August 2018"
+    },
+    {
+      position: "Engineer - Form Development Department",
+      company: " MAYOHR",
+      location: " Xinyi District, Taipei City, Taiwan",
+      date: "May 2024 - July 2024"
     }
   ],
   volunteer: [
@@ -89,7 +99,7 @@ const resumeData = {
       date: "2019 - 2021"
     },
     {
-      position: "Assistant Teacher",
+      position: "Teacher Assistant",
       organization: "Future Invention Learning Laboratory",
       location: "Richmond, BC",
       date: "2019 - 2020"
@@ -205,7 +215,11 @@ const About = () => {
                   <Box key={index} mb={2}>
                     <Typography variant="subtitle1" style={{ fontWeight: 'bold' }}>{edu.school}</Typography>
                     <Typography variant="body2">{`${edu.location} | ${edu.date}`}</Typography>
-                    <Typography variant="body2">{edu.degree}</Typography>
+                    {Array.isArray(edu.degrees) ? edu.degrees.map((degree, idx) => (
+                      <Typography key={idx} variant="body2">{degree}</Typography>
+                    )) : (
+                      <Typography variant="body2">{edu.degree}</Typography>
+                    )}
                   </Box>
                 ))}
               </ResumeSection>
