@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* src/app/bmi.css */
+
+.bmi-box {
+  width: 45%;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+}
+
+input {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.futuristic {
+  background: linear-gradient(145deg, #1e1e2f, #111122);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.futuristic:hover {
+  transform: scale(1.05);
+}
+
+.futuristic input {
+  background: #2a2a3d;
+  color: #fff;
+  border: none;
+}
+
+.futuristic input:focus {
+  outline: none;
+  box-shadow: 0 0 10px #719ECE;
+}
+
+.futuristic label {
+  font-weight: bold;
+  display: block;
+  margin: 10px 0 5px;
+}
+
+.bmi-chart {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.bmi-chart img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.bmi-category {
+  margin-top: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.bmi-number-line {
+  margin-top: 20px;
+}
+
+.number-line {
+  position: relative;
+  width: 100%;
+  height: 30px;
+}
+
+.number-line-track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 4px;
+  transform: translateY(-50%);
+  display: flex;
+}
+
+.number-line-section {
+  height: 4px;
+}
+
+.underweight {
+  background-color: #FFEB3B; /* Yellow */
+}
+
+.healthy {
+  background-color: #8BC34A; /* Light Green */
+}
+
+.overweight {
+  background-color: #FF9800; /* Orange */
+}
+
+.obese {
+  background-color: #FF5722; /* Dark Orange */
+}
+
+.extremely-obese {
+  background-color: #F44336; /* Red */
+}
+
+.number-line-indicator {
+  position: absolute;
+  top: 50%;
+  width: 4px;
+  height: 20px;
+  background-color: #f00;
+  transform: translateY(-50%);
+  transition: left 0.5s ease-in-out; /* Smooth transition */
+}
+
+.number-line-indicator.reference-indicator1 {
+  background-color: #00f; /* Blue for reference indicators */
+}
+
+.number-line-indicator.reference-indicator2 {
+  background-color: #00f; /* Blue for reference indicators */
+}
+
+.number-line-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.number-line-labels span {
+  font-size: 12px;
+}
+
+
+.with-gap {
+    margin-top: 40px;
+    /* You can adjust the value as needed */
+  }
+

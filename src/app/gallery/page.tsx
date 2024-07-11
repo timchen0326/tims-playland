@@ -32,7 +32,7 @@ const About = () => {
       <div className="hover:scale-105 transition-transform duration-300 pointer-hover">
         <img 
           src="/mayo_human_capital_logo.JPG" 
-          className="mt-3 w-50 h-50 squared-full shadow-lg" // Adjusted width and height
+          className="mt-3 w-30 h-30 squared-full shadow-lg" // Adjusted width and height
           alt="Sally" 
           onClick={() => {
             router.push('/gallery/mayohr');
