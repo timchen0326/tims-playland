@@ -43,25 +43,23 @@ function ClassicBMI() {
           <input type="number" value={m} onChange={handleKiloInput} />
         </div>
         <div className="bmi-additional-text with-gap">
-          <h3>理解 React 中的 useState</h3>
+          <h3>Understanding React's useState</h3>
           <p>
-            調用 <code>useState</code> 時，它會返回一個包含兩個元素的數組：
+            Calling <code>useState</code> returns an array with two elements:
           </p>
           <ol>
-            <li><strong>狀態變量：</strong> 當前的狀態值。</li>
-            <li><strong>狀態設置函數：</strong> 一個允許您更新狀態值的函數。</li>
+            <li><strong>State variable:</strong> Current state value.</li>
+            <li><strong>State setter function:</strong> Function to update the state value.</li>
           </ol>
-          <p>以下是一個使用範例：</p>
+          <p>Here's an example usage:</p>
           <pre><code>const [state, setState] = useState(initialState);</code></pre>
           <ul>
-            <li><strong>initialState：</strong> 狀態變量的初始值。這可以是任何類型。</li>
-            <li><strong>state：</strong> 當前的狀態值。</li>
-            <li><strong>setState：</strong> 一個更新狀態值的函數。當調用這個函數並傳遞一個新的狀態值時，React 會重新渲染該組件並使用更新後的狀態。</li>
+            <li><strong>initialState:</strong> Initial value of the state variable. This can be any type.</li>
+            <li><strong>state:</strong> Current state value.</li>
+            <li><strong>setState:</strong> Function to update the state value. When called with a new state value, React will re-render the component with the updated state.</li>
           </ul>
         </div>
       </div>
-
-
   );
 }
 
@@ -170,9 +168,7 @@ function ModernBMI() {
 function App() {
   return (
     <div className="centered-container">
-              <h1 style={{ textAlign: 'center' , fontSize: '2em'}}>
-          <pre><code>const [state, setState] = useState(initialState);</code></pre>
-        </h1>
+      <h1 style={{ textAlign: 'center' }}>BMI Calculators</h1>
       <div className="container">
         <ClassicBMI />
         <ModernBMI />
@@ -180,6 +176,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;

@@ -64,7 +64,7 @@ export default function JSONEditor() {
         <div className={styles.editorTitle}>
           <code>import {'{ JsonEditor }'} from 'json-edit-react';</code>
           <br />
-          <code>{'<JsonEditor />'}</code>
+          <code>{'<' + 'JsonEditor />'}</code>
         </div>
         <div className={styles.editorActions}>
           <button onClick={handleReset} className={styles.editorButton}>Reset Data</button>
