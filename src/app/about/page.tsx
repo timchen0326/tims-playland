@@ -2,8 +2,13 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button, Container, Typography, Paper, List, ListItem, ListItemText, Box, Grid, Chip } from '@mui/material';
+import dynamic from 'next/dynamic';
 
-const resumeData = {
+const JsonEditor = dynamic(() => import('json-edit-react').then(mod => mod.JsonEditor), { ssr: false });
+
+type SearchFilterType = "value" | "key" | "all" | undefined;
+
+const initialResumeData = {
   name: "Tim Chen",
   contact: {
     address: "1402-17 Dundonald St",
@@ -155,6 +160,11 @@ const ResumeSection = ({ title, children }: any) => (
 const About = () => {
   const router = useRouter();
   const [userId, setUserId] = useState('');
+  const [resumeData, setResumeData] = useState(initialResumeData);
+  const [showArrayIndices, setShowArrayIndices] = useState(true);
+  const [indent, setIndent] = useState(2);
+  const [searchText, setSearchText] = useState('');
+  const [searchFilter, setSearchFilter] = useState<SearchFilterType>('all');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -165,6 +175,26 @@ const About = () => {
 
   const handleClick = () => {
     router.push('/about/sally');
+  };
+
+  const handleUpdate = ({ newData }: any) => {
+    setResumeData(newData);
+  };
+
+  const handleReset = () => {
+    setResumeData(initialResumeData);
+  };
+
+  const toggleArrayIndices = () => {
+    setShowArrayIndices(prevState => !prevState);
+  };
+
+  const increaseIndent = () => {
+    setIndent(prevIndent => prevIndent + 1);
+  };
+
+  const decreaseIndent = () => {
+    setIndent(prevIndent => (prevIndent > 1 ? prevIndent - 1 : 1));
   };
 
   return (
@@ -276,6 +306,49 @@ const About = () => {
                   </Box>
                 ))}
               </ResumeSection>
+            </Grid>
+            <Grid item xs={12}>
+              <div style={{ marginBottom: '20px' }}>
+                <Typography variant="h5" style={sectionTitleStyle}>Resume Data Editor</Typography>
+                <div style={{ marginBottom: '10px' }}>
+                  <Button onClick={handleReset} variant="outlined" style={{ marginRight: '10px' }}>Reset Data</Button>
+                  <Button onClick={toggleArrayIndices} variant="outlined" style={{ marginRight: '10px' }}>
+                    {showArrayIndices ? 'Hide Array Indices' : 'Show Array Indices'}
+                  </Button>
+                  <Button onClick={increaseIndent} variant="outlined" style={{ marginRight: '10px' }}>Increase Indent</Button>
+                  <Button onClick={decreaseIndent} variant="outlined">Decrease Indent</Button>
+                </div>
+                <div style={{ marginBottom: '10px' }}>
+                  <input
+                    type="text"
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)}
+                    placeholder="Search JSON..."
+                    style={{ marginRight: '10px', padding: '5px' }}
+                  />
+                  <select
+                    value={searchFilter}
+                    onChange={(e) => setSearchFilter(e.target.value as SearchFilterType)}
+                    style={{ padding: '5px' }}
+                  >
+                    <option value="all">Search All</option>
+                    <option value="key">Search Keys</option>
+                    <option value="value">Search Values</option>
+                  </select>
+                </div>
+                <JsonEditor
+                  data={resumeData}
+                  onUpdate={handleUpdate}
+                  showArrayIndices={showArrayIndices}
+                  indent={indent}
+                  searchText={searchText}
+                  searchFilter={searchFilter}
+                  restrictDelete={true}
+                  minWidth="100%"
+                  maxWidth="100%"
+                  rootFontSize="14px"
+                />
+              </div>
             </Grid>
           </Grid>
         </Paper>
