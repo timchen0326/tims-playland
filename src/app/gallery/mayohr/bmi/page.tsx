@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import "./bmi.css";
 
 // Function to determine BMI category
 const getBMICategory = (bmi: any) => {
@@ -17,35 +18,53 @@ const calculateBMI = (weight:number, height: number) => weight / (height * heigh
 function ClassicBMI() {
   const [kg, skg] = useState(0);
   const [m, setm] = useState(0);
-  const [bmi, sbmi] = useState(0);
+  const [bmi, setBmi] = useState(0);
 
   const handleMeterInput = (event:any) => {
     skg(event.target.value);
-    sbmi(event.target.value / (m * m));
+    setBmi(event.target.value / (m * m));
   };
 
   const handleKiloInput = (event:any) => {
     setm(event.target.value);
-    sbmi(kg / (event.target.value * event.target.value));
+    setBmi(kg / (event.target.value * event.target.value));
   };
 
   return (
-    <div className="bmi-box">
-      <h2>Classic BMI Calculator</h2>
-      <h3>My BMI is {bmi}</h3>
-      <div>
-        <strong>Weight in Kg:</strong>
-        <input type="number" value={kg} onChange={handleMeterInput} />
+      <div className="bmi-box">
+        <h2>Classic BMI Calculator</h2>
+        <h3>My BMI is {bmi}</h3>
+        <div>
+          <strong>Weight in Kg:</strong>
+          <input type="number" value={kg} onChange={handleMeterInput} />
+        </div>
+        <div>
+          <strong>Height in m:</strong>
+          <input type="number" value={m} onChange={handleKiloInput} />
+        </div>
+        <div className="bmi-additional-text with-gap">
+          <h3>理解 React 中的 useState</h3>
+          <p>
+            調用 <code>useState</code> 時，它會返回一個包含兩個元素的數組：
+          </p>
+          <ol>
+            <li><strong>狀態變量：</strong> 當前的狀態值。</li>
+            <li><strong>狀態設置函數：</strong> 一個允許您更新狀態值的函數。</li>
+          </ol>
+          <p>以下是一個使用範例：</p>
+          <pre><code>const [state, setState] = useState(initialState);</code></pre>
+          <ul>
+            <li><strong>initialState：</strong> 狀態變量的初始值。這可以是任何類型。</li>
+            <li><strong>state：</strong> 當前的狀態值。</li>
+            <li><strong>setState：</strong> 一個更新狀態值的函數。當調用這個函數並傳遞一個新的狀態值時，React 會重新渲染該組件並使用更新後的狀態。</li>
+          </ul>
+        </div>
       </div>
-      <div>
-        <strong>Height in m:</strong>
-        <input type="number" value={m} onChange={handleKiloInput} />
-      </div>
-    </div>
+
+
   );
 }
 
-// Futuristic BMI component
 function ModernBMI() {
   const [weight, setWeight] = useState(0);
   const [height, setHeight] = useState(0);
@@ -72,7 +91,6 @@ function ModernBMI() {
     }
   };
 
-  // Calculate the position on the number line based on BMI
   const getBmiPosition = (bmi: number) => {
     if (bmi < 10) return 0;
     if (bmi > 40) return 100;
@@ -152,6 +170,9 @@ function ModernBMI() {
 function App() {
   return (
     <div className="centered-container">
+              <h1 style={{ textAlign: 'center' , fontSize: '2em'}}>
+          <pre><code>const [state, setState] = useState(initialState);</code></pre>
+        </h1>
       <div className="container">
         <ClassicBMI />
         <ModernBMI />
@@ -159,5 +180,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
