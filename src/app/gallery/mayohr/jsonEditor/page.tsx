@@ -1,9 +1,9 @@
-'use client'
+"use client"
 import React, { useState } from 'react';
 import { JsonEditor } from 'json-edit-react';
-import { JsonEditorProps } from 'json-edit-react'; // Assuming this is the correct import path
+import { JsonEditorProps } from 'json-edit-react';
 import { FaUser, FaEnvelope, FaMapMarkerAlt, FaStar } from 'react-icons/fa';
-import styles from './JSONEditor.module.css'; // Import the CSS module
+import styles from './JSONEditor.module.css';
 
 type JsonData = {
   name: string;
@@ -18,7 +18,7 @@ type JsonData = {
   hobbies: string[];
 };
 
-export default function JSONEditor() {
+export default function Page() {
   const initialData: JsonData = {
     name: "John Doe",
     age: 30,
@@ -62,7 +62,7 @@ export default function JSONEditor() {
     <div className={styles.container}>
       <div className={styles.editorContainer}>
         <div className={styles.editorTitle}>
-          <code>import {'{ JsonEditor }'} from 'json-edit-react';</code>
+          <code>import {'{JsonEditor}'} from &apos;json-edit-react&apos;;</code>
           <br />
           <code>{'<' + 'JsonEditor />'}</code>
         </div>
@@ -92,15 +92,18 @@ export default function JSONEditor() {
             <option value="value">Search Values</option>
           </select>
         </div>
-        <JsonEditor
-          data={jsonData}
-          onUpdate={handleUpdate}
-          showArrayIndices={showArrayIndices}
-          indent={indent}
-          searchText={searchText}
-          searchFilter={searchFilter}
-          restrictDelete={true}
-        />
+        {/* Conditionally render JsonEditor only in the browser */}
+        {typeof window !== 'undefined' && (
+          <JsonEditor
+            data={jsonData}
+            onUpdate={handleUpdate}
+            showArrayIndices={showArrayIndices}
+            indent={indent}
+            searchText={searchText}
+            searchFilter={searchFilter}
+            restrictDelete={true}
+          />
+        )}
       </div>
       <div className={styles.infoContainer}>
         <h2 className={styles.infoHeader}>User Information</h2>
