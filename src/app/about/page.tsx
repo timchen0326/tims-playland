@@ -84,16 +84,16 @@ const initialResumeData = {
   },
   employment: [
     {
+      position: "Software Engineer - Form Development Department",
+      company: " MAYOHR",
+      location: " Xinyi District, Taipei City, Taiwan",
+      date: "May 2024 - July 2024"
+    },
+    {
       position: "Retailer",
       company: "Bear Socks, Richmond Night Market",
       location: "Richmond, BC",
       date: "August 2018"
-    },
-    {
-      position: "Engineer - Form Development Department",
-      company: " MAYOHR",
-      location: " Xinyi District, Taipei City, Taiwan",
-      date: "May 2024 - July 2024"
     }
   ],
   volunteer: [

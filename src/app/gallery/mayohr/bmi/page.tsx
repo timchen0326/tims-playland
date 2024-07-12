@@ -118,7 +118,7 @@ function ModernBMI() {
 
   return (
     <div className="bmi-box futuristic">
-      <h2>Futuristic BMI Calculator</h2>
+      <h1>Futuristic BMI Calculator</h1>
       <h3>My BMI is {bmi.toFixed(2)}</h3>
       <div>
         <label htmlFor="weight">Weight in Kg:</label>
@@ -189,7 +189,7 @@ function ModernBMI() {
       <div className="bmi-chart">
         <h3>BMI Chart</h3>
         <Image
-          src="https://www.tataaia.com/content/dam/tataaialifeinsurancecompanylimited/calculator/life-planning-tools/bmi-calculator/bmi-chart-desktop-new.jpeg"
+          src="/bmi-chart-desktop-new.jpeg"
           alt="BMI Chart"
           width={800}
           height={600}

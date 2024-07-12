@@ -121,11 +121,11 @@ input {
 }
 
 .number-line-indicator.reference-indicator1 {
-  background-color: #00f; /* Blue for reference indicators */
+  background-color: #8BC34A; /* Blue for reference indicators */
 }
 
 .number-line-indicator.reference-indicator2 {
-  background-color: #00f; /* Blue for reference indicators */
+  background-color: #FF9800; /* Blue for reference indicators */
 }
 
 .number-line-labels {
