@@ -3,132 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button, Container, Typography, Paper, List, ListItem, ListItemText, Box, Grid, Chip } from '@mui/material';
 import dynamic from 'next/dynamic';
+import axios from 'axios';
 
 const JsonEditor = dynamic(() => import('json-edit-react').then(mod => mod.JsonEditor), { ssr: false });
 
 type SearchFilterType = "value" | "key" | "all" | undefined;
-
-const initialResumeData = {
-  name: "Tim Chen",
-  contact: {
-    address: "1402-17 Dundonald St",
-    phone: "(778) 323-4326",
-    city: "Toronto, ON M4Y1K3",
-    email: "timchen0326ca@gmail.com"
-  },
-  qualifications: [
-    "Innovative ideas",
-    "Excellent teamwork",
-    "Good communication skills",
-    "Team leadership",
-    "Fluent in English and Chinese Mandarin",
-    "Skilled problem-solver",
-    "Self-motivated",
-    "Data Aggregation",
-    "Data Analytics",
-    "Data Calculations",
-    "Data Cleaning",
-    "Data Ethics",
-    "Data Visualization",
-    "R, Spreadsheets, SQL",
-    "Javascript",
-    "Visual Studio Code",
-    "Git",
-  ],
-  education: [
-    {
-      school: "University of Toronto",
-      location: "Toronto, ON",
-      date: "September 2021- Present",
-      degrees: [
-        "Mathematics & Its Applications Specialist (Probability/Statistics)",
-        "Mathematics Minor",
-        "Statistics Minor",
-        "Computer Science Minor"
-      ]
-    },
-    {
-      school: "St. John's School",
-      location: "Vancouver, BC",
-      date: "August 2019 - May 2021",
-      degree: "International Baccalaureate Diploma Programme"
-    },
-    {
-      school: "Magee Secondary School",
-      location: "Vancouver, BC",
-      date: "September 2016 - June 2019",
-      degree: "BC High School Dogwood Diploma"
-    }
-  ],
-  certificates: [
-    {
-      name: "Google Data Analytics Professional Certificate",
-      issuer: "Coursera",
-      date: "Issued Jan 2024"
-    }
-  ],
-  skills: {
-    leadership: [
-      "Participated in school basketball teams across two schools for five years, participated in the BC High School Junior Basketball Championships, and achieved sixth in BC High School 1A Basketball Championships",
-      "Worked with a teacher to plan out the schedule for a Coding class for kids in the Future Invention Learning Laboratory"
-    ],
-    organization: [
-      "Led multiple scouts events across two years, for example, teaching kids how to tie knots",
-      "Organized an entry by donation fundraising buffet in English Support Club and donated the earnings to the BC Children's Hospital",
-      "Organized the 2019 NFE North American University Fair that sold over 1000 tickets"
-    ],
-    creativity: [
-      "Planned fun trivia games at Scouts and Future Invention Learning Laboratory",
-      "Hosted an ice breaker activities during golf camp at Musqueam Golf Academy"
-    ]
-  },
-  employment: [
-    {
-      position: "Software Engineer - Form Development Department",
-      company: " MAYOHR",
-      location: " Xinyi District, Taipei City, Taiwan",
-      date: "May 2024 - July 2024"
-    },
-    {
-      position: "Retailer",
-      company: "Bear Socks, Richmond Night Market",
-      location: "Richmond, BC",
-      date: "August 2018"
-    }
-  ],
-  volunteer: [
-    {
-      position: "Colony Scouter",
-      organization: "Scouts Canada",
-      location: "Richmond, BC",
-      date: "2019 - 2021"
-    },
-    {
-      position: "Teacher Assistant",
-      organization: "Future Invention Learning Laboratory",
-      location: "Richmond, BC",
-      date: "2019 - 2020"
-    },
-    {
-      position: "Event Organizer",
-      organization: "2019 NFE North American University Fair",
-      location: "Vancouver, BC",
-      date: "2019"
-    },
-    {
-      position: "Vice President",
-      organization: "Magee English Support Club",
-      location: "Vancouver, BC",
-      date: "2018 - 2019"
-    },
-    {
-      position: "Student Coach",
-      organization: "Musqueam Golf Academy",
-      location: "Vancouver, BC",
-      date: "2017- 2018"
-    }
-  ]
-};
 
 const sectionTitleStyle = {
   fontSize: '24px',
@@ -160,7 +39,7 @@ const ResumeSection = ({ title, children }: any) => (
 const About = () => {
   const router = useRouter();
   const [userId, setUserId] = useState('');
-  const [resumeData, setResumeData] = useState(initialResumeData);
+  const [resumeData, setResumeData] = useState<any>(null);
   const [showArrayIndices, setShowArrayIndices] = useState(true);
   const [indent, setIndent] = useState(2);
   const [searchText, setSearchText] = useState('');
@@ -171,18 +50,33 @@ const About = () => {
       const value = window.localStorage.getItem("userId") ?? '';
       setUserId(value);
     }
+    fetchResumeData();
   }, []);
+
+  const fetchResumeData = async () => {
+    try {
+      const response = await axios.get('https://samplejson.onrender.com/api/data');
+      setResumeData(response.data);
+    } catch (error) {
+      console.error('Error fetching resume data:', error);
+    }
+  };
 
   const handleClick = () => {
     router.push('/about/sally');
   };
 
-  const handleUpdate = ({ newData }: any) => {
-    setResumeData(newData);
+  const handleUpdate = async ({ newData }: any) => {
+    try {
+      await axios.post('https://samplejson.onrender.com/api/save', newData);
+      setResumeData(newData);
+    } catch (error) {
+      console.error('Error saving resume data:', error);
+    }
   };
 
   const handleReset = () => {
-    setResumeData(initialResumeData);
+    fetchResumeData();
   };
 
   const toggleArrayIndices = () => {
@@ -196,6 +90,8 @@ const About = () => {
   const decreaseIndent = () => {
     setIndent(prevIndent => (prevIndent > 1 ? prevIndent - 1 : 1));
   };
+
+  if (!resumeData) return <div>Loading...</div>;
 
   return (
     (userId === "timchen0326" || userId === "sallytsai0620") ? (
@@ -232,7 +128,7 @@ const About = () => {
 
               <ResumeSection title="QUALIFICATIONS">
                 <Box display="flex" flexWrap="wrap" justifyContent="center">
-                  {resumeData.qualifications.map((skill, index) => (
+                  {resumeData.qualifications.map((skill: string, index: number) => (
                     <Chip key={index} label={skill} style={chipStyle} />
                   ))}
                 </Box>
@@ -241,11 +137,11 @@ const About = () => {
 
             <Grid item xs={12} md={8}>
               <ResumeSection title="EDUCATION">
-                {resumeData.education.map((edu, index) => (
+                {resumeData.education.map((edu: any, index: number) => (
                   <Box key={index} mb={2}>
                     <Typography variant="subtitle1" style={{ fontWeight: 'bold' }}>{edu.school}</Typography>
                     <Typography variant="body2">{`${edu.location} | ${edu.date}`}</Typography>
-                    {Array.isArray(edu.degrees) ? edu.degrees.map((degree, idx) => (
+                    {Array.isArray(edu.degrees) ? edu.degrees.map((degree: string, idx: number) => (
                       <Typography key={idx} variant="body2">{degree}</Typography>
                     )) : (
                       <Typography variant="body2">{edu.degree}</Typography>
@@ -255,7 +151,7 @@ const About = () => {
               </ResumeSection>
 
               <ResumeSection title="CERTIFICATES">
-                {resumeData.certificates.map((cert, index) => (
+                {resumeData.certificates.map((cert: any, index: number) => (
                   <Typography key={index} variant="body1">{`${cert.name} - ${cert.issuer} ${cert.date}`}</Typography>
                 ))}
               </ResumeSection>
@@ -263,7 +159,7 @@ const About = () => {
               <ResumeSection title="RELEVANT SKILLS & EXPERIENCES">
                 <Typography variant="h6" style={subSectionTitleStyle}>LEADERSHIP & TEAMWORK</Typography>
                 <List>
-                  {resumeData.skills.leadership.map((item, index) => (
+                  {resumeData.skills.leadership.map((item: string, index: number) => (
                     <ListItem key={index}>
                       <ListItemText primary={item} />
                     </ListItem>
@@ -272,7 +168,7 @@ const About = () => {
 
                 <Typography variant="h6" style={subSectionTitleStyle}>ORGANIZATION</Typography>
                 <List>
-                  {resumeData.skills.organization.map((item, index) => (
+                  {resumeData.skills.organization.map((item: string, index: number) => (
                     <ListItem key={index}>
                       <ListItemText primary={item} />
                     </ListItem>
@@ -281,7 +177,7 @@ const About = () => {
 
                 <Typography variant="h6" style={subSectionTitleStyle}>CREATIVITY</Typography>
                 <List>
-                  {resumeData.skills.creativity.map((item, index) => (
+                  {resumeData.skills.creativity.map((item: string, index: number) => (
                     <ListItem key={index}>
                       <ListItemText primary={item} />
                     </ListItem>
@@ -290,7 +186,7 @@ const About = () => {
               </ResumeSection>
 
               <ResumeSection title="EMPLOYMENT HISTORY">
-                {resumeData.employment.map((job, index) => (
+                {resumeData.employment.map((job: any, index: number) => (
                   <Box key={index} mb={1}>
                     <Typography variant="subtitle1" style={{ fontWeight: 'bold' }}>{job.position}</Typography>
                     <Typography variant="body2">{`${job.company}, ${job.location} | ${job.date}`}</Typography>
@@ -299,7 +195,7 @@ const About = () => {
               </ResumeSection>
 
               <ResumeSection title="VOLUNTEER EXPERIENCE">
-                {resumeData.volunteer.map((vol, index) => (
+                {resumeData.volunteer.map((vol: any, index: number) => (
                   <Box key={index} mb={1}>
                     <Typography variant="subtitle1" style={{ fontWeight: 'bold' }}>{vol.position}</Typography>
                     <Typography variant="body2">{`${vol.organization}, ${vol.location} | ${vol.date}`}</Typography>

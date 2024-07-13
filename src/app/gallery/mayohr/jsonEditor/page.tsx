@@ -1,8 +1,9 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { JsonEditor } from 'json-edit-react';
 import { JsonEditorProps } from 'json-edit-react';
 import { FaUser, FaEnvelope, FaMapMarkerAlt, FaStar } from 'react-icons/fa';
+import axios from 'axios';
 import styles from './JSONEditor.module.css';
 
 type JsonData = {
@@ -19,31 +20,36 @@ type JsonData = {
 };
 
 export default function Page() {
-  const initialData: JsonData = {
-    name: "John Doe",
-    age: 30,
-    email: "john.doe@example.com",
-    address: {
-      street: "123 Main St",
-      city: "Anytown",
-      state: "CA",
-      zip: "12345"
-    },
-    hobbies: ["reading", "gaming", "hiking"]
-  };
-
-  const [jsonData, setJsonData] = useState<JsonData>(initialData);
+  const [jsonData, setJsonData] = useState<JsonData | null>(null);
   const [showArrayIndices, setShowArrayIndices] = useState(true);
   const [indent, setIndent] = useState(2);
   const [searchText, setSearchText] = useState<string>('');
   const [searchFilter, setSearchFilter] = useState<'key' | 'value' | 'all'>('all');
 
-  const handleUpdate: JsonEditorProps['onUpdate'] = ({ newData }) => {
-    setJsonData(newData as JsonData);
+  useEffect(() => {
+    fetchJsonData();
+  }, []);
+
+  const fetchJsonData = async () => {
+    try {
+      const response = await axios.get('https://jsoneditor-q2c2.onrender.com/api/data');
+      setJsonData(response.data);
+    } catch (error) {
+      console.error('Error fetching JSON data:', error);
+    }
+  };
+
+  const handleUpdate: JsonEditorProps['onUpdate'] = async ({ newData }) => {
+    try {
+      await axios.post('https://jsoneditor-q2c2.onrender.com/api/save', newData);
+      setJsonData(newData as JsonData);
+    } catch (error) {
+      console.error('Error saving JSON data:', error);
+    }
   };
 
   const handleReset = () => {
-    setJsonData(initialData);
+    fetchJsonData();
   };
 
   const toggleArrayIndices = () => {
@@ -57,6 +63,8 @@ export default function Page() {
   const decreaseIndent = () => {
     setIndent(prevIndent => (prevIndent > 1 ? prevIndent - 1 : 1));
   };
+
+  if (!jsonData) return <div>Loading...</div>;
 
   return (
     <div className={styles.container}>

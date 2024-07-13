@@ -1,6 +1,5 @@
 // app/gallery/page.tsx
 import { getImages } from '@/util/get-image';
-import Image from 'next/image';
 
 interface ImageType {
   src: string;
@@ -18,12 +17,10 @@ const Gallery = async () => {
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-6">
       {images.map((image: ImageType, index: number) => (
         <div key={index} className="relative w-full h-64">
-          <Image
+          <img
             src={image.src}
             alt={image.alt}
-            layout="fill"
-            objectFit="cover"
-            className="rounded-lg shadow-lg"
+            className="rounded-lg shadow-lg object-cover w-full h-full"
           />
         </div>
       ))}
