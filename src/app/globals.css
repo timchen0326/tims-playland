@@ -9,7 +9,15 @@ body {
   padding: 0;
   box-sizing: border-box;
   background-color: #f9fafb; /* Tailwind's gray-50 color */
+  height: 100%;
 }
+
+html{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 
 header {
   background-color: #f8f8f8;

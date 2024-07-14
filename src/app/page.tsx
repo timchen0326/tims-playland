@@ -1,29 +1,36 @@
+'use client'
 import React from 'react';
+import { useRouter } from 'next/navigation';
+import styles from './HomePage.module.css';
 
 const HomePage = () => {
+  const router = useRouter();
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 px-4">
-      <h1 className="text-5xl font-extrabold mb-6 text-gray-900">
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-green-500">
-          Welcome to My Website
-        </span>
+    <div className={styles.container}>
+      <div className={styles.floatingElement}></div>
+      <div className={styles.floatingElement}></div>
+      <div className={styles.floatingElement}></div>
+      
+      <h1 className={`${styles.title} ${styles.fadeInUp}`}>
+        Welcome to My Website
       </h1>
-      <p className="text-lg mb-12 text-gray-700 text-center max-w-xl">
+      <p className={`${styles.description} ${styles.fadeInUp} ${styles['delay-1']}`}>
         Discover the latest trends in technology and innovation. Dive into our insightful articles, browse our gallery, and learn more about what drives us.
       </p>
-      <div className="flex space-x-6">
-        <a
-          href="/about"
-          className="px-8 py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-300"
+      <div className={`${styles.buttonContainer} ${styles.fadeInUp} ${styles['delay-2']}`}>
+        <button
+          onClick={() => router.push('/about')}
+          className={styles.button}
         >
           About
-        </a>
-        <a
-          href="/gallery"
-          className="px-8 py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-300"
+        </button>
+        <button
+          onClick={() => router.push('/gallery')}
+          className={styles.button}
         >
           Gallery
-        </a>
+        </button>
       </div>
     </div>
   );
