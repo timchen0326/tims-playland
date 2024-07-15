@@ -146,14 +146,14 @@ const GitBasics: React.FC = () => {
     <div>
       <Head>
         <title>Git 基礎教程</title>
-        <meta name="description" content="學習基本的 Git 命令，開始使用版本控制。" />
+        <meta name="description" content="學習基本的 Git 命令 開始使用版本控制 " />
       </Head>
 
       <main style={{ padding: '2rem' }}>
         <h1>Git 基礎教程</h1>
 
         <section>
-          <p>嘗試 Git 命令 在下面的輸入框中輸入 Git 命令，並按下"Enter"鍵來查看模擬結果。</p>
+          <p>嘗試 Git 命令 在下面的輸入框中輸入 Git 命令 並按下&quot;Enter&quot;鍵來查看模擬結果 </p>
           <div style={{ border: '1px solid #ccc', padding: '1rem', backgroundColor: '#f7f7f7' }}>
             <div style={{ height: '200px', overflowY: 'auto', marginBottom: '1rem' }}>
               {output.map((line, index) => (
