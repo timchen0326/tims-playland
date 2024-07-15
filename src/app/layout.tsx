@@ -4,6 +4,7 @@ import Image from 'next/image';
 import '../app/globals.css';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+import Breadcrumbs from '@/util/breadcrumb/page';
 
 interface LayoutProps {
   children: ReactNode;
@@ -57,15 +58,20 @@ const Layout = ({ children }: LayoutProps) => {
           animate="visible"
         >
           <div className="container mx-auto p-4 flex justify-between items-center">
-            <motion.div 
-              className="flex items-center space-x-2"
-              whileHover={{ scale: 1.05 }}
-            >
-              <Image src="/pikachu.svg" alt="Pikachu Logo" width={50} height={50} />
-              <h1 className="text-2xl font-bold">
-                cwt&apos;s Playground
-              </h1>
-            </motion.div>
+            <div className="flex items-center space-x-4 flex-grow">
+              <motion.div 
+                className="flex items-center space-x-2"
+                whileHover={{ scale: 1.05 }}
+              >
+                <Image src="/pikachu.svg" alt="Pikachu Logo" width={50} height={50} />
+                <h1 className="text-2xl font-bold">
+                  cwt&apos;s Playground
+                </h1>
+              </motion.div>
+              <div className="hidden md:block flex-grow text-center">
+                <Breadcrumbs />
+              </div>
+            </div>
             <nav className="hidden md:block">
               {['Home', 'About', 'Gallery', 'Login'].map((item) => (
                 <motion.a 
@@ -96,6 +102,9 @@ const Layout = ({ children }: LayoutProps) => {
                 animate="open"
                 exit="closed"
               >
+                <div className="p-2">
+                  <Breadcrumbs />
+                </div>
                 {['Home', 'About', 'Gallery', 'Login'].map((item) => (
                   <motion.a 
                     key={item}
@@ -111,6 +120,7 @@ const Layout = ({ children }: LayoutProps) => {
             )}
           </AnimatePresence>
         </motion.header>
+
         <motion.main 
           className="flex-grow mx-auto p-4"
           initial={{ opacity: 0, y: 20 }}

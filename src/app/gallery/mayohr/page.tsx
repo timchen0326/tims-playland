@@ -2,51 +2,80 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import Breadcrumbs from '@/util/breadcrumb/page';
 
 const MayoHR = () => {
   const router = useRouter();
   
   const timelineItems = [
     {
+      icon: "/0_aZ3qgyVGmcQd488S.webp",
+      alt: "Install VS Code and React.js",
+      route: '#',
+      text: "開始學習怎麽下載 VS Code 跟 使用 React.js / Next.js",
+      color: "border-teal-500"
+    },
+    {
       icon: "/unnamed.png",
       alt: "Freecodecamp",
       route: 'https://www.freecodecamp.org/',
-      text: "Freecodecamp: Learn to code for free with interactive lessons and a supportive community.",
+      text: "從零開始學習與收悉 HTML",
       color: "border-teal-500"
     },
     {
       icon: "/pngtree-bmi-cartoon-vector-illustration-depicting-medical-concept-unhealthy-vector-body-vector-png-image_47239794.jpg",
       alt: "BMI",
       route: '/gallery/mayohr/bmi',
-      text: "BMI Calculator: Check your Body Mass Index quickly and easily.",
+      text: "初階瞭解 usestate 的用意並更瞭解 react 用法",
+      color: "border-teal-500"
+    },
+    {
+      icon: "/python.svg",
+      alt: "Python 爬蟲 / Flask 架 API",
+      route: '#',
+      text: "學習如何使用 Python 去爬蟲和架 API",
       color: "border-teal-500"
     },
     {
       icon: "/9b205bc30c406fdff6e173156594b8cb.jpg",
       alt: "拍賣球員卡網站",
       route: 'https://shopping-cart-k73y.vercel.app/',
-      text: "拍賣球員卡網站: Explore our e-commerce platform with Tim as your guide.",
+      text: "自行去創造自己的球員卡拍賣網站 使用的是爬蟲完的資料",
       color: "border-blue-500"
     },
     {
       icon: "/images (1).png",
       alt: "learngitbranching",
       route: 'https://learngitbranching.js.org/',
-      text: "Learn Git Branching: Master Git concepts through visual tutorials and interactive exercises.",
+      text: "學了基本 git 的操作",
       color: "border-blue-500"
+    },
+    {
+      icon: "/46415699-cfc5cf00-c6f3-11e8-9bcc-2fc2bf1759ec.png",
+      alt: "Azure DevOps",
+      route: '#',
+      text: "開始協助後台前端功能的開發",
+      color: "border-teal-500"  
     },
     {
       icon: "/json-editor-online-icon-filled-256.webp",
       alt: "JsonEditor",
       route: '/gallery/mayohr/jsonEditor',
-      text: "JSON Editor: Edit and validate JSON data with our powerful online tool.",
+      text: "使用 JsonEditor 套件去修改 Json File",
       color: "border-indigo-500"
+    },
+    {
+      icon: "/dashboard-8312011_1280.png",
+      alt: "Dashboard",
+      route: '/gallery/mayohr/dashboard',
+      text: "使用 dashboard 是為了提供一個集中化的界面來可視化數據",
+      color: "border-teal-500"  
     },
     {
       icon: "/istockphoto-921617728-612x612.jpg",
       alt: "React D3 Tree",
       route: '/gallery/mayohr/reactD3Tree',
-      text: "React D3 Tree: Visualize hierarchical data with interactive tree diagrams.",
+      text: "修改公司套件使用組織樹套件",
       color: "border-purple-500"
     },
   ];

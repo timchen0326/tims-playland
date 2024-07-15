@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Breadcrumbs from '@/util/breadcrumb/page';
 
 const Gallery = () => {
   const router = useRouter();
@@ -64,7 +65,7 @@ const Gallery = () => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="flex flex-col items-center justify-center min-h-screen p-6 "
+        className="flex flex-col items-center justify-center min-h-screen p-6"
       >
         <motion.div
           variants={itemVariants}
@@ -81,7 +82,7 @@ const Gallery = () => {
             variants={imageVariants}
           />
           <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 rounded-full blur-xl"
+            className="absolute inset-0 bg-gradient-to-r from-gray-400 via-gray-500 to-gray-600 rounded-full blur-xl"
             variants={glowVariants}
             initial="initial"
             animate="animate"
@@ -92,16 +93,16 @@ const Gallery = () => {
           className="mt-8 text-center"
         >
           <motion.h2 
-            className="text-3xl font-bold mb-4 text-white"
+            className="text-3xl font-bold mb-4 text-black"
             animate={{ 
-              color: isHovered ? ['#fff', '#ff00ff', '#00ffff', '#fff'] : '#fff'
+              color: isHovered ? ['#000', '#333', '#666', '#000'] : '#000'
             }}
             transition={{ duration: 2, repeat: Infinity }}
           >
             {userId === "timchen0326" || userId === "sallytsai0620" ? "Sally's Gallery" : "Mayo HR Gallery"}
           </motion.h2>
           <motion.p 
-            className="text-lg text-gray-300"
+            className="text-lg text-gray-700"
             animate={{ opacity: isHovered ? [1, 0.5, 1] : 1 }}
             transition={{ duration: 1.5, repeat: Infinity }}
           >
