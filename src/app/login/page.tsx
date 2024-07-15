@@ -15,7 +15,7 @@ const LoginPage = () => {
     e.preventDefault();
 
     // Perform authentication logic here
-    if ((userId === 'timchen0326' && password === '920326Timchen') || (userId === 'sallytsai0620' && password === '920620') || (userId === 'User01' && password === 'Test1234')) {
+    if ((userId === 'timchen0326' && password === '920326Timchen') || (userId === 'sallytsai0620' && password === '920620') || (userId === 'User01' && password === 'Test1234') || (userId === 'Admin01' && password === 'Test1234')) {
       // Store userId in local storage
       if (typeof window !== "undefined") {
         window.localStorage.setItem('userId', userId);

@@ -5,6 +5,7 @@ import '../app/globals.css';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import Breadcrumbs from '@/util/breadcrumb/page';
+import { Providers } from './providers';
 
 interface LayoutProps {
   children: ReactNode;
@@ -20,11 +21,10 @@ const Layout = ({ children }: LayoutProps) => {
     }
     return '';
   };
-
   const u = getLocalStorageValue();
 
   useEffect(() => {
-    if (u !== "timchen0326" && u !== "sallytsai0620" && u !=="User01") {
+    if (u !== "timchen0326" && u !== "sallytsai0620" && u !=="User01" && u !=="Admin01") {
       router.push('/login');
     }
   }, [router, u]);
@@ -51,6 +51,7 @@ const Layout = ({ children }: LayoutProps) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body className="">
+      <Providers>
         <motion.header 
           className="bg-white shadow-lg"
           variants={headerVariants}
@@ -129,6 +130,7 @@ const Layout = ({ children }: LayoutProps) => {
         >
           {children}
         </motion.main>
+      </Providers>
       </body>
     </html>
   );

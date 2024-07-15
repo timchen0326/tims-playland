@@ -15,78 +15,14 @@ const getBMICategory = (bmi: number) => {
 // Calculate BMI
 const calculateBMI = (weight: number, height: number) => weight / (height * height);
 
-// Classic BMI component
-function ClassicBMI() {
-  const [kg, setKg] = useState(0);
-  const [m, setM] = useState(0);
-  const [bmi, setBmi] = useState(0);
-
-  const handleKgInput = (event:any) => {
-    setKg(event.target.value);
-    setBmi(event.target.value / (m * m));
-  };
-
-  const handleMInput = (event:any) => {
-    setM(event.target.value);
-    setBmi(kg / (event.target.value * event.target.value));
-  };
-
-  return (
-    <div className="bmi-box">
-      <h2>Classic BMI Calculator</h2>
-      <h3>My BMI is {bmi.toFixed(2)}</h3>
-      <div>
-        <strong>Weight in Kg:</strong>
-        <input type="number" value={kg} onChange={handleKgInput} />
-      </div>
-      <div>
-        <strong>Height in m:</strong>
-        <input type="number" value={m} onChange={handleMInput} />
-      </div>
-      <div className="bmi-additional-text with-gap">
-        <h3>Understanding React&apos;s useState</h3>
-        <p>
-          Calling <code>useState</code> returns an array with two elements:
-        </p>
-        <ol>
-          <li>
-            <strong>State variable:</strong> Current state value.
-          </li>
-          <li>
-            <strong>State setter function:</strong> Function to update the state
-            value.
-          </li>
-        </ol>
-        <p>Here&apos;s an example usage:</p>
-        <pre>
-          <code>const [state, setState] = useState(initialState);</code>
-        </pre>
-        <ul>
-          <li>
-            <strong>initialState:</strong> Initial value of the state variable.
-            This can be any type.
-          </li>
-          <li>
-            <strong>state:</strong> Current state value.
-          </li>
-          <li>
-            <strong>setState:</strong> Function to update the state value. When
-            called with a new state value, React will re-render the component
-            with the updated state.
-          </li>
-        </ul>
-      </div>
-    </div>
-  );
-}
-
+// Modern BMI component
 function ModernBMI() {
   const [weight, setWeight] = useState(0);
   const [height, setHeight] = useState(0);
   const [bmi, setBmi] = useState(0);
   const [bmiCategory, setBmiCategory] = useState("");
 
-  const handleWeightChange = (event:any) => {
+  const handleWeightChange = (event: any) => {
     const weightValue = parseFloat(event.target.value);
     setWeight(weightValue);
     if (height > 0) {
@@ -96,7 +32,7 @@ function ModernBMI() {
     }
   };
 
-  const handleHeightChange = (event:any) => {
+  const handleHeightChange = (event: any) => {
     const heightValue = parseFloat(event.target.value);
     setHeight(heightValue);
     if (weight > 0) {
@@ -199,16 +135,14 @@ function ModernBMI() {
   );
 }
 
-function App() {
+function BMI() {
   return (
     <div className="centered-container">
-      <h1 style={{ textAlign: "center" }}>BMI Calculators</h1>
       <div className="container">
-        <ClassicBMI />
         <ModernBMI />
       </div>
     </div>
   );
 }
 
-export default App;
+export default BMI;

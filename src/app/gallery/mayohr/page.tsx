@@ -1,85 +1,94 @@
-"use client";
-import { useRouter } from 'next/navigation';
+'use client'
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import Breadcrumbs from '@/util/breadcrumb/page';
 
 const MayoHR = () => {
   const router = useRouter();
-  
+  const [userId, setUserId] = useState<string | null>(null);
+
+  useEffect(() => {
+    setUserId(localStorage.getItem('userId'));
+  }, []);
+
   const timelineItems = [
     {
       icon: "/0_aZ3qgyVGmcQd488S.webp",
       alt: "Install VS Code and React.js",
       route: '#',
-      text: "開始學習怎麽下載 VS Code 跟 使用 React.js / Next.js",
-      color: "border-teal-500"
+      text: "開始學習怎麽下載 VS Code 跟 使用 React.js / Next.js"
     },
     {
       icon: "/unnamed.png",
       alt: "Freecodecamp",
       route: 'https://www.freecodecamp.org/',
-      text: "從零開始學習與收悉 HTML",
-      color: "border-teal-500"
+      text: "從零開始學習與收悉 HTML"
     },
     {
       icon: "/pngtree-bmi-cartoon-vector-illustration-depicting-medical-concept-unhealthy-vector-body-vector-png-image_47239794.jpg",
       alt: "BMI",
       route: '/gallery/mayohr/bmi',
-      text: "初階瞭解 usestate 的用意並更瞭解 react 用法",
-      color: "border-teal-500"
+      text: "初階瞭解 usestate 的用意並更瞭解 react 用法"
     },
     {
       icon: "/python.svg",
       alt: "Python 爬蟲 / Flask 架 API",
       route: '#',
-      text: "學習如何使用 Python 去爬蟲和架 API",
-      color: "border-teal-500"
+      text: "學習如何使用 Python 去爬蟲和架 API"
     },
     {
       icon: "/9b205bc30c406fdff6e173156594b8cb.jpg",
       alt: "拍賣球員卡網站",
       route: 'https://shopping-cart-k73y.vercel.app/',
-      text: "自行去創造自己的球員卡拍賣網站 使用的是爬蟲完的資料",
-      color: "border-blue-500"
+      text: "自行去創造自己的球員卡拍賣網站 使用的是爬蟲完的資料"
     },
     {
       icon: "/images (1).png",
       alt: "learngitbranching",
-      route: 'https://learngitbranching.js.org/',
-      text: "學了基本 git 的操作",
-      color: "border-blue-500"
+      route: '/gallery/mayohr/git',
+      text: "學了基本 git 的操作"
     },
     {
       icon: "/46415699-cfc5cf00-c6f3-11e8-9bcc-2fc2bf1759ec.png",
       alt: "Azure DevOps",
       route: '#',
-      text: "開始協助後台前端功能的開發",
-      color: "border-teal-500"  
+      text: "開始協助後台前端功能的開發"
     },
     {
       icon: "/json-editor-online-icon-filled-256.webp",
       alt: "JsonEditor",
       route: '/gallery/mayohr/jsonEditor',
-      text: "使用 JsonEditor 套件去修改 Json File",
-      color: "border-indigo-500"
+      text: "使用 JsonEditor 套件去修改 Json File"
     },
     {
       icon: "/dashboard-8312011_1280.png",
       alt: "Dashboard",
       route: '/gallery/mayohr/dashboard',
-      text: "使用 dashboard 是為了提供一個集中化的界面來可視化數據",
-      color: "border-teal-500"  
+      text: "使用 dashboard 是為了提供一個集中化的界面來可視化數據"
     },
     {
       icon: "/istockphoto-921617728-612x612.jpg",
       alt: "React D3 Tree",
       route: '/gallery/mayohr/reactD3Tree',
-      text: "修改公司套件使用組織樹套件",
-      color: "border-purple-500"
+      text: "修改公司套件使用組織樹套件"
+    },
+    {
+      icon: "/profile-icon-login-head-icon-vector.jpg",
+      alt: "使用者權限",
+      route: '/login',
+      text: "限制使用者可以看到的網頁"
+    },
+    {
+      icon: "/images.png",
+      alt: "Redux",
+      route: '/gallery/mayohr/redux',
+      text: "輕鬆管理 React 應用程式的狀態"
     },
   ];
-    
+
+  const filteredItems = userId === 'User01' 
+    ? timelineItems.filter(item => item.alt === "使用者權限")
+    : timelineItems;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -128,7 +137,7 @@ const MayoHR = () => {
           transition={{ duration: 1.5, ease: "easeInOut" }}
         ></motion.div>
         
-        {timelineItems.map((item, index) => (
+        {filteredItems.map((item, index) => (
           <motion.div 
             key={index} 
             className={`mb-8 flex justify-between items-center w-full ${index % 2 === 0 ? 'flex-row-reverse' : 'flex-row'}`}
@@ -142,7 +151,7 @@ const MayoHR = () => {
             >
               <motion.img 
                 src={item.icon}
-                className={`w-20 h-20 rounded-full object-cover cursor-pointer border-4 ${item.color} ml-2`}
+                className={`w-20 h-20 rounded-full object-cover cursor-pointer border-4 border-white-500 ml-2`}
                 alt={item.alt}
                 onClick={() => router.push(item.route)}
                 whileHover={{ scale: 1.2 }}

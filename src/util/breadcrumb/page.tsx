@@ -50,6 +50,21 @@ const Breadcrumbs: React.FC = () => {
     });
   };
 
+  if (pathname === '/login') {
+    return (
+      <motion.nav 
+        className="flex items-center space-x-1 text-gray-500 p-3 bg-white rounded-lg"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.div variants={itemVariants} className="flex items-center">
+          <span className="text-sm font-medium text-black font-semibold cursor-default">Login</span>
+        </motion.div>
+      </motion.nav>
+    );
+  }
+
   return (
     <motion.nav 
       className="flex items-center space-x-1 text-gray-500 p-3 bg-white rounded-lg"

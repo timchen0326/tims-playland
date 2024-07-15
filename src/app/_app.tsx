@@ -1,7 +1,13 @@
-// src/app/_app.tsx
+'use client'
+import { store } from '@/util/redux/store';
 import '../app/globals.css';
 import type { AppProps } from 'next/app';
+import { Provider } from 'react-redux';
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>
+  );
 }
