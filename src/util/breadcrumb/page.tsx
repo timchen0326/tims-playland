@@ -1,8 +1,12 @@
-'use client'
+'use client';
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
+
+const breadcrumbConfig: { [key: string]: string } = {
+  'mayohr': 'MAYOHR',
+};
 
 const Breadcrumbs: React.FC = () => {
   const pathname = usePathname();
@@ -25,6 +29,10 @@ const Breadcrumbs: React.FC = () => {
     visible: { opacity: 1, y: 0 }
   };
 
+  const getBreadcrumbLabel = (path: string) => {
+    return breadcrumbConfig[path] || decodeURIComponent(path.charAt(0).toUpperCase() + path.slice(1));
+  };
+
   const createBreadcrumbs = () => {
     return pathArray.map((path: string, index: number) => {
       const href = "/" + pathArray.slice(0, index + 1).join("/");
@@ -32,15 +40,18 @@ const Breadcrumbs: React.FC = () => {
       return (
         <React.Fragment key={href}>
           <motion.div variants={itemVariants} className="flex items-center">
-            <Link 
-              href={href} 
-              className={`text-sm font-medium transition-all duration-200 ease-in-out 
-                ${isLast 
-                  ? 'text-black font-semibold cursor-default' 
-                  : 'text-gray-500 hover:text-black'}`}
-            >
-              {decodeURIComponent(path.charAt(0).toUpperCase() + path.slice(1))}
-            </Link>
+            {isLast ? (
+              <span className="text-sm font-medium text-black font-semibold cursor-default">
+                {getBreadcrumbLabel(path)}
+              </span>
+            ) : (
+              <Link 
+                href={href} 
+                className="text-sm font-medium text-gray-500 transition-all duration-200 ease-in-out hover:text-black"
+              >
+                {getBreadcrumbLabel(path)}
+              </Link>
+            )}
             {!isLast && (
               <span className="mx-2 text-gray-400">›</span>
             )}

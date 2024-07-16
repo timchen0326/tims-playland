@@ -17,7 +17,7 @@ const TenantSummariesAndLayout = ({
 }) => {
 
     return (
-        <div className="min-h-screen bg-gray-100 p-2">
+        <div className="min-h-screen p-2">
             <h1 className="text-xl font-bold mb-4 text-center animate-fadeIn">
                 Dashboard
             </h1>

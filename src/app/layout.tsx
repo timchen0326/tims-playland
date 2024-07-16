@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { ReactNode, useEffect, useState } from 'react';
 import Image from 'next/image';
 import '../app/globals.css';
@@ -24,7 +24,7 @@ const Layout = ({ children }: LayoutProps) => {
   const u = getLocalStorageValue();
 
   useEffect(() => {
-    if (u !== "timchen0326" && u !== "sallytsai0620" && u !=="User01" && u !=="Admin01") {
+    if (u !== "timchen0326" && u !== "sallytsai0620" && u !== "User01" && u !== "Admin01") {
       router.push('/login');
     }
   }, [router, u]);
@@ -50,87 +50,100 @@ const Layout = ({ children }: LayoutProps) => {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className="">
-      <Providers>
-        <motion.header 
-          className="bg-white shadow-lg"
-          variants={headerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <div className="container mx-auto p-4 flex justify-between items-center">
-            <div className="flex items-center space-x-4 flex-grow">
-              <motion.div 
-                className="flex items-center space-x-2"
-                whileHover={{ scale: 1.05 }}
-              >
-                <Image src="/pikachu.svg" alt="Pikachu Logo" width={50} height={50} />
-                <h1 className="text-2xl font-bold">
-                  cwt&apos;s Playground
-                </h1>
-              </motion.div>
-              <div className="hidden md:block flex-grow text-center">
-                <Breadcrumbs />
-              </div>
-            </div>
-            <nav className="hidden md:block">
-              {['Home', 'About', 'Gallery', 'Login'].map((item) => (
-                <motion.a 
-                  key={item}
-                  href={item === 'Home' ? '/' : `/${item.toLowerCase()}`} 
-                  className="text-gray-700 mx-2"
-                  variants={linkVariants}
-                  whileHover="hover"
+      <body className="relative bg-white">
+        <Providers>
+          <motion.header 
+            className="bg-white shadow-lg"
+            variants={headerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <div className="container mx-auto p-4 flex justify-between items-center">
+              <div className="flex items-center space-x-4 flex-grow">
+                <motion.div 
+                  className="flex items-center space-x-2"
+                  whileHover={{ scale: 1.05 }}
                 >
-                  {item}
-                </motion.a>
-              ))}
-            </nav>
-            <motion.button 
-              className="md:hidden text-gray-700"
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              Menu
-            </motion.button>
-          </div>
-          <AnimatePresence>
-            {isMenuOpen && (
-              <motion.nav 
-                className="md:hidden"
-                variants={menuVariants}
-                initial="closed"
-                animate="open"
-                exit="closed"
-              >
-                <div className="p-2">
+                  <Image src="/pikachu.svg" alt="Pikachu Logo" width={50} height={50} />
+                  <h1 className="text-2xl font-bold">
+                    cwt&apos;s Playground
+                  </h1>
+                </motion.div>
+                <div className="hidden md:block flex-grow text-center">
                   <Breadcrumbs />
                 </div>
+              </div>
+              <nav className="hidden md:block">
                 {['Home', 'About', 'Gallery', 'Login'].map((item) => (
                   <motion.a 
                     key={item}
                     href={item === 'Home' ? '/' : `/${item.toLowerCase()}`} 
-                    className="block text-gray-700 p-2"
+                    className="text-gray-700 mx-2"
                     variants={linkVariants}
                     whileHover="hover"
                   >
                     {item}
                   </motion.a>
                 ))}
-              </motion.nav>
-            )}
-          </AnimatePresence>
-        </motion.header>
+              </nav>
+              <motion.button 
+                className="md:hidden text-gray-700"
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              >
+                Menu
+              </motion.button>
+            </div>
+            <AnimatePresence>
+              {isMenuOpen && (
+                <motion.nav 
+                  className="md:hidden"
+                  variants={menuVariants}
+                  initial="closed"
+                  animate="open"
+                  exit="closed"
+                >
+                  <div className="p-2">
+                    <Breadcrumbs />
+                  </div>
+                  {['Home', 'About', 'Gallery', 'Login'].map((item) => (
+                    <motion.a 
+                      key={item}
+                      href={item === 'Home' ? '/' : `/${item.toLowerCase()}`} 
+                      className="block text-gray-700 p-2"
+                      variants={linkVariants}
+                      whileHover="hover"
+                    >
+                      {item}
+                    </motion.a>
+                  ))}
+                </motion.nav>
+              )}
+            </AnimatePresence>
+          </motion.header>
 
-        <motion.main 
-          className="flex-grow mx-auto p-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          {children}
-        </motion.main>
-      </Providers>
+          <motion.main 
+            className="flex-grow mx-auto p-4 relative z-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            {children}
+            <div className="watermark absolute inset-0 opacity-10 pointer-events-none z-0">
+              <Image 
+                src="/cute-pokemon-pikachu-rain-desktop-wallpaper-preview.jpg" 
+                alt="Watermark" 
+                layout="fill" 
+                objectFit="cover" 
+              />
+            </div>
+          </motion.main>
+        </Providers>
+        <style jsx>{`
+          .watermark {
+            z-index: -1; /* Ensure the watermark is behind the content */
+          }
+        `}</style>
       </body>
     </html>
   );

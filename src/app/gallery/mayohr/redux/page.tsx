@@ -1,18 +1,15 @@
-'use client'
+"use client";
 import { useSelector, useDispatch } from 'react-redux';
 import { increment, decrement } from '@/util/redux/store';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import Image from 'next/image';
 
 const HomePage = () => {
   const count = useSelector((state: any) => state.counter.value);
   const dispatch = useDispatch();
   const [buttonClicked, setButtonClicked] = useState('');
-
-  useEffect(() => {
-    const timer = setTimeout(() => setButtonClicked(''), 300);
-    return () => clearTimeout(timer);
-  }, [count]);
+  const [pokeballs, setPokeballs] = useState<number[]>([]);
 
   const containerVariants = {
     hidden: { opacity: 0, y: -50 },
@@ -30,9 +27,33 @@ const HomePage = () => {
     animate: { scale: [1, 1.5, 1], color: ['#000000', '#4a5568', '#000000'], transition: { duration: 0.3 } }
   };
 
+  const pokeballVariants = {
+    hidden: { x: 0, y: 0, opacity: 0, rotate: 0, scale: 1 },
+    visible: { 
+      x: [0, window.innerWidth], 
+      y: [0, -100, 0], 
+      opacity: 1, 
+      rotate: [0, 360],
+      scale: [1, 1.5, 1],
+      transition: { duration: 1, ease: 'easeInOut' }
+    },
+    exit: { opacity: 0, transition: { duration: 0.5 } }
+  };
+
+  const handleIncrement = () => {
+    dispatch(increment());
+    setButtonClicked('increment');
+    setPokeballs((prev) => [...prev, Date.now()]);
+  };
+
+  const handleDecrement = () => {
+    dispatch(decrement());
+    setButtonClicked('decrement');
+  };
+
   return (
     <motion.div 
-      className="flex flex-col items-center justify-center min-h-screen"
+      className="flex flex-col items-center justify-center min-h-screen relative overflow-hidden"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -75,10 +96,7 @@ const HomePage = () => {
             whileHover="hover"
             whileTap="tap"
             initial="initial"
-            onClick={() => {
-              dispatch(decrement());
-              setButtonClicked('decrement');
-            }}
+            onClick={handleDecrement}
           >
             Decrement
           </motion.button>
@@ -88,15 +106,32 @@ const HomePage = () => {
             whileHover="hover"
             whileTap="tap"
             initial="initial"
-            onClick={() => {
-              dispatch(increment());
-              setButtonClicked('increment');
-            }}
+            onClick={handleIncrement}
           >
             Increment
           </motion.button>
         </div>
       </div>
+      <AnimatePresence>
+        {pokeballs.map((id) => (
+          <motion.div
+            key={id}
+            className="absolute top-1/2"
+            variants={pokeballVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            onAnimationComplete={() => setPokeballs((prev) => prev.filter((ballId) => ballId !== id))}
+          >
+            <Image 
+              src="/pokeball-transparent-png-2.png" 
+              alt="Pokeball" 
+              width={50} 
+              height={50} 
+            />
+          </motion.div>
+        ))}
+      </AnimatePresence>
     </motion.div>
   );
 };
