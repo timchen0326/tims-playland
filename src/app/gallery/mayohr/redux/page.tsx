@@ -2,7 +2,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { increment, decrement } from '@/util/redux/store';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 const HomePage = () => {
@@ -10,6 +10,13 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const [buttonClicked, setButtonClicked] = useState('');
   const [pokeballs, setPokeballs] = useState<number[]>([]);
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setWindowWidth(window.innerWidth);
+    }
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0, y: -50 },
@@ -30,7 +37,7 @@ const HomePage = () => {
   const pokeballVariants = {
     hidden: { x: 0, y: 0, opacity: 0, rotate: 0, scale: 1 },
     visible: { 
-      x: [0, window.innerWidth], 
+      x: [0, windowWidth], 
       y: [0, -100, 0], 
       opacity: 1, 
       rotate: [0, 360],
