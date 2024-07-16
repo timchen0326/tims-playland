@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 
@@ -8,7 +8,11 @@ const MayoHR = () => {
   const [userId, setUserId] = useState<string | null>(null);
 
   useEffect(() => {
-    setUserId(localStorage.getItem('userId'));
+    try {
+      setUserId(localStorage.getItem('userId'));
+    } catch (error) {
+      console.error("Failed to get userId from localStorage:", error);
+    }
   }, []);
 
   const timelineItems = [
@@ -16,79 +20,93 @@ const MayoHR = () => {
       icon: "/0_aZ3qgyVGmcQd488S.webp",
       alt: "Install VS Code and React.js",
       route: '#',
-      text: "開始學習怎麽下載 VS Code 跟 使用 React.js / Next.js"
+      text: "開始學習怎麽下載 VS Code 跟 使用 React.js / Next.js",
+      description: "如何設置 VS Code 和 React.js"
     },
     {
       icon: "/unnamed.png",
       alt: "Freecodecamp",
       route: 'https://www.freecodecamp.org/',
-      text: "從零開始學習與收悉 HTML"
+      text: "從零開始學習與收悉 HTML",
+      description: "通過 freeCodeCamp 的課程熟悉 HTML 基本概念"
     },
     {
       icon: "/pngtree-bmi-cartoon-vector-illustration-depicting-medical-concept-unhealthy-vector-body-vector-png-image_47239794.jpg",
       alt: "BMI",
       route: '/gallery/mayohr/bmi',
-      text: "初階瞭解 usestate 的用意並更瞭解 react 用法"
+      text: "初階瞭解 usestate 的用意並更瞭解 react 用法",
+      description: "建立 BMI 計算器以理解 React 的狀態管理"
     },
     {
       icon: "/python.svg",
       alt: "Python 爬蟲 / Flask 架 API",
       route: '#',
-      text: "學習如何使用 Python 去爬蟲和架 API"
+      text: "學習如何使用 Python 去爬蟲和架 API",
+      description: "編寫 Python 爬蟲腳本並使用 Flask 建立 API"
     },
     {
       icon: "/9b205bc30c406fdff6e173156594b8cb.jpg",
       alt: "拍賣球員卡網站",
       route: 'https://shopping-cart-k73y.vercel.app/',
-      text: "自行去創造自己的球員卡拍賣網站 使用的是爬蟲完的資料"
+      text: "自行去創造自己的球員卡拍賣網站 使用的是爬蟲完的資料",
+      description: "開發一個基於爬蟲數據的球員卡拍賣平台"
     },
     {
       icon: "/images (1).png",
       alt: "learngitbranching",
       route: '/gallery/mayohr/git',
-      text: "學了基本 git 的操作"
+      text: "學了基本 git 的操作",
+      description: "學習和應用 Git 進行版本控制"
     },
     {
       icon: "/46415699-cfc5cf00-c6f3-11e8-9bcc-2fc2bf1759ec.png",
       alt: "Azure DevOps",
       route: '#',
-      text: "開始協助後台前端功能的開發"
+      text: "開始協助後台前端功能的開發",
+      description: "使用 Azure DevOps 協作開發前端功能"
     },
     {
       icon: "/json-editor-online-icon-filled-256.webp",
       alt: "JsonEditor",
       route: '/gallery/mayohr/jsonEditor',
-      text: "使用 JsonEditor 套件去修改 Json File"
+      text: "使用 JsonEditor 套件去修改 Json File",
+      description: "集成 JsonEditor 進行 JSON 文件的編輯和管理"
     },
     {
       icon: "/dashboard-8312011_1280.png",
       alt: "Dashboard",
       route: '/gallery/mayohr/dashboard',
-      text: "使用 dashboard 是為了提供一個集中化的界面來可視化數據"
+      text: "使用 dashboard 是為了提供一個集中化的界面來可視化數據",
+      description: "開發和設計數據可視化儀表板"
     },
     {
       icon: "/istockphoto-921617728-612x612.jpg",
       alt: "React D3 Tree",
       route: '/gallery/mayohr/reactD3Tree',
-      text: "修改公司套件使用組織樹套件"
+      text: "修改公司套件使用組織樹套件",
+      description: "實現和修改組織樹圖表以適應公司的需求"
     },
     {
       icon: "/profile-icon-login-head-icon-vector.jpg",
       alt: "使用者權限",
       route: '/login',
-      text: "限制使用者可以看到的網頁"
+      text: "限制使用者可以看到的網頁",
+      description: "建立用戶權限控制系統"
     },
     {
       icon: "/images.png",
       alt: "Redux",
       route: '/gallery/mayohr/redux',
-      text: "輕鬆管理 React 應用程式的狀態"
+      text: "輕鬆管理 React 應用程式的狀態",
+      description: "使用 Redux 進行狀態管理，優化 React 應用性能"
     },
   ];
 
-  const filteredItems = userId === 'User01' 
-    ? timelineItems.filter(item => item.alt === "使用者權限")
-    : timelineItems;
+  const filteredItems = useMemo(() => {
+    return userId === 'User01' 
+      ? timelineItems.filter(item => item.alt === "使用者權限")
+      : timelineItems;
+  }, [userId]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -115,7 +133,7 @@ const MayoHR = () => {
 
   return (
     <motion.div 
-      className="flex flex-col items-center p-6 min-h-screen "
+      className="flex flex-col items-center p-6 min-h-screen"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -164,6 +182,7 @@ const MayoHR = () => {
             >
               <h3 className={`mb-3 font-bold text-gray-800 text-xl`}>{item.alt}</h3>
               <p className="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">{item.text}</p>
+              <p className="text-xs text-gray-600">{item.description}</p>
             </motion.div>
           </motion.div>
         ))}
