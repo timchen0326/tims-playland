@@ -33,7 +33,7 @@ const MayoHR = () => {
     {
       icon: "/pngtree-bmi-cartoon-vector-illustration-depicting-medical-concept-unhealthy-vector-body-vector-png-image_47239794.jpg",
       alt: "BMI",
-      route: '/gallery/mayohr/bmi',
+      route: '/project/mayohr/bmi',
       text: "初階瞭解 usestate 的用意並更瞭解 react 用法",
       description: "建立 BMI 計算器以理解 React 的狀態管理"
     },
@@ -54,7 +54,7 @@ const MayoHR = () => {
     {
       icon: "/images (1).png",
       alt: "learngitbranching",
-      route: '/gallery/mayohr/git',
+      route: '/projects/mayohr/git',
       text: "學了基本 git 的操作",
       description: "學習和應用 Git 進行版本控制"
     },
@@ -68,21 +68,21 @@ const MayoHR = () => {
     {
       icon: "/json-editor-online-icon-filled-256.webp",
       alt: "JsonEditor",
-      route: '/gallery/mayohr/jsonEditor',
+      route: '/projects/mayohr/jsonEditor',
       text: "使用 JsonEditor 套件去修改 Json File",
       description: "集成 JsonEditor 進行 JSON 文件的編輯和管理"
     },
     {
       icon: "/dashboard-8312011_1280.png",
       alt: "Dashboard",
-      route: '/gallery/mayohr/dashboard',
+      route: '/projects/mayohr/dashboard',
       text: "使用 dashboard 是為了提供一個集中化的界面來可視化數據",
       description: "開發和設計數據可視化儀表板"
     },
     {
       icon: "/istockphoto-921617728-612x612.jpg",
       alt: "React D3 Tree",
-      route: '/gallery/mayohr/reactD3Tree',
+      route: '/projects/mayohr/reactD3Tree',
       text: "修改公司套件使用組織樹套件",
       description: "實現和修改組織樹圖表以適應公司的需求"
     },
@@ -96,7 +96,7 @@ const MayoHR = () => {
     {
       icon: "/images.png",
       alt: "Redux",
-      route: '/gallery/mayohr/redux',
+      route: '/projects/mayohr/redux',
       text: "輕鬆管理 React 應用程式的狀態",
       description: "使用 Redux 進行狀態管理，優化 React 應用性能"
     },

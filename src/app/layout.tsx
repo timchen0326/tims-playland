@@ -6,28 +6,15 @@ import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import Breadcrumbs from '@/util/breadcrumb/page';
 import { Providers } from './providers';
+import users from '@/util/users';
 
 interface LayoutProps {
   children: ReactNode;
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const getLocalStorageValue = () => {
-    if (typeof window !== 'undefined') {
-      return window.localStorage.getItem("userId") ?? '';
-    }
-    return '';
-  };
-  const u = getLocalStorageValue();
-
-  useEffect(() => {
-    if (u !== "timchen0326" && u !== "sallytsai0620" && u !== "User01" && u !== "Admin01") {
-      router.push('/login');
-    }
-  }, [router, u]);
 
   const headerVariants = {
     hidden: { y: -100 },
@@ -58,7 +45,7 @@ const Layout = ({ children }: LayoutProps) => {
             initial="hidden"
             animate="visible"
           >
-            <div className="container mx-auto p-4 flex justify-between items-center">
+            <div className="mx-auto p-4 flex justify-between items-center">
               <div className="flex items-center space-x-4 flex-grow">
                 <motion.div 
                   className="flex items-center space-x-2"
@@ -74,7 +61,7 @@ const Layout = ({ children }: LayoutProps) => {
                 </div>
               </div>
               <nav className="hidden md:block">
-                {['Home', 'About', 'Gallery', 'Login'].map((item) => (
+                {['Home','Projects', 'About', 'Login'].map((item) => (
                   <motion.a 
                     key={item}
                     href={item === 'Home' ? '/' : `/${item.toLowerCase()}`} 
@@ -106,7 +93,7 @@ const Layout = ({ children }: LayoutProps) => {
                   <div className="p-2">
                     <Breadcrumbs />
                   </div>
-                  {['Home', 'About', 'Gallery', 'Login'].map((item) => (
+                  {['Home','Projects', 'About', 'Login'].map((item) => (
                     <motion.a 
                       key={item}
                       href={item === 'Home' ? '/' : `/${item.toLowerCase()}`} 
