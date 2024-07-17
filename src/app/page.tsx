@@ -5,65 +5,67 @@ import styles from './HomePage.module.css';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
-export const homePageText = {
-  title: 'Tim Chen',
-  subtitle: '',
-  socialLinks: [
-    { href: 'https://github.com/timchen0326', icon: FaGithub, label: 'GitHub' },
-    { href: 'https://www.linkedin.com/in/tim-chen-4b37b1125', icon: FaLinkedin, label: 'LinkedIn' },
-    { href: 'mailto:timchen0326ca@gmail.com', icon: FaEnvelope, label: 'Email' },
-  ],
-  about: {
-    title: 'About Me',
-    text: "I'm a passionate software developer with expertise in building scalable web applications. With a strong foundation in React, Next.js, and TypeScript, I create elegant solutions to complex problems. My goal is to craft intuitive user experiences that make a positive impact.",
-  },
-  featuredProjects: {
-    title: 'Featured Projects',
-    projects: [
-      {
-        id: 'mayohr',
-        title: 'MAYOHR',
-        description: 'Assisted in the development and maintenance of dynamic, user-friendly forms for various HR applications, ensuring compatibility and responsiveness across different browsers.',
-        tags: ['Form Development', 'TSX', 'Next.Js', 'React', 'VS Code'],
-        image: 'mayohr.jpg',
-        alt: 'MAYOHR',
-      },
-    ],
-  },
-  skills: {
-    title: 'Skills',
-    categories: [
-      {
-        title: 'Frontend',
-        skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
-      },
-      {
-        title: 'Backend',
-        skills: ['Python'],
-      },
-      {
-        title: 'Tools',
-        skills: ['Tableau', 'R', 'Git'],
-      },
-    ],
-  },
-  testimonials: {
-    title: 'Testimonials',
-    quotes: [
-      "Tim's attention to detail and problem-solving skills are exceptional. He consistently delivers high-quality work.",
-      "Working with Tim was a pleasure. His expertise in React and Next.js significantly improved our project's performance.",
-    ],
-  },
-  callToAction: {
-    title: "Let's Work Together",
-    text: "Interested in collaborating or have a project in mind? I'd love to hear from you!",
-    button: 'Get in Touch',
-  },
-};
+
 
 
 const HomePage = () => {
   const router = useRouter();
+
+  const homePageText = {
+    title: 'Tim Chen',
+    subtitle: '',
+    socialLinks: [
+      { href: 'https://github.com/timchen0326', icon: FaGithub, label: 'GitHub' },
+      { href: 'https://www.linkedin.com/in/tim-chen-4b37b1125', icon: FaLinkedin, label: 'LinkedIn' },
+      { href: 'mailto:timchen0326ca@gmail.com', icon: FaEnvelope, label: 'Email' },
+    ],
+    about: {
+      title: 'About Me',
+      text: "I'm a passionate software developer with expertise in building scalable web applications. With a strong foundation in React, Next.js, and TypeScript, I create elegant solutions to complex problems. My goal is to craft intuitive user experiences that make a positive impact.",
+    },
+    featuredProjects: {
+      title: 'Featured Projects',
+      projects: [
+        {
+          id: 'mayohr',
+          title: 'MAYOHR',
+          description: 'Assisted in the development and maintenance of dynamic, user-friendly forms for various HR applications, ensuring compatibility and responsiveness across different browsers.',
+          tags: ['Form Development', 'TSX', 'Next.Js', 'React', 'VS Code'],
+          image: 'mayohr.jpg',
+          alt: 'MAYOHR',
+        },
+      ],
+    },
+    skills: {
+      title: 'Skills',
+      categories: [
+        {
+          title: 'Frontend',
+          skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
+        },
+        {
+          title: 'Backend',
+          skills: ['Python'],
+        },
+        {
+          title: 'Tools',
+          skills: ['Tableau', 'R', 'Git'],
+        },
+      ],
+    },
+    testimonials: {
+      title: 'Testimonials',
+      quotes: [
+        "Tim's attention to detail and problem-solving skills are exceptional. He consistently delivers high-quality work.",
+        "Working with Tim was a pleasure. His expertise in React and Next.js significantly improved our project's performance.",
+      ],
+    },
+    callToAction: {
+      title: "Let's Work Together",
+      text: "Interested in collaborating or have a project in mind? I'd love to hear from you!",
+      button: 'Get in Touch',
+    },
+  };
 
   return (
     <div className={styles.container}>
