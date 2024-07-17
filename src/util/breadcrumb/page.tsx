@@ -39,7 +39,7 @@ const Breadcrumbs: React.FC = () => {
       const isLast = index === pathArray.length - 1;
       return (
         <React.Fragment key={href}>
-          <motion.div variants={itemVariants} className="flex items-center">
+          <motion.div variants={itemVariants} className="flex items-center space-x-2">
             {isLast ? (
               <span className="text-sm font-medium text-black font-semibold cursor-default">
                 {getBreadcrumbLabel(path)}
@@ -64,7 +64,7 @@ const Breadcrumbs: React.FC = () => {
   if (pathname === '/login') {
     return (
       <motion.nav 
-        className="flex items-center space-x-1 text-gray-500 p-3  rounded-lg"
+        className="flex items-center space-x-2 text-gray-500 p-3 rounded-lg"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -78,7 +78,7 @@ const Breadcrumbs: React.FC = () => {
 
   return (
     <motion.nav 
-      className="flex items-center space-x-1 text-gray-500 p-3  rounded-lg"
+      className="flex items-center space-x-2 text-gray-500 p-3 rounded-lg"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
