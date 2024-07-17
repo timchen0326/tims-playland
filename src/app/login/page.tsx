@@ -1,8 +1,8 @@
-"use client"
+"use client";
+import users from '@/util/users';
 import React, { useState } from 'react';
 
 const LoginPage = () => {
-  // Check if window is defined to ensure we're in the browser environment
   if (typeof window !== "undefined") {
     localStorage.setItem('userId', "");
   }
@@ -14,14 +14,12 @@ const LoginPage = () => {
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
 
-    // Perform authentication logic here
-    if ((userId === 'timchen0326' && password === '920326Timchen') || (userId === 'sallytsai0620' && password === '920620') || (userId === 'User01' && password === 'Test1234') || (userId === 'Admin01' && password === 'Test1234')) {
-      // Store userId in local storage
+    const user = users.find((user: { userId: string; password: string; }) => user.userId === userId && user.password === password);
+    
+    if (user) {
       if (typeof window !== "undefined") {
         window.localStorage.setItem('userId', userId);
       }
-
-      // Redirect to the desired page after successful login
       window.location.href = '/';
     } else {
       setError('Invalid username or password');
