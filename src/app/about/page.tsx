@@ -203,7 +203,7 @@ const About = () => {
                 ))}
               </ResumeSection>
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <div style={{ marginBottom: '20px' }}>
                 <Typography variant="h5" style={sectionTitleStyle}>Resume Data Editor</Typography>
                 <div style={{ marginBottom: '10px' }}>
@@ -245,7 +245,7 @@ const About = () => {
                   rootFontSize="14px"
                 />
               </div>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Paper>
       </Container>

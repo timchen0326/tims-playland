@@ -1,116 +1,185 @@
-/* HomePage.module.css */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-
+/* General Container and Header Styles */
 .container {
-  padding: 20px;
-  font-family: 'Montserrat', sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Inter', sans-serif;
+  color: #333;
+  line-height: 1.6;
 }
 
 .header {
   text-align: center;
-  margin-bottom: 40px;
-  animation: fadeIn 1s ease-out;
+  margin-bottom: 60px;
 }
 
 .title {
-  font-size: 2.5rem;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: #7f8c8d;
   margin-bottom: 20px;
-  color: #333;
-  animation: fadeInUp 1.5s ease-out;
 }
 
-.description {
-  font-size: 1.2rem;
-  margin-bottom: 40px;
-  color: #555;
-  animation: fadeInUp 2s ease-out;
+.socialLinks {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 1.5rem;
 }
 
-.featuredProjects {
-  margin-bottom: 40px;
-  animation: fadeIn 2s ease-out;
+.socialLinks a {
+  color: #3498db;
+  transition: color 0.3s ease;
+}
+
+.socialLinks a:hover {
+  color: #2980b9;
 }
 
 .sectionTitle {
   font-size: 2rem;
-  margin-bottom: 20px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #2c3e50;
   text-align: center;
-  color: #0070f3;
-  position: relative;
-  display: inline-block;
-  padding-bottom: 10px;
 }
 
-.sectionTitle::after {
-  content: '';
-  width: 50px;
-  height: 3px;
-  background: #0070f3;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+/* About Section */
+.about {
+  margin-bottom: 60px;
+}
+
+.aboutText {
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Featured Projects Section */
+.featuredProjects {
+  margin-bottom: 60px;
 }
 
 .projectsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Skills Section */
+.skills {
+  margin-bottom: 60px;
+}
+
+.skillsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
 }
 
-.projectCard {
+.skillCategory {
+  text-align: center;
+}
+
+.skillCategoryTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+.skillsList {
+  list-style: none;
+  padding: 0;
+}
+
+.skillsList li {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+/* Testimonials Section */
+.testimonials {
+  margin-bottom: 60px;
+}
+
+.testimonialGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.testimonial {
+  background-color: #f9f9f9;
   padding: 20px;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  cursor: pointer;
-  animation: zoomIn 1s ease-out;
+  border-radius: 10px;
+  font-style: italic;
 }
 
-.projectCard:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.testimonial p {
+  margin-bottom: 10px;
 }
 
+.testimonial footer {
+  font-style: normal;
+  font-weight: 600;
+  color: #7f8c8d;
+}
+
+/* Call to Action Section */
 .callToAction {
   text-align: center;
-  animation: fadeIn 2s ease-out;
+  background-color: #f9f9f9;
+  padding: 40px;
+  border-radius: 10px;
 }
 
 .callToActionText {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-bottom: 20px;
 }
 
 .button {
-  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  padding: 12px 24px;
   font-size: 1rem;
-  color: #fff;
-  background-color: #0070f3;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 .button:hover {
-  background-color: #005bb5;
-  transform: scale(1.05);
+  background-color: #2980b9;
 }
 
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
+/* Media Queries */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
 
-@keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
+  .title {
+    font-size: 2.5rem;
+  }
 
-@keyframes zoomIn {
-  0% { opacity: 0; transform: scale(0.9); }
-  100% { opacity: 1; transform: scale(1); }
+  .subtitle {
+    font-size: 1.2rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+
+  .projectsGrid, .skillsGrid, .testimonialGrid {
+    grid-template-columns: 1fr;
+  }
 }
