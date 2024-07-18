@@ -63,7 +63,7 @@ const Contact = () => {
             className={styles.thankYouMessage}
           >
             <h2>Thank you for reaching out!</h2>
-            <p>We'll get back to you as soon as possible.</p>
+            <p>We&apos;ll get back to you as soon as possible.</p>
           </motion.div>
         ) : (
           <motion.form
