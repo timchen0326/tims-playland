@@ -47,7 +47,7 @@ const MayoHR = () => {
     {
       icon: "/9b205bc30c406fdff6e173156594b8cb.jpg",
       alt: "拍賣球員卡網站",
-      route: 'https://shopping-cart-k73y.vercel.app/',
+      route: '/projects/mayohr/shoppingCart',
       text: "自行去創造自己的球員卡拍賣網站 使用的是爬蟲完的資料",
       description: "開發一個基於爬蟲數據的球員卡拍賣平台"
     },

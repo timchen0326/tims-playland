@@ -3,6 +3,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
+import { MdHome, MdChevronRight } from "react-icons/md";
 
 const breadcrumbConfig: { [key: string]: string } = {
   'mayohr': 'MAYOHR',
@@ -13,7 +14,7 @@ const Breadcrumbs: React.FC = () => {
   const pathArray = pathname.split("/").filter((path) => path);
 
   const containerVariants = {
-    hidden: { opacity: 0, y: -20 },
+    hidden: { opacity: 0, y: -10 },
     visible: { 
       opacity: 1, 
       y: 0,
@@ -25,8 +26,8 @@ const Breadcrumbs: React.FC = () => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: -10 },
-    visible: { opacity: 1, y: 0 }
+    hidden: { opacity: 0, x: -5 },
+    visible: { opacity: 1, x: 0 }
   };
 
   const getBreadcrumbLabel = (path: string) => {
@@ -39,57 +40,36 @@ const Breadcrumbs: React.FC = () => {
       const isLast = index === pathArray.length - 1;
       return (
         <React.Fragment key={href}>
-          <motion.div variants={itemVariants} className="flex items-center space-x-2">
-            {isLast ? (
-              <span className="text-sm font-medium text-black font-semibold cursor-default">
-                {getBreadcrumbLabel(path)}
-              </span>
-            ) : (
-              <Link 
-                href={href} 
-                className="text-sm font-medium text-gray-500 transition-all duration-200 ease-in-out hover:text-black"
-              >
-                {getBreadcrumbLabel(path)}
-              </Link>
-            )}
-            {!isLast && (
-              <span className="mx-2 text-gray-400">›</span>
-            )}
-          </motion.div>
+          <motion.span variants={itemVariants} className="flex items-center">
+            <Link 
+              href={href} 
+              className={`text-sm font-medium ${isLast ? 'text-blue-700 font-semibold cursor-default' : 'text-gray-600 hover:text-blue-600 transition-colors duration-200 ease-in-out'}`}
+            >
+              {getBreadcrumbLabel(path)}
+            </Link>
+          </motion.span>
+          {!isLast && (
+            <MdChevronRight className="mx-2 text-gray-400" size={16} />
+          )}
         </React.Fragment>
       );
     });
   };
 
-  if (pathname === '/login') {
-    return (
-      <motion.nav 
-        className="flex items-center space-x-2 text-gray-500 p-3 rounded-lg"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <motion.div variants={itemVariants} className="flex items-center">
-          <span className="text-sm font-medium text-black font-semibold cursor-default">Login</span>
-        </motion.div>
-      </motion.nav>
-    );
-  }
-
   return (
     <motion.nav 
-      className="flex items-center space-x-2 text-gray-500 p-3 rounded-lg"
+      className="flex items-center px-4 py-3 border-b border-gray-200"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
-      <motion.div variants={itemVariants} className="flex items-center">
-        <Link href="/" className="text-gray-500 hover:text-black transition-colors duration-200 ease-in-out flex items-center">
-          <span className="text-sm font-medium">Home</span>
+      <motion.span variants={itemVariants} className="flex items-center">
+        <Link href="/" className="text-gray-600 hover:text-blue-600 transition-colors duration-200 ease-in-out">
+          <MdHome size={20} />
         </Link>
-      </motion.div>
+      </motion.span>
       {pathArray.length > 0 && (
-        <span className="mx-2 text-gray-400">›</span>
+        <MdChevronRight className="mx-2 text-gray-400" size={16} />
       )}
       {createBreadcrumbs()}
     </motion.nav>
