@@ -58,7 +58,7 @@ const Breadcrumbs: React.FC = () => {
 
   return (
     <motion.nav 
-      className="flex items-center px-4 py-3 border-b border-gray-200"
+      className="flex items-center px-4"
       variants={containerVariants}
       initial="hidden"
       animate="visible"

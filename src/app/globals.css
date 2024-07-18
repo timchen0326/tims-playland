@@ -77,3 +77,34 @@ footer {
   width: 50em;
   height: 20em;
 }
+
+.header-hidden {
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.header-visible {
+  transform: translateY(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.social-icons-container {
+  position: fixed;
+  bottom: 16px; /* Adjust based on how far you want it from the bottom */
+  left: 16px; /* Adjust based on how far you want it from the left */
+  z-index: 20; /* Ensure this is higher than the header and main content */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.social-icon {
+  background-color: black;
+  border-radius: 50%;
+  padding: 8px;
+  transition: background-color 0.3s;
+}
+
+.social-icon:hover {
+  background-color: gray;
+}

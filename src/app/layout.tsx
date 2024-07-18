@@ -1,12 +1,11 @@
 "use client";
 import { ReactNode, useEffect, useState } from 'react';
 import '../app/globals.css';
-import './layout.css';  // Import the layout.css file
-import { useRouter } from 'next/navigation';
+import './layout.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import Breadcrumbs from '@/util/breadcrumb/page';
 import { Providers } from './providers';
-import users from '@/util/users';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 interface LayoutProps {
   children: ReactNode;
@@ -14,11 +13,26 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+  let lastScrollY = 0;
 
-  const headerVariants = {
-    hidden: { y: -100 },
-    visible: { y: 0, transition: { type: 'spring', stiffness: 100 } }
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY) {
+        setShowNavbar(false); // Scrolling down
+      } else {
+        setShowNavbar(true); // Scrolling up
+      }
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollY]);
 
   const linkVariants = {
     hover: { scale: 1.1, color: "#3b82f6" }
@@ -41,11 +55,8 @@ const Layout = ({ children }: LayoutProps) => {
           <div className="breadcrumb-container">
             <Breadcrumbs />
           </div>
-          <motion.header 
-            className="bg-black text-white shadow-lg rounded-full mx-auto mt-4 p-2 max-w-lg relative z-10 flex items-center justify-between"
-            variants={headerVariants}
-            initial="hidden"
-            animate="visible"
+          <header 
+            className={`bg-black text-white shadow-lg rounded-full mx-auto mt-4 p-2 max-w-2xl relative z-10 flex items-center justify-between ${showNavbar ? 'header-visible' : 'header-hidden'}`}
           >
             <div className="flex items-center space-x-2">
               <img src="/pikachu.svg" alt="Pikachu Logo" width={24} height={24} />
@@ -54,7 +65,7 @@ const Layout = ({ children }: LayoutProps) => {
               </h1>
             </div>
             <nav className="hidden md:flex space-x-4">
-              {['Home','Projects', 'About', 'Login'].map((item) => (
+              {['Home', 'Projects', 'About', 'Contact', 'Login'].map((item) => (
                 <motion.a 
                   key={item}
                   href={item === 'Home' ? '/' : `/${item.toLowerCase()}`} 
@@ -82,7 +93,7 @@ const Layout = ({ children }: LayoutProps) => {
                   animate="open"
                   exit="closed"
                 >
-                  {['Home','Projects', 'About', 'Login'].map((item) => (
+                  {['Home', 'Projects', 'About', 'Contact', 'Login'].map((item) => (
                     <motion.a 
                       key={item}
                       href={item === 'Home' ? '/' : `/${item.toLowerCase()}`} 
@@ -96,16 +107,28 @@ const Layout = ({ children }: LayoutProps) => {
                 </motion.nav>
               )}
             </AnimatePresence>
-          </motion.header>
+          </header>
 
           <motion.main 
-            className=" mx-auto p-4 relative z-10 "
+            className="mx-auto p-4 relative z-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
             {children}
           </motion.main>
+
+          <div className="social-icons-container">
+            <a href="https://github.com/timchen0326" target="_blank" rel="noopener noreferrer" className="social-icon">
+              <FaGithub color="white" size={24} />
+            </a>
+            <a href="https://www.linkedin.com/in/tim-chen-4b37b1125" target="_blank" rel="noopener noreferrer" className="social-icon">
+              <FaLinkedin color="white" size={24} />
+            </a>
+            <a href="mailto:timchen0326ca@gmail.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+              <FaEnvelope color="white" size={24} />
+            </a>
+          </div>
         </Providers>
       </body>
     </html>
