@@ -69,13 +69,8 @@ export default function Page() {
 
   return (
     <div className={styles.container}>
-      <Shoutout component='json-edit-react' importMethod={`import {JsonEditor} from 'json-edit-react'; `}  use={'{JsonEditor}'}/>
+      <Shoutout component='json-edit-react' importMethod={`import {JsonEditor} from 'json-edit-react'; `}  use={'<JsonEditor/>'}/>
       <div className={styles.editorContainer}>
-        <div className={styles.editorTitle}>
-          <code>import {'{JsonEditor}'} from &apos;json-edit-react&apos;;</code>
-          <br />
-          <code>{'<' + 'JsonEditor />'}</code>
-        </div>
         <div className={styles.editorActions}>
           <button onClick={handleReset} className={styles.editorButton}>Reset Data</button>
           <button onClick={toggleArrayIndices} className={styles.editorButton}>
