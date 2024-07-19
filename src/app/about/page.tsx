@@ -2,7 +2,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './AboutPage.module.css';
-import { FaArrowUp, FaCode, FaLaptopCode, FaGolfBall, FaHandsHelping, FaLightbulb, FaReact, FaNodeJs, FaGithub, FaJs, FaHtml5, FaCss3, FaPython, FaDatabase, FaBaseballBall, FaWindows, FaApple } from 'react-icons/fa';
+import { FaArrowUp, FaCode, FaLaptopCode, FaGolfBall, FaHandsHelping, FaLightbulb, FaReact, FaNodeJs, FaGithub, FaJs, FaHtml5, FaCss3, FaPython, FaDatabase, FaBaseballBall, FaWindows, FaApple, FaBasketballBall } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { SiTesla,  SiNextdotjs, SiPycharm, SiTypescript, SiVisualstudiocode, SiLeagueoflegends, SiValorant, SiLogitechg, SiRazer, SiIntel, SiNvidia, SiXiaomi   } from 'react-icons/si';
 import { MdScubaDiving, MdSportsEsports  } from "react-icons/md";
@@ -27,7 +27,7 @@ const AboutPage = () => {
       title: 'Hobbies and Interests',
       items: [
         { name: 'Coding', icon: FaCode, apps: [FaReact, SiVisualstudiocode, SiNextdotjs, SiPycharm, FaHtml5, FaCss3, FaPython, SiTypescript ] },
-        { name: 'Sports', icon: FaGolfBall, apps: [FaBaseballBall, FaGolfBall, MdScubaDiving] },
+        { name: 'Sports', icon: FaGolfBall, apps: [FaBasketballBall, FaGolfBall, MdScubaDiving] },
         { name: 'Video Games', icon: MdSportsEsports, apps: [SiLeagueoflegends,SiValorant, BsNintendoSwitch ] },
         { name: 'Exploring Tech', icon: FaLightbulb, apps: [SiLogitechg, FaWindows, FaApple, SiRazer, SiIntel, SiNvidia, SiXiaomi, SiTesla ] }
       ]
