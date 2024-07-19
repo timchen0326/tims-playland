@@ -50,11 +50,11 @@
   text-align: center;
 }
 
-/* About Section */
-.about {
+.section {
   margin-bottom: 60px;
 }
 
+/* About Section */
 .aboutText {
   font-size: 1.1rem;
   max-width: 800px;
@@ -62,26 +62,39 @@
   text-align: center;
 }
 
-/* Featured Projects Section */
-.featuredProjects {
-  margin-bottom: 60px;
+/* Scrollable Cards Sections */
+.scrollableCard {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  transition: transform 0.3s ease;
+  text-align: center;
+  margin: 0 10px;
 }
 
-.projectsGrid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.scrollableCard h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.scrollableCard p {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 10px;
+}
+
+/* Add some scale effect for the center card */
+.scrollableCard.focus {
+  transform: scale(1.1);
 }
 
 /* Skills Section */
-.skills {
-  margin-bottom: 60px;
-}
-
 .skillsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 20px;
 }
 
 .skillCategory {
@@ -98,39 +111,44 @@
 .skillsList {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
-.skillsList li {
-  margin-bottom: 8px;
-  font-size: 0.9rem;
+.skillItem {
+  position: relative;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Testimonials Section */
-.testimonials {
-  margin-bottom: 60px;
+.skillIcon {
+  transition: transform 0.3s ease;
 }
 
-.testimonialGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+.skillName {
+  font-size: 0.8rem;
+  color: #333;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  margin-top: 5px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.testimonial {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 10px;
-  font-style: italic;
+.skillItem:hover .skillName {
+  opacity: 1;
 }
 
-.testimonial p {
-  margin-bottom: 10px;
-}
-
-.testimonial footer {
-  font-style: normal;
-  font-weight: 600;
-  color: #7f8c8d;
+.skillItem:hover .skillIcon {
+  transform: scale(1.1);
 }
 
 /* Call to Action Section */
@@ -181,5 +199,76 @@
 
   .projectsGrid, .skillsGrid, .testimonialGrid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Add Swiper Styles */
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scrollableCard {
+  background-color: #ffffff; /* White background for a clean look */
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  transition: transform 0.3s ease;
+  text-align: center;
+  margin: 0 10px;
+  border: 1px solid #e0e0e0; /* Light gray border for a professional finish */
+}
+
+.scrollableCard h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.scrollableCard p {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 10px;
+}
+
+/* Add some scale effect for the center card */
+.scrollableCard.focus {
+  transform: scale(1.1);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .swiper {
+    padding-bottom: 30px; /* For pagination dots */
+  }
+
+  .swiper-slide {
+    width: auto;
+  }
+
+  .scrollableCard {
+    width: 260px;
+    margin: 0 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .swiper {
+    padding-bottom: 30px; /* For pagination dots */
+  }
+
+  .swiper-slide {
+    width: auto;
+  }
+
+  .scrollableCard {
+    width: 220px;
+    margin: 0 5px;
   }
 }
