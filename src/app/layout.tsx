@@ -46,7 +46,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <html lang="en" className="h-full">
       <head>
-        <title>My Website</title>
+        <title>cwt&apos;s Playground</title>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
