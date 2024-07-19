@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import Tree from 'react-d3-tree';
 import { motion } from 'framer-motion';
+import { Shoutout } from '@/util/shoutout/page';
+
 
 const containerStyles = {
   width: '100vw',
@@ -150,6 +152,7 @@ export default function OrgChartTree() {
 
   return (
     <div id="treeWrapper" style={containerStyles}>
+      <Shoutout component='react-d3-tree' importMethod={`import {Tree} from 'react-d3-tree'; `}  use={`<Tree />`}/>
       <svg style={{ width: 0, height: 0 }}>
         <defs>
           <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">

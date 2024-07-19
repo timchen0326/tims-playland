@@ -151,10 +151,72 @@
   transform: scale(1.1);
 }
 
+/* Projects Section */
+.projectsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.projectCard {
+  cursor: pointer;
+  width: 260px;
+  transform: transition-transform 0.3s ease;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.projectImageContainer {
+  position: relative;
+  height: 150px;
+  overflow: hidden;
+}
+
+.projectImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.projectContent {
+  padding: 15px;
+  text-align: center;
+}
+
+.projectTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.projectDescription {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 10px;
+}
+
+.projectTags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+.projectTag {
+  background-color: #f1f1f1;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  color: #333;
+}
+
 /* Call to Action Section */
 .callToAction {
   text-align: center;
-  background-color: #f9f9f9;
   padding: 40px;
   border-radius: 10px;
 }
@@ -272,3 +334,89 @@
     margin: 0 5px;
   }
 }
+
+.certifications {
+  margin-bottom: 60px;
+}
+
+.certificationsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.certificationCard {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+}
+
+.certificationCard h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.certificationCard p {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 10px;
+}
+
+.projects {
+  margin-bottom: 60px;
+}
+
+.projectCard {
+  cursor: pointer;
+  width: 260px;
+  transition: transform 0.3s ease;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.projectImageContainer {
+  position: relative;
+  height: 150px;
+  overflow: hidden;
+}
+
+.projectImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.projectContent {
+  padding: 15px;
+  text-align: center;
+}
+
+.projectTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.projectTags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+.projectTag {
+  background-color: #f1f1f1;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  color: #333;
+}
+

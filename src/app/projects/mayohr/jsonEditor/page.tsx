@@ -5,6 +5,7 @@ import { JsonEditorProps } from 'json-edit-react';
 import { FaUser, FaEnvelope, FaMapMarkerAlt, FaStar } from 'react-icons/fa';
 import axios from 'axios';
 import styles from './JSONEditor.module.css';
+import { Shoutout } from '@/util/shoutout/page';
 
 type JsonData = {
   name: string;
@@ -68,6 +69,7 @@ export default function Page() {
 
   return (
     <div className={styles.container}>
+      <Shoutout component='json-edit-react' importMethod={`import {JsonEditor} from 'json-edit-react'; `}  use={'{JsonEditor}'}/>
       <div className={styles.editorContainer}>
         <div className={styles.editorTitle}>
           <code>import {'{JsonEditor}'} from &apos;json-edit-react&apos;;</code>

@@ -1,0 +1,169 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.sectionTitle {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: #2c3e50;
+    text-align: center;
+}
+
+.section {
+    margin-bottom: 60px;
+}
+
+.sectionText {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Hobbies Section */
+.hobbiesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 30px;
+    justify-items: center;
+}
+
+.hobbyItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.iconWrapper {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.hobbyIcon {
+    font-size: 3rem;
+    color: #3498db;
+    z-index: 2;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.appIconsRing {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.appIcon {
+    position: absolute;
+    font-size: 1.2rem;
+    color: #2980b9;
+    transition: all 0.3s ease;
+}
+
+.iconWrapper:hover .appIconsRing {
+    opacity: 1;
+}
+
+.iconWrapper:hover .hobbyIcon {
+    transform: scale(0.8);
+}
+
+.appIcon0 { transform: translate(100px, 50px); }
+.appIcon1 { transform: translate(85.36px, 85.36px); }
+.appIcon2 { transform: translate(50px, 100px); }
+.appIcon3 { transform: translate(15.36px, 85.36px); }
+.appIcon4 { transform: translate(0, 50px); }
+.appIcon5 { transform: translate(15.36px, 15.36px); }
+.appIcon6 { transform: translate(50px, 0px); }
+.appIcon7 { transform: translate(85.36px, 15.36px); }
+
+.hobbyName {
+    font-size: 1.1rem;
+    color: #333;
+    margin-top: 5px;
+}
+
+/* Contact Section */
+.contactInfo {
+    font-size: 1.1rem;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.contactInfo a {
+    color: #3498db;
+    transition: color 0.3s ease;
+}
+
+.contactInfo a:hover {
+    color: #2980b9;
+}
+
+/* Scroll to Top Button */
+.flex {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.item-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bg-blue-500 {
+    background-color: #3498db;
+}
+
+.text-white {
+    color: white;
+}
+
+.p-4 {
+    padding: 1rem;
+}
+
+.rounded-full {
+    border-radius: 9999px;
+}
+
+.shadow-lg {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation for spinning */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes unspin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
+}
