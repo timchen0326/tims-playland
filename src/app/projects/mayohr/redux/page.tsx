@@ -4,6 +4,7 @@ import { increment, decrement } from '@/util/redux/store';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { Shoutout } from '@/util/shoutout/page';
 
 const HomePage = () => {
   const count = useSelector((state: any) => state.counter.value);
@@ -65,6 +66,10 @@ const HomePage = () => {
       initial="hidden"
       animate="visible"
     >
+      <Shoutout 
+      component='react-redux' 
+      importMethod={`import { useSelector, useDispatch } from 'react-redux';'; `}  
+      use={`const count = useSelector((state: any) => state.counter.value); \nconst dispatch = useDispatch();`}/>
       <motion.h1 
         className="text-6xl font-bold mb-8 text-gray-800"
         initial={{ y: -50, opacity: 0 }}

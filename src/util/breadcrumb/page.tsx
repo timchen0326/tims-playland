@@ -7,6 +7,7 @@ import { MdHome, MdChevronRight } from "react-icons/md";
 
 const breadcrumbConfig: { [key: string]: string } = {
   'mayohr': 'MAYOHR',
+  'bmi': 'BMI'
 };
 
 const Breadcrumbs: React.FC = () => {

@@ -2,6 +2,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
+import { FaArrowUp } from 'react-icons/fa'; // Importing the arrow up icon
 
 const MayoHR = () => {
   const router = useRouter();
@@ -20,6 +21,7 @@ const MayoHR = () => {
       icon: "/0_aZ3qgyVGmcQd488S.webp",
       alt: "Install VS Code and React.js",
       route: '#',
+      descriptionRoute: '#',
       text: "開始學習怎麽下載 VS Code 跟 使用 React.js / Next.js",
       description: "如何設置 VS Code 和 React.js"
     },
@@ -27,13 +29,15 @@ const MayoHR = () => {
       icon: "/unnamed.png",
       alt: "Freecodecamp",
       route: 'https://www.freecodecamp.org/',
+      descriptionRoute: 'https://www.freecodecamp.org/',
       text: "從零開始學習與收悉 HTML",
       description: "通過 freeCodeCamp 的課程熟悉 HTML 基本概念"
     },
     {
       icon: "/pngtree-bmi-cartoon-vector-illustration-depicting-medical-concept-unhealthy-vector-body-vector-png-image_47239794.jpg",
       alt: "BMI",
-      route: '/project/mayohr/bmi',
+      route: '/projects/mayohr/bmi',
+      descriptionRoute: '/projects/mayohr/bmi',
       text: "初階瞭解 usestate 的用意並更瞭解 react 用法",
       description: "建立 BMI 計算器以理解 React 的狀態管理"
     },
@@ -41,6 +45,7 @@ const MayoHR = () => {
       icon: "/python.svg",
       alt: "Python 爬蟲 / Flask 架 API",
       route: '#',
+      descriptionRoute: 'https://flask.palletsprojects.com/en/3.0.x/',
       text: "學習如何使用 Python 去爬蟲和架 API",
       description: "編寫 Python 爬蟲腳本並使用 Flask 建立 API"
     },
@@ -48,6 +53,7 @@ const MayoHR = () => {
       icon: "/9b205bc30c406fdff6e173156594b8cb.jpg",
       alt: "拍賣球員卡網站",
       route: '/projects/mayohr/shoppingCart',
+      descriptionRoute: 'https://shopping-cart-k73y.vercel.app/',
       text: "自行去創造自己的球員卡拍賣網站 使用的是爬蟲完的資料",
       description: "開發一個基於爬蟲數據的球員卡拍賣平台"
     },
@@ -55,6 +61,7 @@ const MayoHR = () => {
       icon: "/images (1).png",
       alt: "learngitbranching",
       route: '/projects/mayohr/git',
+      descriptionRoute: 'https://git-scm.com/',
       text: "學了基本 git 的操作",
       description: "學習和應用 Git 進行版本控制"
     },
@@ -62,6 +69,7 @@ const MayoHR = () => {
       icon: "/46415699-cfc5cf00-c6f3-11e8-9bcc-2fc2bf1759ec.png",
       alt: "Azure DevOps",
       route: '#',
+      descriptionRoute: 'https://azure.microsoft.com/en-us/products/devops',
       text: "開始協助後台前端功能的開發",
       description: "使用 Azure DevOps 協作開發前端功能"
     },
@@ -69,6 +77,7 @@ const MayoHR = () => {
       icon: "/json-editor-online-icon-filled-256.webp",
       alt: "JsonEditor",
       route: '/projects/mayohr/jsonEditor',
+      descriptionRoute: 'https://github.com/CarlosNZ/json-edit-react',
       text: "使用 JsonEditor 套件去修改 Json File",
       description: "集成 JsonEditor 進行 JSON 文件的編輯和管理"
     },
@@ -76,6 +85,7 @@ const MayoHR = () => {
       icon: "/dashboard-8312011_1280.png",
       alt: "Dashboard",
       route: '/projects/mayohr/dashboard',
+      descriptionRoute: 'https://react.dev/',
       text: "使用 dashboard 是為了提供一個集中化的界面來可視化數據",
       description: "開發和設計數據可視化儀表板"
     },
@@ -83,6 +93,7 @@ const MayoHR = () => {
       icon: "/istockphoto-921617728-612x612.jpg",
       alt: "React D3 Tree",
       route: '/projects/mayohr/reactD3Tree',
+      descriptionRoute: 'https://www.npmjs.com/package/react-d3-tree',
       text: "修改公司套件使用組織樹套件",
       description: "實現和修改組織樹圖表以適應公司的需求"
     },
@@ -90,6 +101,7 @@ const MayoHR = () => {
       icon: "/profile-icon-login-head-icon-vector.jpg",
       alt: "使用者權限",
       route: '/login',
+      descriptionRoute: '/login',
       text: "限制使用者可以看到的網頁",
       description: "建立用戶權限控制系統"
     },
@@ -97,6 +109,7 @@ const MayoHR = () => {
       icon: "/images.png",
       alt: "Redux",
       route: '/projects/mayohr/redux',
+      descriptionRoute: 'https://react-redux.js.org/',
       text: "輕鬆管理 React 應用程式的狀態",
       description: "使用 Redux 進行狀態管理，優化 React 應用性能"
     },
@@ -163,7 +176,7 @@ const MayoHR = () => {
           >
             <div className="order-1 w-5/12"></div>
             <motion.div 
-              className="z-20 flex items-center order-1 bg-white shadow-xl w-24 h-24 rounded-full"
+              className="z-20 flex items-center order-1 bg-white  w-24 h-24 rounded-full"
               whileHover={{ scale: 1.1, rotate: 360 }}
               transition={{ type: "spring", stiffness: 260, damping: 20 }}
             >
@@ -180,9 +193,11 @@ const MayoHR = () => {
               className={`order-1 bg-white rounded-lg shadow-xl w-5/12 px-6 py-4 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}
               whileHover={{ scale: 1.05, boxShadow: "0px 0px 8px rgb(255,255,255)" }}
             >
-              <h3 className={`mb-3 font-bold text-gray-800 text-xl`}>{item.alt}</h3>
-              <p className="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">{item.text}</p>
-              <p className="text-xs text-gray-600">{item.description}</p>
+              <a href={item.descriptionRoute} className="no-underline">
+                <h3 className={`mb-3 font-bold text-gray-800 text-xl`}>{item.alt}</h3>
+                <p className="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">{item.text}</p>
+                <p className="text-xs text-gray-600">{item.description}</p>
+              </a>
             </motion.div>
           </motion.div>
         ))}
