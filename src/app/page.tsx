@@ -1,10 +1,14 @@
 'use client';
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import CardCarousel from 'react-card-carousel';
 import styles from './HomePage.module.css';
-import { FaGithub, FaLinkedin, FaEnvelope, FaReact, FaPython, FaGit } from 'react-icons/fa';
-import { SiNextdotjs, SiTypescript, SiTailwindcss, SiTableau, SiR, SiAzuredevops, SiVisualstudiocode, SiPycharm } from 'react-icons/si';
+import { FaGithub, FaReact, FaPython, FaGit } from 'react-icons/fa';
+import { SiNextdotjs, SiTypescript, SiTailwindcss, SiTableau, SiR, SiAzuredevops, SiVisualstudiocode, SiPycharm, SiHtml5, SiMysql } from 'react-icons/si';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
+import { BsFillFileEarmarkSpreadsheetFill } from 'react-icons/bs';
 
 const HomePage = () => {
   const router = useRouter();
@@ -39,7 +43,7 @@ const HomePage = () => {
         {
           institution: 'University of Toronto',
           degree: 'Mathematics & Its Applications Specialist (Probability/Statistics)',
-          minors: 'Mathematics, Statistics, Computer Science',
+          minors: 'Statistics, Computer Science',
           duration: 'September 2021 - Present',
         },
         {
@@ -109,6 +113,7 @@ const HomePage = () => {
             { name: 'Next.js', icon: SiNextdotjs },
             { name: 'TypeScript', icon: SiTypescript },
             { name: 'Tailwind CSS', icon: SiTailwindcss },
+            { name: 'HTML', icon: SiHtml5 }
           ],
         },
         {
@@ -121,8 +126,7 @@ const HomePage = () => {
           title: 'Tools',
           skills: [
             { name: 'R', icon: SiR },
-            { name: 'SQL', icon: SiVisualstudiocode },
-            { name: 'Spreadsheets', icon: SiVisualstudiocode },
+            { name: 'Spreadsheets', icon: BsFillFileEarmarkSpreadsheetFill },
             { name: 'Git', icon: FaGit },
             { name: 'GitHub', icon: FaGithub },
             { name: 'Azure DevOps', icon: SiAzuredevops },
@@ -153,43 +157,67 @@ const HomePage = () => {
 
       <section className={`${styles.section} ${styles.experience}`}>
         <h2 className={styles.sectionTitle}>{homePageText.experience.title}</h2>
-        <CardCarousel>
+        <Swiper
+          modules={[Pagination]}
+          pagination={{ clickable: true }}
+          spaceBetween={30}
+          slidesPerView={3}
+          className={styles.swiper}
+        >
           {homePageText.experience.jobs.map((job, index) => (
-            <div key={index} className={styles.scrollableCard}>
-              <h3>{job.role} - {job.company}</h3>
-              <p>{job.duration}</p>
-              <p>{job.description}</p>
-            </div>
+            <SwiperSlide key={index}>
+              <div className={styles.scrollableCard}>
+                <h3>{job.role} - {job.company}</h3>
+                <p>{job.duration}</p>
+                <p>{job.description}</p>
+              </div>
+            </SwiperSlide>
           ))}
-        </CardCarousel>
+        </Swiper>
       </section>
 
       <section className={`${styles.section} ${styles.education}`}>
         <h2 className={styles.sectionTitle}>{homePageText.education.title}</h2>
-        <CardCarousel>
+        <Swiper
+          modules={[Pagination]}
+          pagination={{ clickable: true }}
+          spaceBetween={30}
+          slidesPerView={3}
+          className={styles.swiper}
+        >
           {homePageText.education.details.map((detail, index) => (
-            <div key={index} className={styles.scrollableCard}>
-              <h3>{detail.institution}</h3>
-              <p>{detail.degree}</p>
-              <p>{detail.minors}</p>
-              <p>{detail.duration}</p>
-            </div>
+            <SwiperSlide key={index}>
+              <div className={styles.scrollableCard}>
+                <h3>{detail.institution}</h3>
+                <p>{detail.degree}</p>
+                {detail.minors && <p>Minor in {detail.minors}</p>}
+                <p>{detail.duration}</p>
+              </div>
+            </SwiperSlide>
           ))}
-        </CardCarousel>
+        </Swiper>
       </section>
 
       <section className={`${styles.section} ${styles.volunteer}`}>
         <h2 className={styles.sectionTitle}>{homePageText.volunteer.title}</h2>
-        <CardCarousel>
+        <Swiper
+          modules={[Pagination]}
+          pagination={{ clickable: true }}
+          spaceBetween={30}
+          slidesPerView={3}
+          className={styles.swiper}
+        >
           {homePageText.volunteer.roles.map((role, index) => (
-            <div key={index} className={styles.scrollableCard}>
-              <h3>{role.position}</h3>
-              <p>{role.organization}</p>
-              <p>{role.location}</p>
-              <p>{role.duration}</p>
-            </div>
+            <SwiperSlide key={index}>
+              <div className={styles.scrollableCard}>
+                <h3>{role.position}</h3>
+                <p>{role.organization}</p>
+                <p>{role.location}</p>
+                <p>{role.duration}</p>
+              </div>
+            </SwiperSlide>
           ))}
-        </CardCarousel>
+        </Swiper>
       </section>
 
       <section className={styles.skills}>

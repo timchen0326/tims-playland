@@ -201,3 +201,74 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Add Swiper Styles */
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scrollableCard {
+  background-color: #ffffff; /* White background for a clean look */
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  transition: transform 0.3s ease;
+  text-align: center;
+  margin: 0 10px;
+  border: 1px solid #e0e0e0; /* Light gray border for a professional finish */
+}
+
+.scrollableCard h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.scrollableCard p {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 10px;
+}
+
+/* Add some scale effect for the center card */
+.scrollableCard.focus {
+  transform: scale(1.1);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .swiper {
+    padding-bottom: 30px; /* For pagination dots */
+  }
+
+  .swiper-slide {
+    width: auto;
+  }
+
+  .scrollableCard {
+    width: 260px;
+    margin: 0 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .swiper {
+    padding-bottom: 30px; /* For pagination dots */
+  }
+
+  .swiper-slide {
+    width: auto;
+  }
+
+  .scrollableCard {
+    width: 220px;
+    margin: 0 5px;
+  }
+}
