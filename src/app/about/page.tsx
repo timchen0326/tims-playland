@@ -29,7 +29,7 @@ const AboutPage = () => {
         { name: 'Coding', icon: FaCode, apps: [FaReact, SiVisualstudiocode, SiNextdotjs, SiPycharm, FaHtml5, FaCss3, FaPython, SiTypescript ] },
         { name: 'Sports', icon: FaGolfBall, apps: [FaBasketballBall, FaGolfBall, MdScubaDiving] },
         { name: 'Video Games', icon: MdSportsEsports, apps: [SiLeagueoflegends,SiValorant, BsNintendoSwitch ] },
-        { name: 'Exploring Tech', icon: FaLightbulb, apps: [SiLogitechg, FaWindows, FaApple, SiRazer, SiIntel, SiNvidia, SiXiaomi, SiTesla ] }
+        { name: 'Exploring Tech', icon: FaLightbulb, apps: [SiLogitechg, FaWindows, FaApple, SiRazer, SiIntel, SiNvidia, SiXiaomi, SiTesla ] },        { name: 'Exploring Tech', icon: FaLightbulb, apps: [SiLogitechg, FaWindows, FaApple, SiRazer, SiIntel, SiNvidia, SiXiaomi, SiTesla ] },        { name: 'Exploring Tech', icon: FaLightbulb, apps: [SiLogitechg, FaWindows, FaApple, SiRazer, SiIntel, SiNvidia, SiXiaomi, SiTesla ] }
       ]
     },
   };
