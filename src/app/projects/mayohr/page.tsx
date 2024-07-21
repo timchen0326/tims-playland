@@ -44,7 +44,7 @@ const MayoHR = () => {
     {
       icon: "/python.svg",
       alt: "Python 爬蟲 / Flask 架 API",
-      route: '#',
+      route: '/projects/mayohr/log',
       descriptionRoute: 'https://flask.palletsprojects.com/en/3.0.x/',
       text: "學習如何使用 Python 去爬蟲和架 API",
       description: "編寫 Python 爬蟲腳本並使用 Flask 建立 API"
