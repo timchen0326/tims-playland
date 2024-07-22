@@ -20,7 +20,7 @@ const MayoHR = () => {
     {
       icon: "/0_aZ3qgyVGmcQd488S.webp",
       alt: "Install VS Code and React.js",
-      route: '#',
+      route: '/projects/mayohr/log',
       descriptionRoute: '#',
       text: "開始學習怎麽下載 VS Code 跟 使用 React.js / Next.js",
       description: "如何設置 VS Code 和 React.js"
@@ -44,7 +44,7 @@ const MayoHR = () => {
     {
       icon: "/python.svg",
       alt: "Python 爬蟲 / Flask 架 API",
-      route: '/projects/mayohr/log',
+      route: '#',
       descriptionRoute: 'https://flask.palletsprojects.com/en/3.0.x/',
       text: "學習如何使用 Python 去爬蟲和架 API",
       description: "編寫 Python 爬蟲腳本並使用 Flask 建立 API"
@@ -109,6 +109,14 @@ const MayoHR = () => {
       icon: "/images.png",
       alt: "Redux",
       route: '/projects/mayohr/redux',
+      descriptionRoute: 'https://react-redux.js.org/',
+      text: "輕鬆管理 React 應用程式的狀態",
+      description: "使用 Redux 進行狀態管理，優化 React 應用性能"
+    },
+    {
+      icon: "/Git_icon.svg.png",
+      alt: "Commits",
+      route: '/projects/mayohr/commits',
       descriptionRoute: 'https://react-redux.js.org/',
       text: "輕鬆管理 React 應用程式的狀態",
       description: "使用 Redux 進行狀態管理，優化 React 應用性能"
