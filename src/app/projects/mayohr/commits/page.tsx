@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
-import commits from './index';
-import { useSpring, animated } from '@react-spring/web';
+import ReactPaginate from 'react-paginate';
+import commits from '.';
 import styles from './CommitsPage.module.css';
 
 interface Commit {
@@ -9,66 +9,83 @@ interface Commit {
   message: string;
   author: string;
   date: string;
-  learnings?: string;
+  learnings?: React.ReactNode;
 }
 
 const CommitsPage: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCommit, setSelectedCommit] = useState<Commit | null>(null);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const openModal = (commit: Commit) => {
+  const commitsPerPage = 10;
+  const filteredCommits = commits.filter(
+    commit =>
+      commit.message.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      commit.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      commit.hash.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  const pageCount = Math.ceil(filteredCommits.length / commitsPerPage);
+
+  const handlePageClick = (data: { selected: number }) => {
+    setCurrentPage(data.selected);
+  };
+
+  const openLearnings = (commit: Commit) => {
     setSelectedCommit(commit);
-    setIsModalOpen(true);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const modalAnimation = useSpring({
-    opacity: isModalOpen ? 1 : 0,
-    transform: isModalOpen ? `translateY(0%) scale(1)` : `translateY(-50%) scale(0.8)`,
-    config: { mass: 1, tension: 280, friction: 20 },
-  });
-
-  const overlayAnimation = useSpring({
-    opacity: isModalOpen ? 1 : 0,
-    config: { duration: 300 },
-  });
+  const displayedCommits = filteredCommits.slice(
+    currentPage * commitsPerPage,
+    (currentPage + 1) * commitsPerPage
+  );
 
   return (
     <div className={styles.container}>
-      <ul className={styles.commitList}>
-        {commits.map((commit, index) => (
-          <li key={index} className={styles.commitItem}>
-            <p><strong>Hash:</strong> {commit.hash}</p>
-            <p><strong>Message:</strong> {commit.message}</p>
-            <p><strong>Author:</strong> {commit.author}</p>
-            <p><strong>Date:</strong> {commit.date}</p>
-            {commit.learnings && (
-              <button className={styles.learnButton} onClick={() => openModal(commit)}>
-                What I Learned
-              </button>
-            )}
-          </li>
-        ))}
-      </ul>
-      {isModalOpen && (
-        <animated.div style={overlayAnimation} className={styles.overlay} onClick={closeModal}>
-          <animated.div 
-            style={modalAnimation} 
-            className={styles.modal}
-            onClick={(e) => e.stopPropagation()}
+      <input
+        type="text"
+        placeholder="Search commits"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className={styles.searchInput}
+      />
+      <div className={styles.content}>
+        <ul className={styles.commitList}>
+          {displayedCommits.map((commit, index) => (
+            <li
+            key={index}
+            className={`${styles.commitItem} ${selectedCommit && selectedCommit.hash === commit.hash ? styles.selected : ''} ${commit.learnings ? 'bg-green-100' : ''}`}
+            {...(commit.learnings && { onClick: () => openLearnings(commit) })}
           >
-            {selectedCommit && (
-              <div className={styles.modalContent}>
-                <p>{selectedCommit.learnings}</p>
-                <button onClick={closeModal} className={styles.closeButton}>Close</button>
-              </div>
-            )}
-          </animated.div>
-        </animated.div>
-      )}
+              <p><strong>Hash:</strong> {commit.hash}</p>
+              <p><strong>Message:</strong> {commit.message}</p>
+              <p><strong>Author:</strong> {commit.author}</p>
+              <p><strong>Date:</strong> {commit.date}</p>
+            </li>
+          ))}
+        </ul>
+        <div className={styles.learnings}>
+          {selectedCommit ? (
+            <div className={styles.learnContent}>
+              {selectedCommit.learnings}
+            </div>
+          ) : (
+            <div className={styles.placeholder}>
+              <p>Select a commit to see the learnings</p>
+            </div>
+          )}
+        </div>
+      </div>
+      <ReactPaginate
+        previousLabel={'Previous'}
+        nextLabel={'Next'}
+        breakLabel={'...'}
+        pageCount={pageCount}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        onPageChange={handlePageClick}
+        containerClassName={styles.pagination}
+        activeClassName={styles.active}
+      />
     </div>
   );
 };
