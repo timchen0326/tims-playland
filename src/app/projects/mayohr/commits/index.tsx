@@ -11,13 +11,22 @@
         message: "install framer-motion",
         author: "建瑩 李",
         date: "Tue Jul 16 16:55:45 2024 +0800",
-        learnings: "I learned how to integrate framer-motion for animations."
       },
       {
         hash: "e57c24707805d8d5422e966defe967e37909b9c5",
         message: "Merged PR 69135: breadcrumb changes\n\nbreadcrumb changes",
         author: "蔚霆 陳",
-        date: "Tue Jul 16 08:31:18 2024 +0000"
+        date: "Tue Jul 16 08:31:18 2024 +0000",
+        learnings: (
+          <div className="text-center">
+            <p>更新的 breadcrumb</p>             
+            <p className='mt-5'>在製作現在這個網站的時候發現 breadcrumb 其實是可以被打包 不用在每一頁刻</p>
+            <p>遇到的問題是 因爲每個 page有自己的需求 像是不要tenantId 或是 不要哪一個節點 等等 </p>
+            <p>解決的方案是讓那些需要customize的網站創造一個自己的breadcrumb其他的就讓自己做的套件自己去刻</p>
+            <p>實作放在layout上就不用每一頁去刻</p>
+            <p>會想要去 做這個新的 breadcrumb 的原因是來自 Mike 的想法 他希望很多東西當需要寫很多次一樣的 不如把他寫成一個套件  讓大家享福</p>
+            <p>這也讓我聯想到 我一開始來公司的時候做的球員網站 我是一個page一個page去刻的 然後Jake跟我說有別的 一次可以解決的辦法 就是讓每個人名字便成網址 就不用一頁一頁去刻</p>
+            </div>)
       },
       {
         hash: "1333f3ef8c15aeb6175237824a77620956b9bf54",
@@ -101,7 +110,16 @@
         hash: "b81974f4a36a6bad8351610f5071a287652f6136",
         message: "Merged PR 68908: REDUX權限",
         author: "蔚霆 陳",
-        date: "Mon Jul 8 08:36:21 2024 +0000"
+        date: "Mon Jul 8 08:36:21 2024 +0000",
+        learnings: (
+          <div className="text-center">
+            <p>修改 userId 權限 並用redux來取資料</p>             
+            <p className='mt-5'>使用 redux 來拉 user 的權限是因為才不能讓使用者擅自修改 localstorage 擅自的去修改自己的權限</p>
+            <p>一開始對redux這個套件完全不瞭解 需要做到的是 理清楚先後順序 要先打 api 然後存取資料 還是後打 api </p>
+            <p>會決定 後面打 API 的主要原因是假如後臺修改了權限那使用者不用重新登入 只要更換網頁 權限會自動刷新 不會影響到 使用者的困擾</p>
+            <p>實作是把redux參數綁在layout 這樣每一個界面都可以接觸到 省去了很多不必要的麻煩</p>
+            <p className='mt-5'>很多時候遇到這種狀況 需要理清楚先後順序 理解套件 然後再滿足需求 不然很容易搞混</p>
+            </div>)
       },
       {
         hash: "8c99e4a76214d0f710703b0348974077e7f90280",
@@ -126,12 +144,6 @@
         message: '"save in progress"',
         author: "cwt0326",
         date: "Mon Jul 8 15:12:49 2024 +0800"
-      },
-      {
-        hash: "081931c0e9d80f7d67273377acc7cb4c014bc7be",
-        message: "add suppressHydrationWarning",
-        author: "建瑩 李",
-        date: "Mon Jul 8 14:37:20 2024 +0800"
       },
       {
         hash: "c0d924335c79b0c431012a5888c11af53419b633",
@@ -185,7 +197,16 @@
         hash: "7f8203e7482ae91ac26028fb0edb012a7de65e11",
         message: "Merged PR 68834: 更改了tree的員工資訊現在有manager還有formdetail頁＋了rawdata還有designversion\n\n更改了tree的員工資訊現在有manager還有formdetail頁＋了rawdata還有designversion",
         author: "蔚霆 陳",
-        date: "Wed Jul 3 07:54:40 2024 +0000"
+        date: "Wed Jul 3 07:54:40 2024 +0000",
+        learnings: (
+          <div className="text-center">
+            <p>組織樹</p>             
+            <p className='mt-5'>對於製作這個組織樹有很特別的印象</p>
+            <p>一開始完全對與修改這個套件感到奇妙 後來使用了 react-d3-tree 這個套件去把原本的組織樹包起來</p>
+            <p>原本以爲修改組織樹就完成了 後來又有新的 request 需要讓組織樹可以被查詢 所以後來去詳細閲讀了 套件網站之後 發現可以 customize 去修改搜尋之後的顔色</p>
+            <p>做完之後 又有新的 request 是希望可以搜尋並 移動到那一個 node 上面</p>
+            <p>本來想說套件可能有自帶 可是後來發現沒有 在 Mike 的帶領下 找到了點擊制中 後來使用了模擬點擊來解決問題</p>
+            </div>)
       },
       {
         hash: "e470b75ad5e0a047db137f7ec0b36c245fb24ac5",
@@ -206,22 +227,10 @@
         date: "Wed Jul 3 15:12:59 2024 +0800"
       },
       {
-        hash: "385a27478d8513162a9cba775f223fd43d69174b",
-        message: "JsonEditor stringTruncate be 5000",
-        author: "建瑩 李",
-        date: "Wed Jul 3 14:48:49 2024 +0800"
-      },
-      {
         hash: "fbebc8c1571edcaf02c8836abeb7170cc7f6f8d7",
         message: "Merged PR 68653: org tree done",
         author: "蔚霆 陳",
         date: "Mon Jul 1 06:25:29 2024 +0000"
-      },
-      {
-        hash: "9c1810cbf88b98961efb6ef5773e9e93677aee10",
-        message: "關閉沒實作的sidebar menu",
-        author: "建瑩 李",
-        date: "Mon Jul 1 14:25:03 2024 +0800"
       },
       {
         hash: "0bcc27c7735137331a15d363381e7be0e87476ac",
@@ -371,6 +380,8 @@
               <p>平行路由的用意是讓很多網頁在同一時間渲染 這樣網頁才不會很慢才渲染出來</p>
               <p>一開始去搜尋了 next.js自己的<a className="text-blue-500 underline" href='https://nextjs.org/docs/app/building-your-application/routing/parallel-routes'>網站</a></p>
               <p>一直鬼打墻 因爲發現平行路由需要 layout.tsx 來包 不然網頁沒辦法呈現</p>
+              <p className="mt-5">後來還有遇到一個 需求 是要把 dashboard上面的資料 變成 link 點過去 他原本的界面 並且搜尋</p>
+              <p >當時想到的做法是用 localstorage 去管理 但是 localstorage 是一個很難去維護的一個東西 所以後來把所有東西都綁成 query 寫在網址上 非常的好理解 而且是在一個看得到的地方</p>
               <pre>
                   <code>
                   {`
