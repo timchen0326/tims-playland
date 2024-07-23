@@ -108,3 +108,52 @@ footer {
 .social-icon:hover {
   background-color: gray;
 }
+
+.no-path {
+  display:none 
+}
+
+
+.custom-path {
+  stroke: rgb(255, 0, 0); /* Starting color */
+  stroke-width: 3px;
+  fill: none;
+  stroke-dasharray: 5, 5;
+  transition: stroke-width 0.3s, stroke-dasharray 0.3s;
+  animation: rgbLight 3s infinite;
+}
+
+.custom-path:hover {
+  stroke-width: 5px;
+  stroke-dasharray: 10, 5;
+}
+
+.custom-path:active {
+  stroke-width: 6px;
+  stroke-dasharray: 10, 2;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 1000;
+  }
+}
+
+@keyframes rgbLight {
+  0% {
+    stroke: rgb(255, 0, 0); /* Red */
+  }
+  33% {
+    stroke: rgb(0, 255, 0); /* Green */
+  }
+  66% {
+    stroke: rgb(0, 0, 255); /* Blue */
+  }
+  100% {
+    stroke: rgb(255, 0, 0); /* Red */
+  }
+}
+
+.custom-path {
+  animation: dash 5s linear infinite, rgbLight 3s infinite;
+}
