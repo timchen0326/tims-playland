@@ -9,6 +9,7 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { motion, AnimatePresence } from 'framer-motion';
 import { homePageText } from '.';
+import { Typewriter } from 'react-simple-typewriter';
 
 const HomePage = () => {
   const router = useRouter();
@@ -19,7 +20,17 @@ const HomePage = () => {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <h1 className={styles.title}>{homePageText.title}</h1>
+        <h1 className={styles.title}>
+          <Typewriter
+            words={[homePageText.title, "陳蔚霆"]}
+            loop={false}
+            cursor
+            cursorStyle='_'
+            typeSpeed={100}
+            deleteSpeed={100}
+            delaySpeed={3000}
+          />
+        </h1>
         <p className={styles.subtitle}>{homePageText.subtitle}</p>
       </header>
 
@@ -128,7 +139,8 @@ const HomePage = () => {
           ))}
         </Swiper>
       </section>
-<section className={`${styles.section} ${styles.certifications}`}>
+
+      <section className={`${styles.section} ${styles.certifications}`}>
         <h2 className={styles.sectionTitle}>{homePageText.certifications.title}</h2>
         <Swiper
           modules={[Pagination]}
@@ -149,7 +161,6 @@ const HomePage = () => {
         </Swiper>
       </section>
 
-
       <section className={styles.skills}>
         <h2 className={styles.sectionTitle}>{homePageText.skills.title}</h2>
         <div className={styles.skillsGrid}>
@@ -169,8 +180,6 @@ const HomePage = () => {
         </div>
       </section>
 
-
-
       <section className={styles.callToAction}>
         <h2 className={styles.sectionTitle}>{homePageText.callToAction.title}</h2>
         <p className={styles.callToActionText}>{homePageText.callToAction.text}</p>
@@ -178,16 +187,17 @@ const HomePage = () => {
           {homePageText.callToAction.button}
         </button>
       </section>
+
       <div className="flex justify-end">
-      <motion.button
-        className="item-centered bg-blue-500 text-white p-4 rounded-full shadow-lg"
-        onClick={scrollToTop} // Adjust the vertical movement here
-        whileTap={{ scale: 0.9 }}
-        animate={{ y: [0, -10, 0] }}  // Continuous vertical movement
-        transition={{ repeat: Infinity, duration: 2 }}  
-      >
-        <FaArrowUp size={24} />
-      </motion.button>
+        <motion.button
+          className="item-centered bg-blue-500 text-white p-4 rounded-full shadow-lg"
+          onClick={scrollToTop}
+          whileTap={{ scale: 0.9 }}
+          animate={{ y: [0, -10, 0] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+        >
+          <FaArrowUp size={24} />
+        </motion.button>
       </div>
     </div>
   );

@@ -160,7 +160,7 @@ const MayoHR = () => {
       variants={containerVariants}
     >
       <motion.h1 
-        className="text-4xl font-bold mb-10 text-gray-800 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500"
+        className="text-4xl font-bold mb-10 text-gray-800 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-pink-500"
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 100 }}
@@ -170,7 +170,7 @@ const MayoHR = () => {
       <div className="relative w-full max-w-6xl">
         {/* Vertical line */}
         <motion.div 
-          className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-300 to-purple-300"
+          className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-yellow-400 to-pink-500"
           initial={{ scaleY: 0 }}
           animate={{ scaleY: 1 }}
           transition={{ duration: 1.5, ease: "easeInOut" }}
