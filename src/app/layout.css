@@ -1,15 +1,13 @@
-.bg-gray-100 {
-    background-color: #f5f5f5; /* Light grey color */
-  }
-  
-  .hover\:bg-gray-700:hover {
-    background-color: #4a4a4a; /* Dark grey for hover effect */
-  }
-  
-  .breadcrumb-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 8px;
-  }
-  
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.breadcrumb-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 8px;
+  z-index: 30;
+}

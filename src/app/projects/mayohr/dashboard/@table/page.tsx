@@ -31,7 +31,6 @@ const FancyTable = () => {
           >
             <th className="py-3 px-4 text-left whitespace-nowrap">Name</th>
             <th className="py-3 px-4 text-left whitespace-nowrap">Location</th>
-            <th className="py-3 px-4 text-left whitespace-nowrap">Type</th>
           </motion.tr>
         </thead>
         <tbody>
@@ -48,16 +47,6 @@ const FancyTable = () => {
             >
               <td className="py-3 px-4 whitespace-nowrap overflow-hidden">{row.name}</td>
               <td className="py-3 px-4 whitespace-nowrap overflow-hidden">{row.location}</td>
-              <td className="py-3 px-4 whitespace-nowrap overflow-hidden">
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: hoveredRow === row.id ? 1 : 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="inline-block bg-green-500 text-white px-2 py-1 rounded"
-                >
-                  {row.type}
-                </motion.div>
-              </td>
             </motion.tr>
           ))}
         </tbody>

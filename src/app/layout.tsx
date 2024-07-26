@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Breadcrumbs from '@/util/breadcrumb/page';
 import { Providers } from './providers';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { FiMenu, FiX } from 'react-icons/fi';
 
 interface LayoutProps {
   children: ReactNode;
@@ -20,9 +21,9 @@ const Layout = ({ children }: LayoutProps) => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY > lastScrollY) {
-        setShowNavbar(false); // Scrolling down
+        setShowNavbar(false);
       } else {
-        setShowNavbar(true); // Scrolling up
+        setShowNavbar(true);
       }
       lastScrollY = currentScrollY;
     };
@@ -34,14 +35,26 @@ const Layout = ({ children }: LayoutProps) => {
     };
   }, [lastScrollY]);
 
-  const linkVariants = {
-    hover: { scale: 1.1, color: "#3b82f6" }
+  const bubbleVariants = {
+    hidden: { opacity: 0, scale: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      scale: 1, 
+      y: 0,
+      transition: { 
+        type: "spring",
+        stiffness: 260,
+        damping: 20
+      } 
+    }
   };
 
-  const menuVariants = {
-    open: { opacity: 1, height: "auto" },
-    closed: { opacity: 0, height: 0 }
-  };
+  const navItems = ['Home', 'Projects', 'About', 'Contact', 'Login'];
+  const socialIcons = [
+    { Icon: FaGithub, href: "https://github.com/timchen0326" },
+    { Icon: FaLinkedin, href: "https://www.linkedin.com/in/tim-chen-4b37b1125" },
+    { Icon: FaEnvelope, href: "mailto:timchen0326ca@gmail.com" }
+  ];
 
   return (
     <html lang="en" className="h-full">
@@ -50,64 +63,75 @@ const Layout = ({ children }: LayoutProps) => {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className="relative bg-gray-100 h-full">
+      <body className="relative bg-blue-300 h-full">
         <Providers>
           <div className="breadcrumb-container">
             <Breadcrumbs />
           </div>
           <header 
-            className={`bg-black text-white shadow-lg rounded-full mx-auto mt-4 p-2 max-w-2xl relative z-10 flex items-center justify-between ${showNavbar ? 'header-visible' : 'header-hidden'}`}
+            className={`bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg text-white shadow-lg rounded-full mx-auto mt-4 p-3 max-w-2xl relative z-20 flex items-center justify-between transition-all duration-300 ${showNavbar ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full'}`}
           >
             <div className="flex items-center space-x-2">
-              <img src="/pikachu.svg" alt="Pikachu Logo" width={24} height={24} />
+              <img src="/pikachu.svg" alt="Pikachu Logo" width={24} height={24} className="animate-bounce" />
               <h1 className="text-sm font-bold">
                 cwt&apos;s Playground
               </h1>
             </div>
-            <nav className="hidden md:flex space-x-4">
-              {['Home', 'Projects', 'About', 'Contact', 'Login'].map((item) => (
-                <motion.a 
-                  key={item}
-                  href={item === 'Home' ? '/' : `/${item.toLowerCase()}`} 
-                  className="text-gray-200 px-3 py-1 rounded-md text-xs font-medium transition-all duration-100 ease-in-out hover:bg-gray-700"
-                  variants={linkVariants}
-                  whileHover="hover"
-                >
-                  {item}
-                </motion.a>
-              ))}
-            </nav>
             <motion.button 
-              className="md:hidden text-gray-200"
+              className="text-white bg-white bg-opacity-30 rounded-full p-2"
+              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              Menu
+              {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
             </motion.button>
-            <AnimatePresence>
-              {isMenuOpen && (
-                <motion.nav 
-                  className="absolute top-full left-0 right-0 bg-black rounded-b-lg p-4 md:hidden"
-                  variants={menuVariants}
-                  initial="closed"
-                  animate="open"
-                  exit="closed"
-                >
-                  {['Home', 'Projects', 'About', 'Contact', 'Login'].map((item) => (
-                    <motion.a 
-                      key={item}
-                      href={item === 'Home' ? '/' : `/${item.toLowerCase()}`} 
-                      className="block text-gray-200 p-2 text-sm transition-all duration-100 ease-in-out hover:bg-gray-700 rounded-md"
-                      variants={linkVariants}
-                      whileHover="hover"
-                    >
-                      {item}
-                    </motion.a>
-                  ))}
-                </motion.nav>
-              )}
-            </AnimatePresence>
           </header>
+
+          <AnimatePresence>
+            {isMenuOpen && (
+              <motion.div 
+                className="fixed top-0 left-0 h-full w-full z-30 pointer-events-none"
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+              >
+                {navItems.map((item, index) => (
+                  <motion.a
+                    key={item}
+                    href={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
+                    className="absolute bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg text-black rounded-full p-4 text-sm pointer-events-auto shadow-lg"
+                    style={{
+                      top: `${(index + 1) * 80}px`,
+                      left: '30px'
+                    }}
+                    variants={bubbleVariants}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ scale: 1.1, transition: { delay: 0 } }}
+                  >
+                    {item}
+                  </motion.a>
+                ))}
+                {socialIcons.map(({ Icon, href }, index) => (
+                  <motion.a
+                    key={href}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg text-black rounded-full p-4 pointer-events-auto shadow-lg"
+                    style={{
+                      bottom: `${(index + 1) * 80}px`,
+                      left: '30px'
+                    }}
+                    variants={bubbleVariants}
+                    transition={{ delay: (navItems.length + index) * 0.1 }}
+                    whileHover={{ scale: 1.1 , transition: { delay: 0 }}}
+                  >
+                    <Icon size={24} />
+                  </motion.a>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           <motion.main 
             className="mx-auto p-4 relative z-10"
@@ -117,18 +141,6 @@ const Layout = ({ children }: LayoutProps) => {
           >
             {children}
           </motion.main>
-
-          <div className="social-icons-container">
-            <a href="https://github.com/timchen0326" target="_blank" rel="noopener noreferrer" className="social-icon">
-              <FaGithub color="white" size={24} />
-            </a>
-            <a href="https://www.linkedin.com/in/tim-chen-4b37b1125" target="_blank" rel="noopener noreferrer" className="social-icon">
-              <FaLinkedin color="white" size={24} />
-            </a>
-            <a href="mailto:timchen0326ca@gmail.com" target="_blank" rel="noopener noreferrer" className="social-icon">
-              <FaEnvelope color="white" size={24} />
-            </a>
-          </div>
         </Providers>
       </body>
     </html>
