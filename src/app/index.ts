@@ -17,6 +17,7 @@ export const homePageText = {
           role: 'Software Engineer - Form Development Department',
           duration: 'May 2024 - July 2024',
           description: 'Assisted in the development and maintenance of dynamic, user-friendly forms for various HR applications, ensuring compatibility and responsiveness across different browsers.',
+          iconSrc:'mayo_human_capital_logo.JPG'
         },
         {
           company: 'Bear Socks',
@@ -34,16 +35,19 @@ export const homePageText = {
           degree: 'Mathematics & Its Applications Specialist (Probability/Statistics)',
           minors: 'Statistics, Computer Science',
           duration: 'September 2021 - Present',
+          iconSrc: 'Utoronto_coa.svg.png'
         },
         {
           institution: 'St. John\'s School',
           degree: 'International Baccalaureate Diploma Programme',
           duration: 'August 2019 - May 2021',
+          iconSrc: 'St._John\'s_School_(Vancouver).png'
         },
         {
           institution: 'Magee Secondary School',
           degree: 'BC High School Dogwood Diploma',
           duration: 'September 2016 - June 2019',
+          iconSrc: 'Logo_magee.png'
         },
       ],
     },
@@ -143,4 +147,4 @@ export const homePageText = {
       },
       // Add more projects here if needed
     ],
-  };
+};
