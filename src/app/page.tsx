@@ -8,8 +8,8 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { motion, AnimatePresence } from 'framer-motion';
-import { homePageText } from '.';
 import { Typewriter } from 'react-simple-typewriter';
+import { homePageText } from '.';
 
 const HomePage = () => {
   const router = useRouter();
@@ -68,6 +68,7 @@ const HomePage = () => {
                       <span key={index} className={styles.projectTag}>{tag}</span>
                     ))}
                   </div>
+
                 </div>
               </motion.div>
             ))}
@@ -90,6 +91,9 @@ const HomePage = () => {
                 <h3>{job.role} - {job.company}</h3>
                 <p>{job.duration}</p>
                 <p>{job.description}</p>
+                {job.iconSrc && (
+                  <img src={job.iconSrc} alt="icon" className={styles.projectIcon} />
+                )}
               </div>
             </SwiperSlide>
           ))}
@@ -112,6 +116,9 @@ const HomePage = () => {
                 <p>{detail.degree}</p>
                 {detail.minors && <p>Minor in {detail.minors}</p>}
                 <p>{detail.duration}</p>
+                {detail.iconSrc && (
+                  <img src={detail.iconSrc} alt="icon" className={styles.projectIcon} />
+                )}
               </div>
             </SwiperSlide>
           ))}

@@ -1,26 +1,4 @@
-'use client';
-import { useEffect, useState, useMemo } from 'react';
-import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '@/util/redux/store';
-import { toggleCheckbox } from '@/util/redux/checkboxSlice';
-
-const MayoHR = () => {
-  const router = useRouter();
-  const [userId, setUserId] = useState<string | null>(null);
-  const checkedItems = useSelector((state: RootState) => state.checkbox.checkedItems);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    try {
-      setUserId(localStorage.getItem('userId'));
-    } catch (error) {
-      console.error("Failed to get userId from localStorage:", error);
-    }
-  }, []);
-
-  const timelineItems = [
+const timelineItems = [
     {
       date: "2024-05-09",
       icon: "/0_aZ3qgyVGmcQd488S.webp",
@@ -138,126 +116,13 @@ const MayoHR = () => {
       text: "提交了大量代碼變更，涵蓋多個項目",
       description: "在實習期間提交了多個 commit，覆蓋了從設計到開發再到部署的各個階段。"
     },
+    {
+      date: "2024-08-01",
+      icon: "/mayologo.png",
+      alt: "離開 MAYO",
+      route: '/projects/mayohr/drinks',
+      descriptionRoute: '',
+      text: "結束在 MAYO 的實習",
+      description: ""
+    },
   ];
-
-  const endingInternshipItem = {
-    date: "2024-08-01",
-    icon: "/mayologo.png",
-    alt: "離開 MAYO",
-    route: '/projects/mayohr/drinks',
-    descriptionRoute: '',
-    text: "結束在 MAYO 的實習",
-    description: ""
-  };
-
-  const filteredItems = useMemo(() => {
-    const baseItems = userId === 'User01' 
-      ? timelineItems.filter(item => item.alt === "使用者權限")
-      : timelineItems;
-
-    const allChecked = Object.keys(checkedItems).length > 12.9;
-    return allChecked ? [...baseItems, endingInternshipItem] : baseItems;
-  }, [userId, checkedItems]);
-
-  const handleCheckboxChange = (index: number) => {
-    dispatch(toggleCheckbox(index));
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: { 
-        staggerChildren: 0.3
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { 
-        type: "spring",
-        stiffness: 100,
-        damping: 12
-      }
-    }
-  };
-
-  return (
-    <motion.div 
-      className="flex flex-col items-center p-6 min-h-screen"
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-    >
-      <motion.h1 
-        className="text-4xl font-bold mb-10 text-gray-800 bg-clip-text text-transparent bg-black"
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 100 }}
-      >
-        Progress Report Timeline
-      </motion.h1>
-      <div className="relative w-full max-w-6xl">
-        {/* Vertical line */}
-        <motion.div 
-          className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-yellow-400 to-pink-500"
-          initial={{ scaleY: 0 }}
-          animate={{ scaleY: 1 }}
-          transition={{ duration: 1.5, ease: "easeInOut" }}
-        ></motion.div>
-        
-        {filteredItems.map((item, index) => (
-          <motion.div 
-            key={index} 
-            className={`mb-8 flex justify-between items-center w-full ${index % 2 === 0 ? 'flex-row-reverse' : 'flex-row'}`}
-            variants={itemVariants}
-          >
-            <div className="order-1 w-5/12"></div>
-            <motion.div 
-              className="z-20 flex items-center order-1 bg-white w-24 h-24 rounded-full"
-              whileHover={{ scale: 1.1, rotate: 360 }}
-              transition={{ type: "spring", stiffness: 260, damping: 20 }}
-            >
-              <motion.img 
-                src={item.icon}
-                className={`w-20 h-20 rounded-full object-cover cursor-pointer border-4 border-white-500 ml-2`}
-                alt={item.alt}
-                onClick={() => router.push(item.route)}
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-              />
-            </motion.div>
-            <motion.div 
-              className={`order-1 bg-white rounded-lg shadow-xl w-5/12 px-6 py-4 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}
-              whileHover={{ scale: 1.05, boxShadow: "0px 0px 8px rgb(255,255,255)" }}
-            >
-              <a href={item.descriptionRoute} className="no-underline">
-                <h3 className={`mb-3 font-bold text-gray-800 text-xl`}>{item.alt}</h3>
-                <p className="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">{item.text}</p>
-                <p className="text-xs text-gray-600">{item.description}</p>
-                <p className="text-xs text-gray-500 mt-2">{item.date}</p> {/* Add date here */}
-              </a>
-              <div className="mt-2">
-                <label className="flex items-center">
-                  <input 
-                    type="checkbox" 
-                    className="custom-checkbox"
-                    checked={!!checkedItems[index]} 
-                    onChange={() => handleCheckboxChange(index)} 
-                  />
-                  <span className="ml-2 text-gray-700">完成</span>
-                </label>
-              </div>
-            </motion.div>
-          </motion.div>
-        ))}
-      </div>
-    </motion.div>
-  );
-}
-
-export default MayoHR;
