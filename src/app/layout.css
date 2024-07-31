@@ -11,3 +11,84 @@ body {
   padding: 8px;
   z-index: 30;
 }
+
+.navbar {
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 9999px;
+  margin: 1rem auto;
+  padding: 0.75rem;
+  max-width: 640px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  z-index: 20;
+}
+
+.navbar-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.navbar-hidden {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.menu-button {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 9999px;
+  padding: 0.5rem;
+  color: white;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.menu-item {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: black;
+  border-radius: 9999px;
+  padding: 1rem;
+  font-size: 0.875rem;
+  pointer-events: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.social-icon {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: black;
+  border-radius: 9999px;
+  padding: 1rem;
+  pointer-events: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon svg {
+  color: white; /* Ensure the icons themselves are white or another contrasting color */
+}
+
+.main-content {
+  margin: 0 auto;
+  padding: 1rem;
+  position: relative;
+  z-index: 10;
+}

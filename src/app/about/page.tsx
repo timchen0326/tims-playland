@@ -1,18 +1,20 @@
 'use client';
 import React from 'react';
-import { useRouter } from 'next/navigation';
-import styles from './AboutPage.module.css';
-import { FaCode, FaGolfBall, FaHandsHelping, FaLightbulb, FaReact, FaNodeJs, FaGithub, FaJs, FaHtml5, FaCss3, FaPython, FaDatabase, FaBaseballBall, FaWindows, FaApple, FaBasketballBall, FaHamburger, FaIceCream, FaPizzaSlice, FaUtensils, FaWineGlassAlt, FaCandyCane, FaCoffee, FaHotdog, FaMugHot, FaBeer, FaEgg, FaLemon } from 'react-icons/fa';
-import { motion } from 'framer-motion';
-import { SiTesla,  SiNextdotjs, SiPycharm, SiTypescript, SiVisualstudiocode, SiLeagueoflegends, SiValorant, SiLogitechg, SiRazer, SiIntel, SiNvidia, SiXiaomi   } from 'react-icons/si';
-import { MdScubaDiving, MdSportsEsports  } from "react-icons/md";
+import styles from './about.module.css';
+import {
+  FaCode, FaGolfBall, FaLightbulb, FaReact, FaHtml5, FaCss3, FaPython,
+  FaWindows, FaApple, FaBasketballBall, FaHamburger, FaIceCream, FaPizzaSlice,
+  FaUtensils, FaWineGlassAlt, FaCoffee, FaBeer, FaEgg, FaLemon
+} from 'react-icons/fa';
+import {
+  SiTesla, SiNextdotjs, SiPycharm, SiTypescript, SiVisualstudiocode,
+  SiLeagueoflegends, SiValorant, SiLogitechg, SiRazer, SiIntel, SiNvidia, SiXiaomi
+} from 'react-icons/si';
+import { MdScubaDiving, MdSportsEsports } from "react-icons/md";
 import { BsNintendoSwitch } from 'react-icons/bs';
 
-
 const AboutPage = () => {
-  const router = useRouter();
-
-
+  // 這裡是關於頁面的文本資料
   const aboutPageText = {
     title: 'About Me',
     biography: {
@@ -26,18 +28,34 @@ const AboutPage = () => {
     hobbies: {
       title: 'Hobbies and Interests',
       items: [
-        { name: 'Coding', icon: FaCode, apps: [FaReact, SiVisualstudiocode, SiNextdotjs, SiPycharm, FaHtml5, FaCss3, FaPython, SiTypescript ] },
-        { name: 'Sports', icon: FaGolfBall, apps: [FaBasketballBall, FaGolfBall, MdScubaDiving] },
-        { name: 'Video Games', icon: MdSportsEsports, apps: [SiLeagueoflegends,SiValorant, BsNintendoSwitch ] },
-        { name: 'Exploring Tech', icon: FaLightbulb, apps: [SiLogitechg, FaWindows, FaApple, SiRazer, SiIntel, SiNvidia, SiXiaomi, SiTesla ] },
-        {name: 'Food Adventures', icon: FaUtensils, apps: [FaHamburger, FaPizzaSlice, FaIceCream, FaWineGlassAlt, FaCoffee, FaBeer, FaEgg, FaLemon]}
-
-
-
+        {
+          name: 'Coding', icon: FaCode, apps: [
+            FaReact, SiVisualstudiocode, SiNextdotjs, SiPycharm, FaHtml5, FaCss3, FaPython, SiTypescript
+          ]
+        },
+        {
+          name: 'Sports', icon: FaGolfBall, apps: [
+            FaBasketballBall, FaGolfBall, MdScubaDiving
+          ]
+        },
+        {
+          name: 'Video Games', icon: MdSportsEsports, apps: [
+            SiLeagueoflegends, SiValorant, BsNintendoSwitch
+          ]
+        },
+        {
+          name: 'Exploring Tech', icon: FaLightbulb, apps: [
+            SiLogitechg, FaWindows, FaApple, SiRazer, SiIntel, SiNvidia, SiXiaomi, SiTesla
+          ]
+        },
+        {
+          name: 'Food Adventures', icon: FaUtensils, apps: [
+            FaHamburger, FaPizzaSlice, FaIceCream, FaWineGlassAlt, FaCoffee, FaBeer, FaEgg, FaLemon
+          ]
+        }
       ]
     },
   };
-
 
   return (
     <div className={styles.container}>

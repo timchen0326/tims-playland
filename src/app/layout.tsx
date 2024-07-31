@@ -1,11 +1,9 @@
-// components/Layout.tsx
 "use client";
 import { ReactNode, useEffect, useState } from 'react';
 import '../app/globals.css';
 import './layout.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import Breadcrumbs from '@/util/breadcrumb/page';
-import { useSelector, useDispatch } from 'react-redux';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { ReduxProvider } from './ReduxProvider';
@@ -19,14 +17,14 @@ const Layout = ({ children }: LayoutProps) => {
   const [showNavbar, setShowNavbar] = useState(true);
   let lastScrollY = 0;
 
-
+  // 監聽滾動事件，根據滾動方向顯示或隱藏導航欄
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY > lastScrollY) {
-        setShowNavbar(false);
+        setShowNavbar(false); // 滾動向下隱藏導航欄
       } else {
-        setShowNavbar(true);
+        setShowNavbar(true); // 滾動向上顯示導航欄
       }
       lastScrollY = currentScrollY;
     };
@@ -38,6 +36,7 @@ const Layout = ({ children }: LayoutProps) => {
     };
   }, [lastScrollY]);
 
+  // 定義動畫變體
   const bubbleVariants = {
     hidden: { opacity: 0, scale: 0, y: 50 },
     visible: { 
@@ -52,7 +51,9 @@ const Layout = ({ children }: LayoutProps) => {
     }
   };
 
+  // 導航欄項目
   const navItems = ['Home', 'Projects', 'About', 'Contact', 'Login'];
+  // 社交媒體圖標
   const socialIcons = [
     { Icon: FaGithub, href: "https://github.com/timchen0326" },
     { Icon: FaLinkedin, href: "https://www.linkedin.com/in/tim-chen-4b37b1125" },
@@ -71,7 +72,7 @@ const Layout = ({ children }: LayoutProps) => {
           <Breadcrumbs />
         </div>
         <header 
-          className={`bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg text-white shadow-lg rounded-full mx-auto mt-4 p-3 max-w-2xl relative z-20 flex items-center justify-between transition-all duration-300 ${showNavbar ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full'}`}
+          className={`navbar ${showNavbar ? 'navbar-visible' : 'navbar-hidden'}`}
         >
           <div className="flex items-center space-x-2">
             <img src="/pikachu.svg" alt="Pikachu Logo" width={24} height={24} className="animate-bounce" />
@@ -80,7 +81,7 @@ const Layout = ({ children }: LayoutProps) => {
             </h1>
           </div>
           <motion.button 
-            className="text-white bg-white bg-opacity-30 rounded-full p-2"
+            className="menu-button"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -92,7 +93,7 @@ const Layout = ({ children }: LayoutProps) => {
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div 
-              className="fixed top-0 left-0 h-full w-full z-30 pointer-events-none"
+              className="menu"
               initial="hidden"
               animate="visible"
               exit="hidden"
@@ -101,7 +102,7 @@ const Layout = ({ children }: LayoutProps) => {
                 <motion.a
                   key={item}
                   href={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
-                  className="absolute bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg text-black rounded-full p-4 text-sm pointer-events-auto shadow-lg"
+                  className="menu-item"
                   style={{
                     top: `${(index + 1) * 80}px`,
                     left: '30px'
@@ -119,7 +120,7 @@ const Layout = ({ children }: LayoutProps) => {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="absolute bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg text-black rounded-full p-4 pointer-events-auto shadow-lg"
+                  className="social-icon"
                   style={{
                     bottom: `${(index + 1) * 80}px`,
                     left: '30px'
@@ -136,12 +137,11 @@ const Layout = ({ children }: LayoutProps) => {
         </AnimatePresence>
 
         <motion.main 
-          className="mx-auto p-4 relative z-10"
+          className="main-content"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          
           <ReduxProvider>{children}</ReduxProvider>
         </motion.main>
       </body>

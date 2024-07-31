@@ -15,13 +15,23 @@ const QRCodePage = () => {
             '--y': `${Math.random() * 100}%`,
             '--delay': `${Math.random() * 5}s`
           } as React.CSSProperties}>
-            <Image src={images[Math.floor(Math.random() * images.length)]} alt="Floating Element" width={30} height={30} />
+            <Image
+              src={images[i % images.length]}
+              alt={`Floating Element ${i % images.length}`}
+              width={30}
+              height={30}
+            />
           </div>
         ))}
       </div>
-      <div className={styles.qrcodeWrapper}>
+      <div className={styles.qrcodeLeftWrapper}>
         <div className={styles.qrcode}>
-          <Image src='/qrCode (1).png' alt="QR Code" width={200} height={200} />
+          <Image src='/qrCode (1).png' alt="QR Code 1" width={200} height={200} />
+        </div>
+      </div>
+      <div className={styles.qrcodeRightWrapper}>
+        <div className={styles.qrcode}>
+          <Image src='/B1F342A5-EE4A-4518-836B-D84E6D042218_1_201_a.jpeg' alt="QR Code 2" width={200} height={200} />
         </div>
       </div>
     </div>

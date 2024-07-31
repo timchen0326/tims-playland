@@ -15,11 +15,7 @@ const Gallery = () => {
   }, []);
 
   const icons = [
-    { id: 'mayohr', src: '/mayohr.jpg', alt: 'MAYOHR', link: '/projects/mayohr', description: 'Assisted in the development and maintenance of dynamic, user-friendly forms for various HR applications, ensuring compatibility and responsiveness across different browsers.', tags: ['Form Development', 'TSX', 'Next.Js', 'React', 'VS Code'] },
-    ...(userId === "timchen0326" || userId === "sallytsai0620"
-      ? [{ id: 'sally', src: '/IMG_4605.JPG', alt: 'Sally', link: '/projects/sally', description: 'Meet Sally, your expert in professional development.', tags: ['Career', 'Development', 'Mentorship'] }]
-      : [])
-  ];
+    { id: 'mayohr', src: '/mayohr.jpg', alt: 'MAYOHR', link: '/projects/mayohr', description: 'Assisted in the development and maintenance of dynamic, user-friendly forms for various HR applications, ensuring compatibility and responsiveness across different browsers.', tags: ['Form Development', 'TSX', 'Next.Js', 'React', 'VS Code'] }]
 
   return (
     <AnimatePresence>

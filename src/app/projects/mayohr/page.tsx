@@ -1,3 +1,4 @@
+// MayoHR.tsx
 'use client';
 import { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
@@ -12,6 +13,7 @@ const MayoHR = () => {
   const checkedItems = useSelector((state: RootState) => state.checkbox.checkedItems);
   const dispatch = useDispatch();
 
+  // 使用 useEffect 來從 localStorage 獲取 userId
   useEffect(() => {
     try {
       setUserId(localStorage.getItem('userId'));
@@ -150,6 +152,7 @@ const MayoHR = () => {
     description: ""
   };
 
+  // 使用 useMemo 來計算 filteredItems，依賴 userId 和 checkedItems
   const filteredItems = useMemo(() => {
     const baseItems = userId === 'User01' 
       ? timelineItems.filter(item => item.alt === "使用者權限")
@@ -159,6 +162,7 @@ const MayoHR = () => {
     return allChecked ? [...baseItems, endingInternshipItem] : baseItems;
   }, [userId, checkedItems]);
 
+  // 處理 checkbox 的變更
   const handleCheckboxChange = (index: number) => {
     dispatch(toggleCheckbox(index));
   };
@@ -202,7 +206,7 @@ const MayoHR = () => {
         Progress Report Timeline
       </motion.h1>
       <div className="relative w-full max-w-6xl">
-        {/* Vertical line */}
+        {/* 垂直線 */}
         <motion.div 
           className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-yellow-400 to-pink-500"
           initial={{ scaleY: 0 }}
@@ -239,7 +243,7 @@ const MayoHR = () => {
                 <h3 className={`mb-3 font-bold text-gray-800 text-xl`}>{item.alt}</h3>
                 <p className="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">{item.text}</p>
                 <p className="text-xs text-gray-600">{item.description}</p>
-                <p className="text-xs text-gray-500 mt-2">{item.date}</p> {/* Add date here */}
+                <p className="text-xs text-gray-500 mt-2">{item.date}</p>
               </a>
               <div className="mt-2">
                 <label className="flex items-center">

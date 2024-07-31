@@ -7,6 +7,7 @@ import axios from 'axios';
 import styles from './JSONEditor.module.css';
 import { Shoutout } from '@/util/shoutout/page';
 
+// 定義 JSON 數據的類型
 type JsonData = {
   name: string;
   age: number;
@@ -27,10 +28,12 @@ export default function Page() {
   const [searchText, setSearchText] = useState<string>('');
   const [searchFilter, setSearchFilter] = useState<'key' | 'value' | 'all'>('all');
 
+  // 初次渲染時獲取 JSON 數據
   useEffect(() => {
     fetchJsonData();
   }, []);
 
+  // 獲取 JSON 數據的函數
   const fetchJsonData = async () => {
     try {
       const response = await axios.get('https://jsoneditor-q2c2.onrender.com/api/data');
@@ -40,6 +43,7 @@ export default function Page() {
     }
   };
 
+  // 更新 JSON 數據的處理函數
   const handleUpdate: JsonEditorProps['onUpdate'] = async ({ newData }) => {
     try {
       await axios.post('https://jsoneditor-q2c2.onrender.com/api/save', newData);
@@ -49,26 +53,32 @@ export default function Page() {
     }
   };
 
+  // 重置 JSON 數據
   const handleReset = () => {
     fetchJsonData();
   };
 
+  // 切換是否顯示數組索引
   const toggleArrayIndices = () => {
     setShowArrayIndices(prevState => !prevState);
   };
 
+  // 增加縮進
   const increaseIndent = () => {
     setIndent(prevIndent => prevIndent + 1);
   };
 
+  // 減少縮進
   const decreaseIndent = () => {
     setIndent(prevIndent => (prevIndent > 1 ? prevIndent - 1 : 1));
   };
 
+  // 如果數據未加載完成，顯示加載中
   if (!jsonData) return <div>Loading...</div>;
 
   return (
     <div className={styles.container}>
+      {/* 引入和使用 Shoutout 組件 */}
       <Shoutout component='json-edit-react' importMethod={`import {JsonEditor} from 'json-edit-react'; `}  use={'<JsonEditor/>'}/>
       <div className={styles.editorContainer}>
         <div className={styles.editorActions}>
@@ -97,7 +107,7 @@ export default function Page() {
             <option value="value">Search Values</option>
           </select>
         </div>
-        {/* Conditionally render JsonEditor only in the browser */}
+        {/* 僅在瀏覽器環境中渲染 JsonEditor */}
         {typeof window !== 'undefined' && (
           <JsonEditor
             data={jsonData}

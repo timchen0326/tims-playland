@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import styles from './HomePage.module.css';
+import styles from './home.module.css';
 import { FaArrowUp } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -13,12 +13,15 @@ import { homePageText } from '.';
 
 const HomePage = () => {
   const router = useRouter();
+
+  // 滾動到頁面頂部的函數
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <div className={styles.container}>
+      {/* 頁面標題和副標題 */}
       <header className={styles.header}>
         <h1 className={styles.title}>
           <Typewriter
@@ -34,11 +37,13 @@ const HomePage = () => {
         <p className={styles.subtitle}>{homePageText.subtitle}</p>
       </header>
 
+      {/* 關於部分 */}
       <section className={`${styles.section} ${styles.about}`}>
         <h2 className={styles.sectionTitle}>{homePageText.about.title}</h2>
         <p className={styles.aboutText}>{homePageText.about.text}</p>
       </section>
 
+      {/* 項目展示部分 */}
       <section className={`${styles.section} ${styles.projects}`}>
         <h2 className={styles.sectionTitle}>Featured Projects</h2>
         <AnimatePresence>
@@ -68,7 +73,6 @@ const HomePage = () => {
                       <span key={index} className={styles.projectTag}>{tag}</span>
                     ))}
                   </div>
-
                 </div>
               </motion.div>
             ))}
@@ -76,6 +80,7 @@ const HomePage = () => {
         </AnimatePresence>
       </section>
 
+      {/* 工作經歷部分 */}
       <section className={`${styles.section} ${styles.experience}`}>
         <h2 className={styles.sectionTitle}>{homePageText.experience.title}</h2>
         <Swiper
@@ -100,6 +105,7 @@ const HomePage = () => {
         </Swiper>
       </section>
 
+      {/* 教育背景部分 */}
       <section className={`${styles.section} ${styles.education}`}>
         <h2 className={styles.sectionTitle}>{homePageText.education.title}</h2>
         <Swiper
@@ -125,6 +131,7 @@ const HomePage = () => {
         </Swiper>
       </section>
 
+      {/* 志願者經驗部分 */}
       <section className={`${styles.section} ${styles.volunteer}`}>
         <h2 className={styles.sectionTitle}>{homePageText.volunteer.title}</h2>
         <Swiper
@@ -147,6 +154,7 @@ const HomePage = () => {
         </Swiper>
       </section>
 
+      {/* 認證部分 */}
       <section className={`${styles.section} ${styles.certifications}`}>
         <h2 className={styles.sectionTitle}>{homePageText.certifications.title}</h2>
         <Swiper
@@ -168,6 +176,7 @@ const HomePage = () => {
         </Swiper>
       </section>
 
+      {/* 技能部分 */}
       <section className={styles.skills}>
         <h2 className={styles.sectionTitle}>{homePageText.skills.title}</h2>
         <div className={styles.skillsGrid}>
@@ -187,6 +196,7 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* 呼籲行動部分 */}
       <section className={styles.callToAction}>
         <h2 className={styles.sectionTitle}>{homePageText.callToAction.title}</h2>
         <p className={styles.callToActionText}>{homePageText.callToAction.text}</p>
@@ -195,6 +205,7 @@ const HomePage = () => {
         </button>
       </section>
 
+      {/* 返回頂部按鈕 */}
       <div className="flex justify-end">
         <motion.button
           className="item-centered bg-blue-500 text-white p-4 rounded-full shadow-lg"

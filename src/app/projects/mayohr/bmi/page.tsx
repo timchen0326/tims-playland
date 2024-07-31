@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import "./bmi.css";
 
-// Function to determine BMI category
+// 計算 BMI 類別的函數
 const getBMICategory = (bmi: number) => {
   if (bmi < 18.5) return "Underweight";
   if (bmi >= 18.5 && bmi < 25) return "Healthy";
@@ -12,17 +12,18 @@ const getBMICategory = (bmi: number) => {
   return "Extremely Obese";
 };
 
-// Calculate BMI
+// 計算 BMI 的函數
 const calculateBMI = (weight: number, height: number) => weight / (height * height);
 
-// Modern BMI component
+// 現代化的 BMI 計算器組件
 function ModernBMI() {
   const [weight, setWeight] = useState(0);
   const [height, setHeight] = useState(0);
   const [bmi, setBmi] = useState(0);
   const [bmiCategory, setBmiCategory] = useState("");
 
-  const handleWeightChange = (event: any) => {
+  // 處理體重改變BMI
+  const handleWeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const weightValue = parseFloat(event.target.value);
     setWeight(weightValue);
     if (height > 0) {
@@ -32,7 +33,8 @@ function ModernBMI() {
     }
   };
 
-  const handleHeightChange = (event: any) => {
+  // 處理身高改變BMI
+  const handleHeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const heightValue = parseFloat(event.target.value);
     setHeight(heightValue);
     if (weight > 0) {
@@ -42,13 +44,14 @@ function ModernBMI() {
     }
   };
 
+  // 計算 BMI 指標位置
   const getBmiPosition = (bmi: number) => {
     if (bmi < 10) return 0;
     if (bmi > 40) return 100;
     return ((bmi - 10) / 30) * 100;
   };
 
-  // BMIs for 71kg/178cm and 81kg/178cm
+  // 預設的 BMI 值
   const bmi71kg178cm = calculateBMI(71, 1.78);
   const bmi81kg178cm = calculateBMI(81, 1.78);
 

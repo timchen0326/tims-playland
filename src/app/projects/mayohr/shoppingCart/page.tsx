@@ -11,9 +11,9 @@ const EmbeddedPage: React.FC<EmbeddedPageProps> = ({ url }) => {
       src={url}
       style={{
         border: 'none',
-        width: '95%', // Slightly less than full width
-        height: '85vh', // Slightly less than full viewport height
-        marginTop: '20px', // Added top padding
+        width: '95%',
+        height: '85vh', 
+        marginTop: '20px', 
       }}
     />
   );

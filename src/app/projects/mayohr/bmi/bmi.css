@@ -1,9 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* src/app/bmi.css */
-
 .bmi-box {
   width: 45%;
   padding: 20px;

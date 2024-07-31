@@ -3,84 +3,85 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import Tree, { Point } from 'react-d3-tree';
 import { mockOrgData } from '.';
 
-// Types
-type OrgData = {
-  rootUnit: OrgUnitData;
-};
 
 type OrgUnitData = {
-  isRoot: boolean;
-  code: string;
-  displayCode: string;
-  name: string;
-  parentUnit?: OrgUnitData | null;
-  childUnits?: OrgUnitData[];
-  state: string | null;
-  employees?: Employee[];
-  upperCode: string | null;
-  managersCode?: string[];
+  isRoot: boolean; // 是否為根單位
+  code: string; // 單位代碼
+  displayCode: string; // 顯示用代碼
+  name: string; // 單位名稱
+  parentUnit?: OrgUnitData | null; // 父單位，可有可無
+  childUnits?: OrgUnitData[]; // 子單位列表，可有可無
+  state: string | null; // 單位狀態
+  employees?: Employee[]; // 員工列表，可有可無
+  upperCode: string | null; // 上級單位代碼
+  managersCode?: string[]; // 經理代碼列表，可有可無
 };
 
 type Employee = {
-  code: string;
-  displayCode: string;
-  name: string;
-  state?: string | null;
-  roleCodes: string[];
+  code: string; // 員工代碼
+  displayCode: string; // 顯示用代碼
+  name: string; // 員工姓名
+  state?: string | null; // 員工狀態，可有可無
+  roleCodes: string[]; // 角色代碼列表
 };
 
 type TreeNode = {
-  id: string;
-  name: string;
-  attributes?: { [key: string]: string };
-  children?: TreeNode[];
+  id: string; // 節點ID
+  name: string; // 節點名稱
+  attributes?: { [key: string]: string }; // 節點屬性
+  children?: TreeNode[]; // 子節點列表
   nodeSvgShape?: {
-    shape: string;
-    shapeProps: { [key: string]: any };
+    shape: string; // 節點形狀
+    shapeProps: { [key: string]: any }; // 節點形狀屬性
   };
 };
 
-
-// Helper functions
+// 將組織單位數據轉換為樹節點
 const transformToTreeNode = (data: OrgUnitData, parentId: string = '', parentManagersName: string = ''): TreeNode => {
+  // 設定節點ID，如果有父ID則附加上父ID
   const nodeId = parentId ? `${parentId}-${data.code}` : data.code;
   
+  // 獲取經理名稱列表
   const managerNames = data.managersCode?.map(code => 
     data.employees?.find(emp => emp.code === code)?.name
   ).filter(Boolean).join(', ') || '';
 
+  // 轉換員工節點
   const employeeNodes = data.employees?.map(employee => {
     const isOwnManager = data.managersCode?.includes(employee.code) || false;
     
     return {
-      id: `${nodeId}-${employee.code}`,
-      name: employee.name,
+      id: `${nodeId}-${employee.code}`, // 設定員工節點ID
+      name: employee.name, // 員工名稱
       attributes: { 
-        code: employee.code, 
-        state: employee.state || '', 
-        roleCodes: employee.roleCodes.join(', '),
-        manager: isOwnManager ? '' : managerNames
+        code: employee.code, // 員工代碼
+        state: employee.state || '', // 員工狀態
+        roleCodes: employee.roleCodes.join(', '), // 角色代碼
+        manager: isOwnManager ? '' : managerNames // 經理名稱，如果自己是經理則不顯示
       },
     };
   }) || [];
 
+  // 轉換子單位節點
   const childUnitNodes = data.childUnits?.map(child => transformToTreeNode(child, nodeId, managerNames)) || [];
 
   return {
-    id: nodeId,
-    name: data.name,
+    id: nodeId, // 單位節點ID
+    name: data.name, // 單位名稱
     attributes: { 
-      code: data.code, 
-      state: data.state || '',
-      manager: parentManagersName
+      code: data.code, // 單位代碼
+      state: data.state || '', // 單位狀態
+      manager: parentManagersName // 父級經理名稱
     },
-    children: [...childUnitNodes, ...employeeNodes],
+    children: [...childUnitNodes, ...employeeNodes], // 子節點包括子單位和員工
   };
 };
 
+// 高亮節點
 const highlightNode = (node: TreeNode, searchTerm: string): TreeNode => {
   const lowerCaseSearchTerm = searchTerm.toLowerCase();
 
+  // 檢查是否匹配搜索詞
   const isMatch =
     node.name.toLowerCase().includes(lowerCaseSearchTerm) ||
     (node.attributes &&
@@ -92,6 +93,7 @@ const highlightNode = (node: TreeNode, searchTerm: string): TreeNode => {
         (node.attributes.manager && node.attributes.manager
           .toLowerCase().includes(lowerCaseSearchTerm))));
 
+  // highlight 查到的
   const highlightedChildren = node.children?.map(child => highlightNode(child, searchTerm)) || [];
 
   return {
@@ -112,21 +114,21 @@ const containerStyles = {
   height: '700px',
 };
 
-// Custom hook
+// 自定義hook，用於居中樹
 const useCenteredTree = (containerRef: React.RefObject<HTMLDivElement>, zoom: number) => {
   const [translate, setTranslate] = useState<Point>({ x: 950, y: 200 });
 
   useEffect(() => {
     if (containerRef.current) {
       const { width, height } = containerRef.current.getBoundingClientRect();
-      setTranslate({ x: width / 2, y: height / 2 });
+      setTranslate({ x: width / 2, y: height / 2 }); // 設定樹的中心點
     }
   }, [containerRef, zoom]);
 
   return translate;
 };
 
-// Main Component
+// 主組件
 const Organizational = () => {
   const [orgData, setOrgData] = useState<TreeNode | null>(null);
   const [highlightedData, setHighlightedData] = useState<TreeNode | null>(null);
@@ -139,7 +141,7 @@ const Organizational = () => {
   const translate = useCenteredTree(containerRef, zoom);
   const nodeRefs = useRef<{ [key: string]: SVGCircleElement | null }>({});
 
-  // Use mock data
+  // 使用模擬數據
   useEffect(() => {
     const orgUnitNodes = mockOrgData.map(m => transformToTreeNode(m.rootUnit));
     const combinedTree: TreeNode = {
@@ -149,10 +151,10 @@ const Organizational = () => {
     };
     setOrgData(combinedTree);
     setHighlightedData(combinedTree);
-    setExpandedNodeIds(getAllNodeIds(combinedTree));
+    setExpandedNodeIds(getAllNodeIds(combinedTree)); // 初始展開所有節點
   }, []);
 
-  // Update highlighted data on search
+  // 根據搜索更新高亮數據
   useEffect(() => {
     if (searchTerm && orgData) {
       const highlightedTree = highlightNode(orgData, searchTerm);
@@ -175,6 +177,7 @@ const Organizational = () => {
     }
   }, [searchTerm, orgData]);
 
+  // 查找匹配的節點
   const findMatchingNodes = (node: TreeNode, searchTerm: string): TreeNode[] => {
     const matches: TreeNode[] = [];
     const lowerCaseSearchTerm = searchTerm.toLowerCase();
@@ -203,6 +206,7 @@ const Organizational = () => {
     return matches;
   };
 
+  // 切換詳細可見性
   const toggleDetailedVisibility = (nodeId: string, isMatched: boolean = false) => {
     setDetailedVisibility(prev => ({
       ...prev,
@@ -318,7 +322,8 @@ const Organizational = () => {
             collapsible={false}
             orientation="vertical"
             pathFunc="step"
-            pathClassFunc={(linkData, orientation) => 
+            pathClassFunc={(linkData) => 
+            // 在這裡隱藏 root 的顏色
               linkData.source.data.name === "Combined Organization" ? 'no-path' : 'custom-path'
             }
             nodeSize={{ x: 300, y: 200 }}
