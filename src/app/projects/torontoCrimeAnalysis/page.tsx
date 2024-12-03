@@ -55,7 +55,7 @@ const CrimeAnalysis: React.FC = () => {
                 <section className="methodology-section mb-8">
                     <h2 className="text-2xl font-semibold text-gray-700 mb-4">Data & Methodology</h2>
                     <p className="text-gray-600 leading-relaxed">
-                        The study utilized the "Major Crime Indicators" dataset from the Toronto
+                        The study utilized the &quot;Major Crime Indicators&quot; dataset from the Toronto
                         Police Service, focusing on crimes reported during the month of July. Bayesian
                         logistic regression was employed to estimate the likelihood of violent crimes,
                         using premises type and time of day as predictors.
