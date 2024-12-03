@@ -1,0 +1,17 @@
+.crime-analysis-container {
+    max-width: 800px; /* Constrains the content width for better readability */
+    margin: 0 auto; /* Centers the container horizontally */
+    padding: 2rem; /* Adds spacing around the content */
+    background-color: #ffffff;
+}
+
+.github-link a {
+    text-decoration: none;
+    color: #2563eb; /* Tailwind Blue-600 */
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+}
+
+.github-link a:hover {
+    color: #1d4ed8; /* Tailwind Blue-700 */
+}

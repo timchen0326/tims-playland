@@ -15,7 +15,23 @@ const Gallery = () => {
   }, []);
 
   const icons = [
-    { id: 'mayohr', src: '/mayohr.jpg', alt: 'MAYOHR', link: '/projects/mayohr', description: 'Assisted in the development and maintenance of dynamic, user-friendly forms for various HR applications, ensuring compatibility and responsiveness across different browsers.', tags: ['Form Development', 'TSX', 'Next.Js', 'React', 'VS Code'] }]
+    {
+      id: 'mayohr',
+      src: '/mayohr.jpg',
+      alt: 'MAYOHR',
+      link: '/projects/mayohr',
+      description: 'Assisted in the development and maintenance of dynamic, user-friendly forms for various HR applications, ensuring compatibility and responsiveness across different browsers.',
+      tags: ['Form Development', 'TSX', 'Next.Js', 'React', 'VS Code']
+    },
+    {
+      id: 'torontoCrimeAnalysis',
+      src: '/toronto.png',
+      alt: 'Toronto Crime Analysis',
+      link: '/projects/torontoCrimeAnalysis',
+      description: 'Analyzed contextual and temporal factors influencing violent crimes in Toronto using Bayesian logistic regression and urban safety principles.',
+      tags: ['Bayesian Modeling', 'Data Analysis', 'R', 'Crime Research', 'Visualization']
+    }
+  ];
 
   return (
     <AnimatePresence>
