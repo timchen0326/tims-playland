@@ -1,0 +1,19 @@
+.housing-analysis-container {
+    max-width: 800px; /* Constrains the content width for better readability */
+    margin: 0 auto; /* Centers the container horizontally */
+    padding: 2rem; /* Adds spacing around the content */
+    background-color: #ffffff;
+    border-radius: 16px; /* Adds more rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds subtle shadow */
+}
+
+.download-link a {
+    text-decoration: none;
+    color: #2563eb; /* Tailwind Blue-600 */
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+}
+
+.download-link a:hover {
+    color: #1d4ed8; /* Tailwind Blue-700 */
+}
