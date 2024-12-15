@@ -146,13 +146,37 @@ export const homePageText = {
         tags: ['Form Development', 'TSX', 'Next.Js', 'React', 'VS Code'],
       },
       {
+        id: 'housingPriceAnalysis',
+        src: '/iStock-1309180566-min.width-1024.jpg',
+        alt: 'Housing Price Analysis',
+        link: '/projects/housingAnalysis',
+        description: 'Investigated factors affecting housing prices, including lot size, number of rooms, and land contour, using multiple linear regression and R.',
+        tags: ['R', 'Statistical Modeling', 'Housing Market', 'Linear Regression', 'Data Analysis']
+      },
+      {
+        id: 'diabetesRiskFactors',
+        src: '/360_F_321547123_ypHqaRsHnZl7lIrJNbFLtdU8ijL5V0fJ.jpg',
+        alt: 'Diabetes Risk Factors Analysis',
+        link: '/projects/diabetesRisk',
+        description: 'Analyzed the influence of BMI, glucose levels, pregnancies, and genetic predisposition on diabetes risk using logistic regression and R.',
+        tags: ['R', 'Statistical Modeling', 'Diabetes Research', 'Logistic Regression', 'Health Data Analysis']
+      },
+      {
+        id: 'torontoTrafficAnalysis',
+        src: '/istockphoto-1405232215-612x612.jpg',
+        alt: 'Toronto Traffic Collosion Analysis',
+        link: '/projects/trafficCollision',
+        description: 'Explored temporal and spatial patterns of traffic collisions in Toronto using Tableau visualizations and urban safety data insights.',
+        tags: ['Tableau', 'Data Analysis', 'Traffic Safety', 'Visualization', 'Urban Planning']
+      },
+      {
         id: 'torontoCrimeAnalysis',
-        src: '/toronto.png', // Replace this with the correct image path
+        src: '/toronto.png',
         alt: 'Toronto Crime Analysis',
         link: '/projects/torontoCrimeAnalysis',
         description: 'Analyzed contextual and temporal factors influencing violent crimes in Toronto using Bayesian logistic regression and urban safety principles.',
         tags: ['Bayesian Modeling', 'Data Analysis', 'R', 'Crime Research', 'Visualization']
-      }
-      // Add more projects here if needed
+      },
+
     ],
 };
