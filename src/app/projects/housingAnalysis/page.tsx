@@ -65,7 +65,7 @@ const HousingAnalysis: React.FC = () => {
                 <section className="methodology-section mb-8">
                     <h2 className="text-2xl font-semibold text-gray-700 mb-4">Data & Methodology</h2>
                     <p className="text-gray-600 leading-relaxed">
-                        The analysis uses the "Ames Iowa Housing Data" with 2,932 observations. We employed multiple linear regression to examine the relationship between predictors and housing prices, ensuring the model satisfies assumptions like linearity and constant variance.
+                        The analysis uses the &quot;Ames Iowa Housing Data&quot; with 2,932 observations. We employed multiple linear regression to examine the relationship between predictors and housing prices, ensuring the model satisfies assumptions like linearity and constant variance.
                     </p>
                     <p className="text-gray-600 leading-relaxed mt-4">
                         Advanced statistical techniques, including ANOVA and partial F-tests, were used to validate model accuracy and identify significant predictors.
