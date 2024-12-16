@@ -25,9 +25,9 @@ const Gallery = () => {
     },
     {
       id: 'housingPriceAnalysis',
-      src: '/360_F_321547123_housing_analysis.jpg',
+      src: '/iStock-1309180566-min.width-1024.jpg',
       alt: 'Housing Price Analysis',
-      link: '/projects/housingPriceAnalysis',
+      link: '/projects/housingAnalysis',
       description: 'Investigated factors affecting housing prices, including lot size, number of rooms, and land contour, using multiple linear regression and R.',
       tags: ['R', 'Statistical Modeling', 'Housing Market', 'Linear Regression', 'Data Analysis']
     },
