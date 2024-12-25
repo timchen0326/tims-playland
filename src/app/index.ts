@@ -165,7 +165,7 @@ export const homePageText = {
         id: 'imdbAnalysis',
         src: '/IMDB_Logo_2016.svg.png',
         alt: 'IMDb Analysis',
-        link: '/projects/imdbAnalysis',
+        link: '/projects/iMDbAnalysis',
         description: 'Analyzed the relationship between IMDb votes, ratings, language diversity, and release year using scatter plots and Bayesian modeling in R.',
         tags: ['R', 'Statistical Modeling', 'IMDb Ratings', 'Bayesian Analysis', 'Data Visualization']
       },
