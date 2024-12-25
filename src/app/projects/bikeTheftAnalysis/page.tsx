@@ -34,11 +34,11 @@ const BikeTheftAnalysis: React.FC = () => {
                             and Church-Yonge Corridor.
                         </li>
                         <li>
-                            Bike thefts are most frequent between <strong>12-23 o'clock</strong>, especially in outside
+                            Bike thefts are most frequent between <strong>12–23 o&rsquo;clock</strong>, especially in outside
                             areas and apartments.
                         </li>
                         <li>
-                            Regular (RG) and Mountain (MT) bikes in the price range of $101-$900 are the most frequently stolen.
+                            Regular (RG) and Mountain (MT) bikes in the price range of $101–$900 are the most frequently stolen.
                         </li>
                         <li>
                             Top divisions for reporting bike thefts include D52, D14, and D51, although recovery rates remain low.
