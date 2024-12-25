@@ -44,7 +44,7 @@ const DiabetesRisk: React.FC = () => {
 
                 {/* Download Link Section */}
                 <section className="download-link mb-8">
-                    <h2 className="text-2xl font-semibold text-gray-700 mb-4">Download Full Report</h2>
+                    <h2 className="text-2xl font-semibold text-gray-700 mb-4">View Full Report</h2>
                     <p className="text-gray-600 leading-relaxed">
                         Access the complete study detailing the methodology, statistical models, and results:
                     </p>
@@ -54,12 +54,12 @@ const DiabetesRisk: React.FC = () => {
                             className="text-blue-600 font-medium hover:text-blue-700"
                             target="_blank"
                             rel="noopener noreferrer"
-                            download
                         >
-                            Download PDF Report
+                            View PDF Report
                         </a>
                     </div>
                 </section>
+
 
                 {/* Data & Methodology Section */}
                 <section className="methodology-section mb-8">

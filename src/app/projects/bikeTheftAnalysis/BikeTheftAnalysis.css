@@ -1,0 +1,19 @@
+.bike-theft-analysis-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.download-link a {
+    text-decoration: none;
+    color: #2563eb; /* Tailwind Blue-600 */
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+}
+
+.download-link a:hover {
+    color: #1d4ed8; /* Tailwind Blue-700 */
+}
