@@ -25,7 +25,7 @@ const Gallery = () => {
     },
     {
       id: 'housingPriceAnalysis',
-      src: '/360_F_321547123_housing_analysis.jpg',
+      src: '/iStock-1309180566-min.width-1024.jpg',
       alt: 'Housing Price Analysis',
       link: '/projects/housingPriceAnalysis',
       description: 'Investigated factors affecting housing prices, including lot size, number of rooms, and land contour, using multiple linear regression and R.',
@@ -39,6 +39,22 @@ const Gallery = () => {
       description: 'Analyzed the influence of BMI, glucose levels, pregnancies, and genetic predisposition on diabetes risk using logistic regression and R.',
       tags: ['R', 'Statistical Modeling', 'Diabetes Research', 'Logistic Regression', 'Health Data Analysis']
     },
+    {
+      id: 'imdbAnalysis',
+      src: '/IMDB_Logo_2016.svg.png',
+      alt: 'IMDb Analysis',
+      link: '/projects/iMDbAnalysis',
+      description: 'Analyzed the relationship between IMDb votes, ratings, language diversity, and release year using scatter plots and Bayesian modeling in R.',
+      tags: ['R', 'Statistical Modeling', 'IMDb Ratings', 'Bayesian Analysis', 'Data Visualization']
+    },
+    {
+      id: 'bikeTheftAnalysis',
+      src: '/istockphoto-1179640320-612x612.jpg',
+      alt: 'Bike Theft Analysis',
+      link: '/projects/bikeTheftAnalysis',
+      description: 'Analyzed bike theft trends in Toronto, identifying high-risk locations, theft timing, and common bike characteristics using data visualizations and statistical modeling in R.',
+      tags: ['R', 'Statistical Modeling', 'Bike Theft', 'Data Visualization', 'Urban Safety']
+    },    
     {
       id: 'torontoTrafficAnalysis',
       src: '/istockphoto-1405232215-612x612.jpg',

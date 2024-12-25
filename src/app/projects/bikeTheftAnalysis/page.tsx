@@ -1,17 +1,17 @@
 import React from "react";
-import "./HousingAnalysis.css"; // External CSS file for additional styles
+import "./BikeTheftAnalysis.css"; // External CSS file for additional styles
 
-const HousingAnalysis: React.FC = () => {
+const BikeTheftAnalysis: React.FC = () => {
     return (
         <div className="min-h-screen flex items-center justify-center px-4">
-            <div className="housing-analysis-container p-8">
+            <div className="bike-theft-analysis-container p-8">
                 {/* Header Section */}
                 <header className="header text-center mb-8">
                     <h1 className="text-4xl font-bold text-gray-800 uppercase">
-                        Analyzing Housing Prices
+                        Reducing Bike Theft in Toronto
                     </h1>
                     <p className="text-gray-600 mt-4">
-                        Exploring the factors that influence housing prices using multiple linear regression models.
+                        Insights into bike theft trends in Toronto to help reduce risks and provide actionable solutions.
                     </p>
                 </header>
 
@@ -19,7 +19,9 @@ const HousingAnalysis: React.FC = () => {
                 <section className="about-section mb-8">
                     <h2 className="text-2xl font-semibold text-gray-700 mb-4">About the Study</h2>
                     <p className="text-gray-600 leading-relaxed">
-                        This project investigates key predictors such as lot size, number of rooms, year of construction, and land contour to understand their impact on housing prices. Using data from Ames Iowa, we uncover relationships and trends through statistical modeling.
+                        This study examines bike thefts in Toronto, analyzing data on locations, cost ranges, bike types,
+                        and premise types. It aims to provide strategies for reducing theft risk and guidance on actions
+                        to take when bikes are stolen.
                     </p>
                 </section>
 
@@ -28,29 +30,31 @@ const HousingAnalysis: React.FC = () => {
                     <h2 className="text-2xl font-semibold text-gray-700 mb-4">Key Insights</h2>
                     <ul className="list-disc list-inside text-gray-600 space-y-4">
                         <li>
-                            <strong>Lot Size:</strong> Larger lot areas correlate with higher housing prices.
+                            The top neighborhoods for bike thefts include Waterfront Communities, Bay Street Corridor,
+                            and Church-Yonge Corridor.
                         </li>
                         <li>
-                            <strong>Number of Rooms:</strong> More rooms above ground significantly increase property value.
+                            Bike thefts are most frequent between <strong>12-23 o'clock</strong>, especially in outside
+                            areas and apartments.
                         </li>
                         <li>
-                            <strong>Year of Remodel:</strong> Recent renovations contribute positively to housing prices.
+                            Regular (RG) and Mountain (MT) bikes in the price range of $101-$900 are the most frequently stolen.
                         </li>
                         <li>
-                            <strong>Land Contour:</strong> Properties on level or hilly terrain are valued higher than others.
+                            Top divisions for reporting bike thefts include D52, D14, and D51, although recovery rates remain low.
                         </li>
                     </ul>
                 </section>
 
-                {/* Download Link Section */}
+                {/* View PDF Section */}
                 <section className="download-link mb-8">
                     <h2 className="text-2xl font-semibold text-gray-700 mb-4">View Full Report</h2>
                     <p className="text-gray-600 leading-relaxed">
-                        Access the complete study detailing the methodology, statistical models, and results:
+                        Access the complete study detailing the methodology, visualizations, and recommendations:
                     </p>
                     <div className="text-center mt-4">
                         <a
-                            href="/Housing Prices.pdf"
+                            href="/Bike Theft Analysis.pdf"
                             className="text-blue-600 font-medium hover:text-blue-700"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -64,10 +68,13 @@ const HousingAnalysis: React.FC = () => {
                 <section className="methodology-section mb-8">
                     <h2 className="text-2xl font-semibold text-gray-700 mb-4">Data & Methodology</h2>
                     <p className="text-gray-600 leading-relaxed">
-                        The analysis uses the &quot;Ames Iowa Housing Data&quot; with 2,932 observations. We employed multiple linear regression to examine the relationship between predictors and housing prices, ensuring the model satisfies assumptions like linearity and constant variance.
+                        The analysis utilized data on reported bike thefts in Toronto, applying heatmaps, bar charts,
+                        and statistical analysis to identify trends. Visualizations highlight high-risk areas, theft timing,
+                        and common characteristics of stolen bikes.
                     </p>
                     <p className="text-gray-600 leading-relaxed mt-4">
-                        Advanced statistical techniques, including ANOVA and partial F-tests, were used to validate model accuracy and identify significant predictors.
+                        Limitations include potential underreporting, which may bias results. Recommendations focus on
+                        proactive measures such as avoiding high-risk neighborhoods and bike types with higher theft rates.
                     </p>
                 </section>
             </div>
@@ -75,4 +82,4 @@ const HousingAnalysis: React.FC = () => {
     );
 };
 
-export default HousingAnalysis;
+export default BikeTheftAnalysis;

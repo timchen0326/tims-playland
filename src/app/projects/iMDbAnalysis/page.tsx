@@ -1,17 +1,17 @@
 import React from "react";
-import "./HousingAnalysis.css"; // External CSS file for additional styles
+import "./IMDbAnalysis.css"; // External CSS file for additional styles
 
-const HousingAnalysis: React.FC = () => {
+const IMDbAnalysis: React.FC = () => {
     return (
         <div className="min-h-screen flex items-center justify-center px-4">
-            <div className="housing-analysis-container p-8">
+            <div className="imdb-analysis-container p-8">
                 {/* Header Section */}
                 <header className="header text-center mb-8">
                     <h1 className="text-4xl font-bold text-gray-800 uppercase">
-                        Analyzing Housing Prices
+                        Exploring IMDb Ratings and Votes
                     </h1>
                     <p className="text-gray-600 mt-4">
-                        Exploring the factors that influence housing prices using multiple linear regression models.
+                        Analyzing the relationship between IMDb votes, ratings, language diversity, and release year.
                     </p>
                 </header>
 
@@ -19,7 +19,9 @@ const HousingAnalysis: React.FC = () => {
                 <section className="about-section mb-8">
                     <h2 className="text-2xl font-semibold text-gray-700 mb-4">About the Study</h2>
                     <p className="text-gray-600 leading-relaxed">
-                        This project investigates key predictors such as lot size, number of rooms, year of construction, and land contour to understand their impact on housing prices. Using data from Ames Iowa, we uncover relationships and trends through statistical modeling.
+                        This analysis examines whether IMDb votes predict higher IMDb ratings while considering factors
+                        such as release year and language diversity. Through visualization techniques, patterns are 
+                        explored to provide insights into audience and critical perceptions.
                     </p>
                 </section>
 
@@ -28,29 +30,29 @@ const HousingAnalysis: React.FC = () => {
                     <h2 className="text-2xl font-semibold text-gray-700 mb-4">Key Insights</h2>
                     <ul className="list-disc list-inside text-gray-600 space-y-4">
                         <li>
-                            <strong>Lot Size:</strong> Larger lot areas correlate with higher housing prices.
+                            Scatter plots reveal the relationship between IMDb votes and ratings, segmented by release year and language diversity.
                         </li>
                         <li>
-                            <strong>Number of Rooms:</strong> More rooms above ground significantly increase property value.
+                            Movies released after 2000 generally follow different trends compared to those released earlier.
                         </li>
                         <li>
-                            <strong>Year of Remodel:</strong> Recent renovations contribute positively to housing prices.
+                            Language diversity impacts IMDb ratings, with single-language movies and multi-language movies showing distinct patterns.
                         </li>
                         <li>
-                            <strong>Land Contour:</strong> Properties on level or hilly terrain are valued higher than others.
+                            Metascores provide a measure of critical reception, encoded by point size in the scatter plot.
                         </li>
                     </ul>
                 </section>
 
-                {/* Download Link Section */}
+                {/* View PDF Section */}
                 <section className="download-link mb-8">
                     <h2 className="text-2xl font-semibold text-gray-700 mb-4">View Full Report</h2>
                     <p className="text-gray-600 leading-relaxed">
-                        Access the complete study detailing the methodology, statistical models, and results:
+                        Access the complete study detailing the methodology, visualizations, and results:
                     </p>
                     <div className="text-center mt-4">
                         <a
-                            href="/Housing Prices.pdf"
+                            href="/IMDb Analysis.pdf"
                             className="text-blue-600 font-medium hover:text-blue-700"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -64,10 +66,10 @@ const HousingAnalysis: React.FC = () => {
                 <section className="methodology-section mb-8">
                     <h2 className="text-2xl font-semibold text-gray-700 mb-4">Data & Methodology</h2>
                     <p className="text-gray-600 leading-relaxed">
-                        The analysis uses the &quot;Ames Iowa Housing Data&quot; with 2,932 observations. We employed multiple linear regression to examine the relationship between predictors and housing prices, ensuring the model satisfies assumptions like linearity and constant variance.
+                        The analysis utilizes scatter plots with trendlines fitted using linear regression. Visual encodings such as color, shape, and size were employed to represent release year, language diversity, and metascore, respectively.
                     </p>
                     <p className="text-gray-600 leading-relaxed mt-4">
-                        Advanced statistical techniques, including ANOVA and partial F-tests, were used to validate model accuracy and identify significant predictors.
+                        Filters were applied to exclude movies with runtimes under 75 minutes, and alpha blending was used to reduce visual clutter while emphasizing patterns and trends.
                     </p>
                 </section>
             </div>
@@ -75,4 +77,4 @@ const HousingAnalysis: React.FC = () => {
     );
 };
 
-export default HousingAnalysis;
+export default IMDbAnalysis;
